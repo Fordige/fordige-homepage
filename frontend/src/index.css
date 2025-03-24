@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-svg1 {
+    animation: svgFade 3s infinite;
+  }
+
+  .animate-svg2 {
+    animation: svgFade 3s infinite 1.5s;
+  }
+
+  @keyframes svgFade {
+    0% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
