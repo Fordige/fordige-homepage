@@ -16,14 +16,14 @@ function Modal() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="font-orbitron absolute right-[2rem] top-[0.1rem] text-[3rem]"
+              className="absolute right-[2rem] top-[0.1rem] font-orbitron text-[3rem]"
               onClick={closeModal}
             >
               x
             </button>
             <div className="flex h-[24rem] w-[36rem] justify-end">
               <div className="flex h-full w-[18.5rem] flex-col justify-between">
-                <h1 className="font-noto text-center text-[3rem]">QR Code</h1>
+                <h1 className="text-center font-noto text-[3rem]">QR Code</h1>
                 <img
                   src={target}
                   alt="QR Code"
@@ -34,11 +34,15 @@ function Modal() {
             <div className="flex h-[24rem] w-[36rem] justify-start">
               <div className="flex h-full w-[18.5rem] flex-col">
                 <img
-                  src="/assets/line_contact_us.svg"
+                  src={
+                    target === "/assets/line_qrcode.svg"
+                      ? "/assets/line_contact_us.svg"
+                      : "/assets/ig_contact_us.svg"
+                  }
                   alt="Media Icon"
                   className="h-[18.5rem] w-[18.5rem]"
                 />
-                <h1 className="font-noto text-center text-[3rem]">
+                <h1 className="text-center font-noto text-[3rem]">
                   Contact Us
                 </h1>
               </div>

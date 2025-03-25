@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
+import ContactUsSection from "./components/sections/ContactUsSection";
 // import AboutSection from "./sections/AboutSection";
 // import ServiceSection from "./sections/ServiceSection";
-// import ContactUsSection from "./sections/ContactUsSection";
 // import Modal from "./components/ui/Modal";
 // import HomeSection from "./sections/HomeSection";
 // import BackToUp from "./components/layout/BackToUp";
@@ -54,7 +54,7 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex h-screen w-screen flex-col">
       <Navbar
         scrollToSection={scrollToSection}
         currentSection={currentSection}
@@ -66,6 +66,8 @@ function App() {
       <Footer />
       <Modal />
       {currentSection !== 0 && <BackToUp scrollToSection={scrollToSection} />} */}
+      <ContactUsSection ref={sectionRefs[3]} />
+
       <Footer />
       <Modal />
     </div>

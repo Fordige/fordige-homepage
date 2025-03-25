@@ -4,7 +4,7 @@ function Footer() {
   const openModal = useModalStore((state) => state.openModal);
 
   return (
-    <footer className="from-accent to-highlight font-inter fixed bottom-0 z-10 h-[7rem] w-screen bg-gradient-to-r text-black">
+    <footer className="fixed bottom-0 z-10 h-[7rem] w-full bg-gradient-to-r from-accent to-highlight font-inter text-black">
       <div className="animate-svg1 botton-0 z-15 fixed w-screen">
         <img
           src="/assets/scroll_down_normal.svg"
