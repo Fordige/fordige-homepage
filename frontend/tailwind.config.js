@@ -9,6 +9,13 @@ export default {
         accent: "#999999",
         highlight: "#FFFFFF",
       },
+      fontSize: {
+        xs: "1.25rem", // 20px
+        sm: "1.5rem", // 24px
+        base: "2rem", // 32px
+        lg: "2.25rem", // 36px
+        xl: "4rem", // 64px
+      },
     },
     fontFamily: {
       inter: ["Inter", "sans-serif"],

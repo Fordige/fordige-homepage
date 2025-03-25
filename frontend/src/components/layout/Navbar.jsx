@@ -10,11 +10,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 flex h-24 w-full items-center justify-start bg-accent px-8 py-2">
+    <nav className="fixed top-0 flex h-[6rem] w-full items-center justify-start bg-accent px-8 py-2">
       <div className="flex w-56 items-center justify-between self-stretch bg-midtone px-[1.426rem] py-[1.755rem]">
         <div className="text-[4.36rem] font-normal text-black">logo</div>
       </div>
-      <div className="flex w-[67.75rem] items-center justify-between self-stretch px-24 font-inter text-[2rem] font-semibold text-black">
+      <div className="flex w-[67.75rem] items-center justify-between self-stretch px-24 font-inter text-base font-semibold text-black">
         <button>About</button>
         <button>Services</button>
         <button>Contact Us</button>
@@ -23,7 +23,7 @@ function Navbar() {
         <div className="flex gap-2">
           <label
             htmlFor="language"
-            className="w-[7.19rem] justify-start self-stretch text-right font-inter text-2xl font-semibold text-black"
+            className="w-[7.19rem] justify-start self-stretch text-right font-inter text-sm font-semibold text-black"
           >
             Language
           </label>
@@ -36,7 +36,7 @@ function Navbar() {
           </select>
         </div>
         <div className="flex gap-2">
-          <div className="font-inter text-2xl font-semibold text-black">
+          <div className="font-inter text-sm font-semibold text-black">
             Mode
           </div>
           <div>
