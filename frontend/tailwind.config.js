@@ -16,6 +16,11 @@ export default {
         lg: "2.25rem", // 36px
         xl: "4rem", // 64px
       },
+      fontWeight: {
+        regualar: 400,
+        medium: 500,
+        extrabold: 800,
+      },
     },
     fontFamily: {
       inter: ["Inter", "sans-serif"],

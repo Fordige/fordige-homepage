@@ -4,6 +4,8 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
 import ContactUsSection from "./components/sections/ContactUsSection";
+import RegisterModal from "./components/ui/RegisterModal";
+
 // import AboutSection from "./sections/AboutSection";
 // import ServiceSection from "./sections/ServiceSection";
 // import Modal from "./components/ui/Modal";
@@ -70,6 +72,7 @@ function App() {
 
       <Footer />
       <Modal />
+      <RegisterModal />
     </div>
   );
 }

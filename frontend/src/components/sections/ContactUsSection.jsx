@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { createCase } from "../../utils/api";
+import useModalStore from "../../store/modalStore";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const {
@@ -10,14 +11,16 @@ const ContactUsSection = forwardRef((props, ref) => {
     formState: { errors },
   } = useForm();
 
+  const openRegisterModal = useModalStore((state) => state.openRegisterModal);
+
   const onSubmit = async (data) => {
     const res = await createCase(data);
-    reset();
-    alert(
-      res.data
-        ? "Your submission was successful. We'll contact you soon."
-        : "Submit Failed",
-    );
+    if (res.data) {
+      reset();
+      openRegisterModal();
+    } else {
+      alert("Oops, something went wrong. Please try again later.");
+    }
   };
 
   return (
@@ -33,7 +36,7 @@ const ContactUsSection = forwardRef((props, ref) => {
           <div className="flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-[400]">Name</div>
+                <div className="font-regualar text-base">Name</div>
                 {errors.user_id && (
                   <div className="font-inter text-sm text-accent">
                     {errors.user_id.message}
@@ -46,14 +49,14 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入稱呼"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-[400]"
+                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
               />
             </label>
           </div>
           <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-[400]">Email</div>
+                <div className="font-regualar text-base">Email</div>
                 {errors.email && (
                   <div className="font-inter text-sm text-accent">
                     {errors.email.message}
@@ -70,14 +73,14 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入信箱"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-[400]"
+                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
               />
             </label>
           </div>
           <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-[400]">Line ID</div>
+                <div className="font-regualar text-base">Line ID</div>
                 {errors.user_line_id && (
                   <div className="font-inter text-sm text-accent">
                     {errors.user_line_id.message}
@@ -90,14 +93,14 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入帳號"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-[400]"
+                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
               />
             </label>
           </div>
           <div className="mt-[2rem] flex h-[4.06rem] w-full justify-between">
             <button
               type="submit"
-              className="h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] font-inter text-lg font-[900] text-highlight"
+              className="h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] font-inter text-lg font-extrabold text-highlight"
             >
               Submit
             </button>
