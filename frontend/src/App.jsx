@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-// import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
 import ContactUsSection from "./components/sections/ContactUsSection";
-import RegisterModal from "./components/ui/RegisterModal";
 
 // import AboutSection from "./sections/AboutSection";
 // import ServiceSection from "./sections/ServiceSection";
@@ -69,10 +67,8 @@ function App() {
       <Modal />
       {currentSection !== 0 && <BackToUp scrollToSection={scrollToSection} />} */}
       <ContactUsSection ref={sectionRefs[3]} />
-
       <Footer />
       <Modal />
-      <RegisterModal />
     </div>
   );
 }

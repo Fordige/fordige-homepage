@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { createCase } from "../../utils/api";
-import useModalStore from "../../store/modalStore";
+import { showRegisterSuccessToast } from "../../utils/showToast";
+import { Toaster } from "react-hot-toast";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const {
@@ -11,13 +12,11 @@ const ContactUsSection = forwardRef((props, ref) => {
     formState: { errors },
   } = useForm();
 
-  const openRegisterModal = useModalStore((state) => state.openRegisterModal);
-
   const onSubmit = async (data) => {
     const res = await createCase(data);
     if (res.data) {
+      showRegisterSuccessToast();
       reset();
-      openRegisterModal();
     } else {
       alert("Oops, something went wrong. Please try again later.");
     }
@@ -28,6 +27,7 @@ const ContactUsSection = forwardRef((props, ref) => {
       ref={ref}
       className="flex h-screen w-screen justify-center gap-[4rem] pb-[7rem] pt-[6rem]"
     >
+      <Toaster />
       <div className="flex items-center justify-center gap-[4rem]">
         <form
           className="flex h-[42.5rem] w-[52rem] flex-col justify-start"
@@ -36,7 +36,7 @@ const ContactUsSection = forwardRef((props, ref) => {
           <div className="flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="font-regualar text-base">Name</div>
+                <div className="text-base font-regualar">Name</div>
                 {errors.user_id && (
                   <div className="font-inter text-sm text-accent">
                     {errors.user_id.message}
@@ -49,14 +49,14 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入稱呼"
-                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
+                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
               />
             </label>
           </div>
           <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="font-regualar text-base">Email</div>
+                <div className="text-base font-regualar">Email</div>
                 {errors.email && (
                   <div className="font-inter text-sm text-accent">
                     {errors.email.message}
@@ -73,14 +73,14 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入信箱"
-                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
+                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
               />
             </label>
           </div>
           <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
             <label>
               <div className="flex items-center gap-[1rem]">
-                <div className="font-regualar text-base">Line ID</div>
+                <div className="text-base font-regualar">Line ID</div>
                 {errors.user_line_id && (
                   <div className="font-inter text-sm text-accent">
                     {errors.user_line_id.message}
@@ -93,7 +93,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入帳號"
-                className="font-regualar mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base"
+                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
               />
             </label>
           </div>
