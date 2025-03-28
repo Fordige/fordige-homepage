@@ -23,7 +23,7 @@ WORKDIR /app/backend
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 移動 index.html 到 templates
-RUN mv static/index.html templates/index.html
+RUN mkdir -p templates && mv static/index.html templates/index.html
 
 # 收集靜態檔案並運行遷移
 RUN python manage.py collectstatic --noinput
