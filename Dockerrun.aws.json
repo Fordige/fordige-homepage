@@ -2,7 +2,7 @@
   "AWSEBDockerrunVersion": "1",
   "Image": {
     "Name": "fordige-home:latest",
-    "Update": "true"
+    "Update": "false"
   },
   "Ports": [
     {
