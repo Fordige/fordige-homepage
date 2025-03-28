@@ -1,10 +1,12 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { createCase } from "../../utils/api";
 import { showRegisterSuccessToast } from "../../utils/showToast";
 import { Toaster } from "react-hot-toast";
+import useCsrfStore from "../../store/csrfStore";
 
 const ContactUsSection = forwardRef((props, ref) => {
+  const { createCase, getCsrfToken, csrfToken } = useCsrfStore();
+
   const {
     register,
     handleSubmit,
@@ -14,13 +16,22 @@ const ContactUsSection = forwardRef((props, ref) => {
 
   const onSubmit = async (data) => {
     const res = await createCase(data);
+    console.log(csrfToken);
     if (res.data) {
       showRegisterSuccessToast();
       reset();
     } else {
-      alert("Oops, something went wrong. Please try again later.");
+      // alert("Oops, something went wrong. Please try again later.");
+      console.log(res);
     }
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      await getCsrfToken();
+    }
+    fetchData();
+  }, []);
 
   return (
     <section

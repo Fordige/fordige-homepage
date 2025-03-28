@@ -1,4 +1,6 @@
 import useModalStore from "../../store/modalStore";
+import lineContact from "../../assets/line_contact_us.svg";
+import igContact from "../../assets/ig_contact_us.svg";
 
 function Modal() {
   const isModalOpen = useModalStore((state) => state.isModalOpen);
@@ -38,8 +40,8 @@ function Modal() {
                 <img
                   src={
                     target === "/assets/line_qrcode.svg"
-                      ? "/assets/line_contact_us.svg"
-                      : "/assets/ig_contact_us.svg"
+                      ? lineContact
+                      : igContact
                   }
                   alt="Media Icon"
                   className="h-[19.06rem] w-[19.06rem]"

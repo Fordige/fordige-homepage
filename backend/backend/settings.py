@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG', 'False') == 'True'  # 根據環境動態設置
+
+ALLOWED_HOSTS = ['.fordige.com', '.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
@@ -43,13 +44,13 @@ INSTALLED_APPS = [
     'api',
     'userauths',
 
-    'drf_yasg',
     'rest_framework',
     "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -125,11 +126,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [BASE_DIR/"static"]
 
-STATIC_ROOT = BASE_DIR / 'templates'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'userauths.User'
 
@@ -162,3 +165,11 @@ JAZZMIN_SETTINGS = {
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF settings
+CSRF_COOKIE_SECURE =True  # 開發時設為 False，生產設為 True
+CSRF_COOKIE_HTTPONLY = False  # 允許 JS 存取（若需要）
+CSRF_TRUSTED_ORIGINS = [
+    'http://.localhost',   
+    'https://.fordige.com'
+]
