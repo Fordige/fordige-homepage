@@ -28,8 +28,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: fordige-home
-          environment_name: Fordige-home-env
+          application_name: fordige-application
+          environment_name: Fordige-application-env
           version_label: ${{ github.sha }}
           region: ap-northeast-1
           deployment_package: deploy.zip
