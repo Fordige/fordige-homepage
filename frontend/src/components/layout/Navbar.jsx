@@ -1,56 +1,57 @@
+import { RiServiceFill } from "react-icons/ri";
+import { MdContactMail, MdLanguage } from "react-icons/md";
+import { BsFillPersonLinesFill, BsLamp } from "react-icons/bs";
 import { useState } from "react";
-import DarkLightToggle from "../ui/DarkLightToggle";
-import FormControlLabel from "@mui/material/FormControlLabel";
+
+import smallLogo from "../../assets/small_logo_1_1.svg";
+import lightToggle from "../../assets/light-toggle.svg";
+import darkToggle from "../../assets/dark-toggle.svg";
 
 function Navbar() {
-  const [isDark, setIsDark] = useState(false);
-
-  const hangleDarkToggle = () => {
-    setIsDark(!isDark);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   return (
-    <nav className="fixed top-0 flex h-[6rem] w-full items-center justify-start bg-accent px-8 py-2">
-      <div className="flex w-56 items-center justify-between self-stretch bg-midtone px-[1.426rem] py-[1.755rem]">
-        <div className="text-[4.36rem] font-normal text-black">logo</div>
+    <nav className="to-shadow2 fixed top-0 flex h-[5rem] w-full items-center justify-center bg-gradient-to-r from-highlight px-8 py-2">
+      <div className="h-[4.25rem] w-[4.25rem]">
+        <img className="h-full w-full" src={smallLogo} alt="smallLogo" />
       </div>
-      <div className="flex w-[67.75rem] items-center justify-between self-stretch px-24 font-inter text-base font-semibold text-black">
-        <button>About</button>
-        <button>Services</button>
-        <button>Contact Us</button>
+      <div className="font-xxs font-sf flex h-[4rem] w-[35.88rem] items-end justify-around font-medium">
+        <button className="flex items-end justify-center gap-1">
+          <BsFillPersonLinesFill className="h-[2rem] w-[2rem]" />
+          <span>關於我們</span>
+        </button>
+        <button className="flex items-end justify-center gap-1">
+          <RiServiceFill className="h-[2rem] w-[2rem]" />
+          <span>服務內容</span>
+        </button>
+        <button className="flex items-end justify-center gap-1">
+          <MdContactMail className="h-[2rem] w-[2rem]" />
+          <span>聯絡我們</span>
+        </button>
       </div>
-      <div className="flex w-[34.25rem] justify-end gap-5 self-stretch">
-        <div className="flex gap-2">
-          <label
-            htmlFor="language"
-            className="w-[7.19rem] justify-start self-stretch text-right font-inter text-sm font-semibold text-black"
-          >
-            Language
-          </label>
+      <div className="flex h-[4rem] w-[35.88rem] items-start justify-end gap-[1rem]">
+        <div className="flex h-[1.5rem] w-[8.25rem] items-center justify-between">
+          <MdLanguage className="h-[1.5rem] w-[1.5rem]" />
           <select
-            id="language"
-            className="font-600 h-8 w-44 rounded-lg bg-white pr-5 text-center text-2xl text-black outline outline-1 outline-black"
+            className="w-[6.25rem] cursor-pointer rounded-[0.5rem] border-[0.125rem] border-black"
+            name=""
+            id=""
           >
-            <option className="font-noto">English</option>
-            <option className="font-noto">繁體中文</option>
+            <option value="">繁體中文</option>
+            <option value="">English</option>
           </select>
         </div>
-        <div className="flex gap-2">
-          <div className="font-inter text-sm font-semibold text-black">
-            Mode
-          </div>
-          <div>
-            <FormControlLabel
-              className="mt-[-0.55rem]"
-              control={
-                <DarkLightToggle
-                  sx={{ m: 1 }}
-                  checked={isDark}
-                  onChange={hangleDarkToggle}
-                />
-              }
+        <div className="flex h-[1.5rem] w-[5.5rem] items-center justify-between">
+          <BsLamp className="h-[1.5rem] w-[1.5rem]" />
+          <button onClick={handleToggle}>
+            <img
+              src={isDarkMode ? darkToggle : lightToggle}
+              alt="lightToggle"
             />
-          </div>
+          </button>
         </div>
       </div>
     </nav>

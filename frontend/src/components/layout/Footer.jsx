@@ -5,13 +5,49 @@ import scrollDownNormalIcon from "../../assets/scroll_down_normal.svg";
 import scrollDownBoldIcon from "../../assets/scroll_down_bold.svg";
 import lineQrCode from "../../assets/line_qrcode.svg";
 import igQrCode from "../../assets/ig_qrcode.svg";
+import bannerDark from "../../assets/banner-dark-1-1.svg";
+import scrollIcon from "../../assets/scroll.svg";
 
 function Footer() {
   const openModal = useModalStore((state) => state.openModal);
 
   return (
-    <footer className="fixed bottom-0 z-10 h-[7rem] w-full bg-gradient-to-r from-accent to-highlight">
-      <div className="animate-svg1 botton-0 z-15 fixed w-screen">
+    <footer className="from-shadow2 fixed bottom-0 z-10 flex h-[5rem] w-full items-center justify-center bg-gradient-to-r to-highlight">
+      <div className="flex h-[4rem] w-[31.06rem] items-center justify-start">
+        <img className="h-full w-[19rem]" src={bannerDark} alt="bannerDark" />
+      </div>
+      <div className="flex h-[4rem] w-[13.875rem] flex-col items-center justify-center">
+        <img
+          className="h-[3.125rem] w-[3.75rem]"
+          src={scrollIcon}
+          alt="scrollIcon"
+        />
+        <p className="text-xxxs font-sf text-shadow3 font-normal">
+          Copyright © 2025 Fordige. All rights reserved.
+        </p>
+      </div>
+      <div className="flex h-[4rem] w-[31.06rem] items-center justify-end">
+        <img
+          className="h-full w-[4rem]"
+          src={lineIcon}
+          alt="lineIcon"
+          onClick={() => openModal(lineQrCode)}
+        />
+        <img
+          className="h-full w-[4rem]"
+          src={instagrameIcon}
+          alt="igIcon"
+          onClick={() => openModal(igQrCode)}
+        />
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
+
+{
+  /* <div className="animate-svg1 botton-0 z-15 fixed w-screen">
         <img
           src={scrollDownNormalIcon}
           alt="scroll"
@@ -45,9 +81,5 @@ function Footer() {
             />
           </div>
         </div>
-      </div>
-    </footer>
-  );
+      </div> */
 }
-
-export default Footer;

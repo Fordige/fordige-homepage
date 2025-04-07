@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
 import ContactUsSection from "./components/sections/ContactUsSection";
+import HomepageSection from "./components/sections/HomepageSection";
 
 // import AboutSection from "./sections/AboutSection";
 // import ServiceSection from "./sections/ServiceSection";
@@ -66,7 +67,10 @@ function App() {
       <Footer />
       <Modal />
       {currentSection !== 0 && <BackToUp scrollToSection={scrollToSection} />} */}
-      <ContactUsSection ref={sectionRefs[3]} />
+      {/* <ContactUsSection ref={sectionRefs[3]} />
+      
+      <Modal /> */}
+      <HomepageSection />
       <Footer />
       <Modal />
     </div>

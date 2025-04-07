@@ -4,12 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        shadow: "#333333",
-        midtone: "#666666",
-        accent: "#999999",
+        shadow3: "#000000",
+        shadow2: "#B1AABF",
+        shadow: "#20591E",
+        midtone: "#1A8C16",
+        accent: "#0DF205",
         highlight: "#FFFFFF",
       },
       fontSize: {
+        xxxs: "0.625rem", // 10px
+        xxs: "1rem", // 16px
         xs: "1.25rem", // 20px
         sm: "1.5rem", // 24px
         base: "2rem", // 32px
@@ -23,9 +27,7 @@ export default {
       },
     },
     fontFamily: {
-      inter: ["Inter", "sans-serif"],
-      noto: ["Noto Sans TC", "sans-serif"],
-      orbitron: ["Orbitron", "sans-serif"],
+      sf: ["SF Pro Display", "sans-serif"],
     },
   },
   plugins: [],

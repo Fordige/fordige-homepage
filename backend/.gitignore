@@ -1,1 +1,51 @@
-venv
+# Python 編譯檔案
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# 虛擬環境
+venv/
+env/
+.env/
+virtualenv/
+*.venv
+
+# 日誌檔案
+*.log
+
+# 測試和緩存檔案
+*.cache
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# 編輯器和 IDE 檔案
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 系統檔案
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# 依賴管理
+Pipfile.lock  # 可選，視需求決定是否忽略
+dist/
+build/
+*.egg-info/
+*.egg
+
+# 敏感資訊
+*.env
+secrets/
+credentials.json
+*.key
+*.pem
+
+# 其他臨時檔案
+*.bak
+*.swp
+*~
