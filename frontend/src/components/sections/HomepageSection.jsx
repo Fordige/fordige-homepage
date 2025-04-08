@@ -36,7 +36,7 @@ const HomepageSection = forwardRef((props, ref) => {
           <div className="w-full text-center font-sf text-lg font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
             {content.homepage_content}
           </div>
-          <button className="flex w-[8.25rem] items-center justify-center rounded-[2.5rem] bg-accent p-1 font-sf text-xs text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3">
+          <button className="flex w-[10rem] items-center justify-center rounded-[2.5rem] bg-accent p-1 font-sf text-xs text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3">
             {content.homepage_button}
             <img
               className="h-[1.219rem] w-[1.219rem]"
