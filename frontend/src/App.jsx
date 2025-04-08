@@ -4,6 +4,7 @@ import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
 import ContactUsSection from "./components/sections/ContactUsSection";
 import HomepageSection from "./components/sections/HomepageSection";
+import BackToTop from "./components/layout/BackToTop";
 
 // import AboutSection from "./sections/AboutSection";
 // import ServiceSection from "./sections/ServiceSection";
@@ -73,6 +74,7 @@ function App() {
       <HomepageSection />
       <Footer />
       <Modal />
+      <BackToTop />
     </div>
   );
 }
