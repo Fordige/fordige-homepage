@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RiServiceFill } from "react-icons/ri";
 import { MdContactMail, MdLanguage } from "react-icons/md";
-import { BsFillPersonLinesFill, BsLamp } from "react-icons/bs";
+import { BsFillPersonLinesFill, BsLamp, BsFillLampFill } from "react-icons/bs";
 
 import smallLogo from "../../assets/small_logo_1_1.svg";
 import SmallLogoLight from "../../assets/small_logo_light_1_1.svg";
@@ -12,7 +12,7 @@ import useModeStore from "../../store/modeStore";
 
 function Navbar() {
   const { isDarkMode, setIsDarkMode } = useModeStore();
-  const { setLanguage, content } = useLanguageStore();
+  const { setLanguage, content, language } = useLanguageStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -104,6 +104,7 @@ function Navbar() {
           <MdLanguage className="h-full w-[1.5rem] fill-[url(#myGradient)] dark:fill-black" />
           <select
             className="w-[6.25rem] cursor-pointer rounded-[0.5rem] border-[0.125rem] border-midtone bg-highlight dark:border-black dark:bg-shadow2"
+            value={language}
             onChange={(e) => setLanguage(e.target.value)}
           >
             <option value="zh">繁體中文</option>
@@ -111,7 +112,11 @@ function Navbar() {
           </select>
         </div>
         <div className="flex h-[1.5rem] w-[5.5rem] items-center gap-[0.5rem]">
-          <BsLamp className="h-full w-[1.5rem] fill-[url(#myGradient)] dark:fill-black" />
+          {isDarkMode ? (
+            <BsFillLampFill className="h-[1.5rem] w-[1.5rem]" />
+          ) : (
+            <BsLamp className="h-[1.5rem] w-[1.5rem] fill-[url(#myGradient)]" />
+          )}
           <button onClick={handleToggle}>
             <img
               className="h-full w-[3.5rem]"
@@ -144,13 +149,18 @@ function Navbar() {
               <select
                 className="w-[6.25rem] cursor-pointer rounded-[0.5rem] border-[0.125rem] border-midtone bg-highlight dark:border-black dark:bg-shadow2"
                 onChange={(e) => setLanguage(e.target.value)}
+                value={language}
               >
                 <option value="zh">繁體中文</option>
                 <option value="en">English</option>
               </select>
             </div>
             <div className="flex items-center gap-2">
-              <BsLamp className="h-[1.5rem] w-[1.5rem] fill-[url(#myGradient)] dark:fill-black" />
+              {isDarkMode ? (
+                <BsFillLampFill className="h-[1.5rem] w-[1.5rem]" />
+              ) : (
+                <BsLamp className="h-[1.5rem] w-[1.5rem] fill-[url(#myGradient)]" />
+              )}
               <button onClick={handleToggle}>
                 <img
                   className="h-[1.5rem] w-[3.5rem]"
