@@ -21,6 +21,8 @@ const HomepageSection = forwardRef((props, ref) => {
           autoPlay
           loop
           muted
+          playsInline
+          preload="auto"
         >
           <source src={homepageVideo} type="video/mp4"></source>
         </video>
