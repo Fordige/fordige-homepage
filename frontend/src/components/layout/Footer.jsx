@@ -15,14 +15,14 @@ function Footer() {
 
   return (
     <footer className="fixed bottom-0 z-10 flex h-[5rem] w-full items-center justify-between bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
-      <div className="flex h-[4rem] w-[31.06rem] items-center justify-start">
+      <div className="hidden h-[4rem] w-[31.06rem] items-center justify-start md:flex">
         <img
           className="h-full w-[19rem]"
           src={isDarkMode ? bannerDark : bannerWhite}
           alt="bannerDark"
         />
       </div>
-      <div className="flex h-[4rem] w-[13.875rem] flex-col items-center justify-center">
+      <div className="hidden h-[4rem] w-[13.875rem] flex-col items-center justify-center md:flex">
         <img
           className="h-[3.125rem] w-[3.75rem] fill-[url(#myGradient)] dark:fill-black"
           src={isDarkMode ? scrollIcon : scrollLightIcon}
@@ -33,7 +33,7 @@ function Footer() {
           Copyright © 2025 Fordige. All rights reserved.
         </p>
       </div>
-      <div className="flex h-[4rem] w-[31.06rem] items-center justify-end">
+      <div className="flex h-[4rem] w-[20rem] items-center justify-end md:w-[31.06rem]">
         <img
           className="h-full w-[4rem] cursor-pointer"
           src={lineIcon}
@@ -46,6 +46,11 @@ function Footer() {
           alt="igIcon"
           onClick={() => openModal(igQrCode)}
         />
+      </div>
+      <div className="md:hidden">
+        <p className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-xxxs font-normal text-transparent dark:text-shadow3">
+          Copyright © 2025 Fordige. All rights reserved.
+        </p>
       </div>
     </footer>
   );

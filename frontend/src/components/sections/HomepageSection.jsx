@@ -25,7 +25,7 @@ const HomepageSection = forwardRef((props, ref) => {
           <source src={homepageVideo} type="video/mp4"></source>
         </video>
 
-        <div className="justfy-center absolute flex h-full w-full flex-col items-center">
+        <div className="absolute flex h-full w-full flex-col items-center justify-center">
           <div className="flex h-[25rem] w-[25rem] items-center justify-center">
             <img
               className="h-[18.09remrem] w-[16.28rem]"
