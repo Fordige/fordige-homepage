@@ -44,7 +44,6 @@ function Footer() {
           className="h-full w-[4rem] cursor-pointer"
           src={instagrameIcon}
           alt="igIcon"
-          onClick={() => openModal(igQrCode)}
         />
       </div>
       <div className="md:hidden">
