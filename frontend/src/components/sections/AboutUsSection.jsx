@@ -6,9 +6,13 @@ import aboutUsBgIn from "../../assets/aboutUs/bg-in.jpeg";
 import ContactUsButton from "../ui/ContactUsButton";
 import rightButton from "../../assets/aboutUs/right-button.svg";
 import leftButton from "../../assets/aboutUs/left-button.svg";
+import rightButtonDark from "../../assets/aboutUs/right-button-dark.svg";
+import leftButtonDark from "../../assets/aboutUs/left-button-dark.svg";
+import useModeStore from "../../store/modeStore";
 
 const AboutUsSection = forwardRef((props, ref) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { isDarkMode } = useModeStore();
   const handleNext = () => {
     setCurrentIndex((prevIndex) => prevIndex + 1);
   };
@@ -27,9 +31,9 @@ const AboutUsSection = forwardRef((props, ref) => {
             src={aboutUsBg}
             alt="aboutUsBg"
           />
-          <div className="relative flex h-[31rem] w-[76rem] flex-col items-center justify-center p-[1rem]">
+          <div className="relative flex h-[31rem] w-[76rem] flex-col items-center justify-center p-[1rem] dark:text-highlight">
             <img
-              className="absolute inset-0 h-full w-full rounded-bl-[6.25rem] rounded-tr-[6.25rem] object-fill opacity-[0.8]"
+              className="absolute inset-0 h-full w-full rounded-bl-[6.25rem] rounded-tr-[6.25rem] object-fill opacity-[0.8] dark:opacity-[0.2]"
               src={aboutUsBgIn}
               alt="aboutUsBgIn"
             />
@@ -102,7 +106,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             <button className="absolute right-0 top-1/2 -translate-y-1/2">
               <img
                 className="h-[4rem] w-[4rem]"
-                src={rightButton}
+                src={isDarkMode ? rightButtonDark : rightButton}
                 alt="rightButton"
                 onClick={handleNext}
               />
@@ -123,11 +127,11 @@ const AboutUsSection = forwardRef((props, ref) => {
           />
           <div className="relative h-[31rem] w-[76rem] p-[1rem]">
             <img
-              className="absolute inset-0 h-full w-full rounded-bl-[6.25rem] rounded-tr-[6.25rem] object-fill opacity-[0.8]"
+              className="absolute inset-0 h-full w-full rounded-bl-[6.25rem] rounded-tr-[6.25rem] object-fill opacity-[0.8] dark:opacity-[0.2]"
               src={aboutUsBgIn}
               alt="aboutUsBgIn"
             />
-            <div className="justfy relative flex flex-col">
+            <div className="justfy relative flex flex-col dark:text-highlight">
               <div className="font-cy2 text-lgg flex h-[3.125rem] w-[74rem] items-center justify-start font-medium">
                 一起旅行吧...
               </div>
@@ -187,7 +191,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             <button className="absolute left-0 top-1/2 -translate-y-1/2">
               <img
                 className="h-[4rem] w-[4rem] cursor-pointer"
-                src={leftButton}
+                src={isDarkMode ? leftButtonDark : leftButton}
                 alt="leftButton"
                 onClick={handlePrev}
               />
