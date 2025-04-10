@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, cloneElement } from "react";
 import { RiServiceFill } from "react-icons/ri";
 import { MdContactMail, MdLanguage } from "react-icons/md";
 import { BsFillPersonLinesFill, BsLamp, BsFillLampFill } from "react-icons/bs";
@@ -10,7 +10,7 @@ import darkToggle from "../../assets/dark-toggle.svg";
 import useLanguageStore from "../../store/languageStore";
 import useModeStore from "../../store/modeStore";
 
-function Navbar() {
+function Navbar({ scrollToSection, currentSection }) {
   const { isDarkMode, setIsDarkMode } = useModeStore();
   const { setLanguage, content, language } = useLanguageStore();
   const [isOpen, setIsOpen] = useState(false);
@@ -54,9 +54,10 @@ function Navbar() {
       {/* Logo */}
       <div className="h-[4.25rem] w-[4.25rem]">
         <img
-          className="h-full w-full"
+          className="h-full w-full cursor-pointer"
           src={isDarkMode ? smallLogo : SmallLogoLight}
           alt="smallLogo"
+          onClick={() => scrollToSection(0)}
         />
       </div>
 
@@ -66,9 +67,18 @@ function Navbar() {
           <button
             key={item.name}
             className="flex items-end justify-center gap-1"
+            onClick={() => scrollToSection(navItems.indexOf(item) + 1)}
           >
-            {item.icon}
-            <span className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text text-transparent dark:text-shadow3">
+            {cloneElement(item.icon, {
+              className: `fill-[url(#myGradient)] dark:fill-black ${
+                currentSection === navItems.indexOf(item) + 1
+                  ? "h-[2.5rem] w-[2.5rem]"
+                  : "h-[2rem] w-[2rem]"
+              }`,
+            })}
+            <span
+              className={`bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text text-transparent dark:text-shadow3 ${currentSection === navItems.indexOf(item) + 1 ? "text-sm" : ""} `}
+            >
               {item.name}
             </span>
           </button>
@@ -129,7 +139,7 @@ function Navbar() {
 
       {/* 手機版下拉選單 */}
       {isOpen && (
-        <div className="absolute left-0 top-[5rem] flex w-full flex-col items-center gap-4 bg-highlight px-8 py-4 md:hidden dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2">
+        <div className="absolute left-0 top-[5rem] flex w-full flex-col items-center gap-4 bg-highlight px-8 py-4 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:hidden">
           {navItems.map((item) => (
             <button
               key={item.name}

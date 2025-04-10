@@ -7,7 +7,7 @@ import BackToTop from "./components/layout/BackToTop";
 import AboutUsSection from "./components/sections/AboutUsSection";
 
 function App() {
-  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const sectionRefs = [useRef(null), useRef(null)];
   const totalSections = sectionRefs.length;
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);

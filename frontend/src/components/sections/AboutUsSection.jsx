@@ -108,8 +108,8 @@ const AboutUsSection = forwardRef((props, ref) => {
               />
             </button>
             <div className="absolute bottom-[-1rem] left-1/2 flex h-[1.5rem] w-[3rem] -translate-x-1/2 items-center justify-evenly rounded-[1rem] bg-white">
-              <button className="h-[0.5rem] w-[0.5rem] rounded-full bg-shadow3"></button>
-              <button className="h-[0.5rem] w-[0.5rem] rounded-full bg-shadow2"></button>
+              <div className="h-[0.5rem] w-[0.5rem] rounded-full bg-shadow3"></div>
+              <div className="h-[0.5rem] w-[0.5rem] rounded-full bg-shadow2"></div>
             </div>
           </div>
         </div>
@@ -193,12 +193,12 @@ const AboutUsSection = forwardRef((props, ref) => {
               />
             </button>
             <div className="absolute bottom-[-1rem] left-1/2 flex h-[1.5rem] w-[3rem] -translate-x-1/2 items-center justify-evenly rounded-[1rem] bg-white">
-              <button
+              <div
                 className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentIndex === 0 ? "bg-shadow3" : "bg-shadow2"}`}
-              ></button>
-              <button
+              ></div>
+              <div
                 className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentIndex === 1 ? "bg-shadow3" : "bg-shadow2"}`}
-              ></button>
+              ></div>
             </div>
           </div>
         </div>
