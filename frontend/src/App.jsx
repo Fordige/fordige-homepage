@@ -2,21 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
-import ContactUsSection from "./components/sections/ContactUsSection";
 import HomepageSection from "./components/sections/HomepageSection";
 import BackToTop from "./components/layout/BackToTop";
-
-// import AboutSection from "./sections/AboutSection";
-// import ServiceSection from "./sections/ServiceSection";
-// import Modal from "./components/ui/Modal";
-// import HomeSection from "./sections/HomeSection";
-// import BackToUp from "./components/layout/BackToUp";
+import AboutUsSection from "./components/sections/AboutUsSection";
 
 function App() {
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const totalSections = sectionRefs.length;
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
+  const touchStartYRef = useRef(null);
 
   useEffect(() => {
     // 處理滑鼠滾動事件
@@ -44,9 +39,46 @@ function App() {
       }
     };
 
+    // 處理觸控滾動事件
+    const handleTouchStart = (e) => {
+      touchStartYRef.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      if (isScrollingRef.current) return;
+
+      const touchEndY = e.touches[0].clientY;
+      const deltaY = touchStartYRef.current - touchEndY;
+
+      // 設置一個閾值，避免過於靈敏
+      if (Math.abs(deltaY) < 50) return;
+
+      const delta = deltaY > 0 ? 1 : -1;
+      const newSection = Math.min(
+        Math.max(currentSection + delta, 0),
+        totalSections - 1,
+      );
+
+      if (newSection !== currentSection) {
+        isScrollingRef.current = true;
+        setCurrentSection(newSection);
+        sectionRefs[newSection].current.scrollIntoView({ behavior: "smooth" });
+
+        setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 500);
+      }
+    };
+
     window.addEventListener("wheel", handleWheel, { passive: false }); // 設置 passive 為 false 以防止瀏覽器滾動事件的預設行為
+    window.addEventListener("touchstart", handleTouchStart, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
     };
   }, [currentSection, totalSections]);
 
@@ -56,25 +88,16 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen w-screen flex-col">
+    <div className="flex w-screen flex-col">
       <Navbar
         scrollToSection={scrollToSection}
         currentSection={currentSection}
       />
-      {/* <HomeSection ref={sectionRefs[0]} />
-      <AboutSection ref={sectionRefs[1]} />
-      <ServiceSection ref={sectionRefs[2]} />
-      <ContactUsSection ref={sectionRefs[3]} />
+      {currentSection !== 0 && <BackToTop scrollToSection={scrollToSection} />}
+      <HomepageSection ref={sectionRefs[0]} />
+      <AboutUsSection ref={sectionRefs[1]} />
       <Footer />
       <Modal />
-      {currentSection !== 0 && <BackToUp scrollToSection={scrollToSection} />} */}
-      {/* <ContactUsSection ref={sectionRefs[3]} />
-      
-      <Modal /> */}
-      <HomepageSection />
-      <Footer />
-      <Modal />
-      <BackToTop />
     </div>
   );
 }

@@ -5,5 +5,5 @@ export const zh = {
   head_contact_us: "聯絡我們",
 
   homepage_content: "從形象網頁到智能應用，協助您的業務只需 25,000 起",
-  homepage_button: "立即聯絡",
+  homepage_button: "立即洽詢",
 };

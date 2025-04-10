@@ -18,6 +18,7 @@ export default {
         sm: "1.5rem", // 24px
         base: "2rem", // 32px
         lg: "2.25rem", // 36px
+        lgg: "3.125rem", //50px
         xl: "4rem", // 64px
       },
       fontWeight: {
@@ -28,6 +29,8 @@ export default {
     },
     fontFamily: {
       sf: ["SF Pro Display", "sans-serif"],
+      cy: ["ChenYuluoyan", "sans-serif"],
+      cy2: ["ChenYuluoyan2", "sans-serif"],
     },
   },
   plugins: [],

@@ -13,6 +13,7 @@ export default defineConfig([
       "no-undef": "warn",
       "react/react-in-jsx-scope": "off",
       "react/display-name": "off",
+      "react/prop-types": "off",
     },
   },
 ]);
