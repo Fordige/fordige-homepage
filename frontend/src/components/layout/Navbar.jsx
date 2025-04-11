@@ -38,7 +38,7 @@ function Navbar({ scrollToSection, currentSection }) {
       icon: <RiServiceFill />,
     },
     {
-      name: content.head_cooperate_flow,
+      name: content.head_cooperate_process,
       icon: <GoProjectRoadmap />,
     },
     {
