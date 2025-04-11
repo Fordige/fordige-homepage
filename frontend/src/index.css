@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-stroke-2 {
+    -webkit-text-stroke: 2px #20591e;
+  }
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 10px;
@@ -14,13 +20,13 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1279px) {
   html {
     font-size: 14px;
   }
 }
 
-@media (min-width: 1281px) and (max-width: 1490px) {
+@media (min-width: 1280px) and (max-width: 1490px) {
   html {
     font-size: 16px;
   }

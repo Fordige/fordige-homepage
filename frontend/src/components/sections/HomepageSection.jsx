@@ -35,7 +35,7 @@ const HomepageSection = forwardRef((props, ref) => {
               alt="bigLogo"
             />
           </div>
-          <div className="w-full text-center font-sf text-lg font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
+          <div className="text-stroke-2 w-full text-center font-sf text-lg font-bold text-accent dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
             {content.homepage_content}
           </div>
           <ContactUsButton />
