@@ -38,22 +38,25 @@ const AboutUsSection = forwardRef((props, ref) => {
               alt="aboutUsBgIn"
             />
             <div className="relative">
-              <div className="font-cy2 text-lgg flex h-[3.125rem] w-[74rem] items-center justify-start font-medium">
+              <div className="flex h-[3.125rem] w-[74rem] items-center justify-start font-cy2 text-lgg font-medium">
                 從我們開始...
               </div>
-              <div className="justfy-center flex h-[8.625rem] w-[74rem] items-center gap-[1rem] leading-[2.5rem]">
-                <div className="font-cy2 flex h-full w-[7.9375rem] items-center justify-center text-[7.845rem] font-black">
+              <div className="justfy-start flex h-[8.625rem] w-[74rem] items-center gap-[1.5rem] leading-[2.5rem]">
+                <div className="flex items-center justify-center font-cy2 text-[4.375rem] font-black">
                   We
                 </div>
                 <div className="font-cy text-xs font-thin">
                   <div>
-                    是從<span className="text-base">科技大廠</span>
-                    離開的<span className="text-base">資料狂人</span>
-                    ，曾與數據共舞、和程式碼談戀愛。
+                    <span className="text-base">我們</span>曾經是
+                    <span className="text-base">科技大廠</span>的
+                    <span className="text-base">資料阿宅</span>
+                    ，整天與<span className="text-base">數據</span>共舞、和
+                    <span className="text-base">程式碼</span>談戀愛。
                   </div>
                   <div>
                     如今，我們化身<span className="text-base">數位魔法師</span>
-                    ，就好像你知道不能說的那個人的遠親的遠親...
+                    ，就是<span className="text-base">不能說的那個人</span>
+                    的遠親的遠親...
                     <span className="text-base">佛地...雞 (Fordi...ge)</span>，
                   </div>
                   <div>
@@ -64,37 +67,46 @@ const AboutUsSection = forwardRef((props, ref) => {
                   </div>
                 </div>
               </div>
-              <div className="justfy-center flex h-[8.625rem] w-[74rem] items-center gap-[1rem] leading-[2.5rem]">
-                <div className="font-cy2 flex h-full w-[26.195rem] items-center justify-end gap-[1rem] text-[7.845rem] font-black">
+              <div className="flex h-[8.625rem] w-[74rem] items-center justify-start gap-[1rem] leading-[2.5rem]">
+                <div className="flex w-[15rem] items-center justify-end gap-[1rem] font-cy2 text-[4.375rem] font-black">
                   <span>Care</span>
                   <span className="rotate-[35deg] text-xl">for</span>
                 </div>
                 <div className="font-cy text-xs font-thin">
                   <div>
-                    <span className="text-base">超感性，愛說冷笑話</span>{" "}
-                    (保證比bug還難忘)的我們，
+                    <span className="text-base">我們</span>
+                    絕對不是什麼冷冰冰的科技怪人，
                   </div>
-                  <div>絕對不是什麼冷冰冰的科技怪人，別擔心，</div>
                   <div>
-                    <span className="text-base">從設計到部署</span>
-                    ，您的專案將被我們寵壞。
+                    我們<span className="text-base">超感性，愛說冷笑話</span>{" "}
+                    (保證比bug還難忘)，
+                  </div>
+                  <div>
+                    從<span className="text-base">設計</span>到
+                    <span className="text-base">部署</span>
+                    ，您的專案就交由我們來呵護寵壞。
                   </div>
                 </div>
               </div>
 
-              <div className="justfy-center flex h-[8.625rem] w-[74rem] items-center gap-[1rem] leading-[2.5rem]">
-                <div className="font-cy2 flex h-full w-[33.1875rem] items-center justify-end text-[7.845rem] font-black">
-                  You
-                </div>
+              <div className="flex h-[8.625rem] w-[74rem] items-center justify-start gap-[1rem] leading-[2.5rem]">
+                <div className="font-cy2 text-[4.375rem] font-black">You</div>
                 <div className="font-cy text-xs font-thin">
                   <div>
-                    往後請<span className="text-base">專心賺錢</span>
-                    ，剩下的交給我們，
+                    <span className="text-base">您</span>往後就
+                    <span className="text-base">專心賺錢</span>吧！
+                    剩下的那些關於...
                   </div>
-                  <div>誰不想要一個既聰明又會說笑的團隊，</div>
                   <div>
-                    把想法變成
-                    <span className="text-base">有故事的網站及數位應用</span>
+                    雲山霧罩、盤根錯節、錯綜復雜、天雷滾滾、無字天書的
+                    <span className="text-base">設計細節</span>與
+                    <span className="text-base">技術活兒</span>就交給我們，
+                  </div>
+                  <div>
+                    <span className="text-base">畢竟</span>誰不想要一個既
+                    <span className="text-base">聰明</span>又
+                    <span className="text-base">會說笑</span>的團隊，把想法變成
+                    <span className="text-base">有故事的網站及應用</span>
                     呢？
                   </div>
                 </div>
@@ -132,7 +144,7 @@ const AboutUsSection = forwardRef((props, ref) => {
               alt="aboutUsBgIn"
             />
             <div className="justfy relative flex flex-col dark:text-highlight">
-              <div className="font-cy2 text-lgg flex h-[3.125rem] w-[74rem] items-center justify-start font-medium">
+              <div className="flex h-[3.125rem] w-[74rem] items-center justify-start font-cy2 text-lgg font-medium">
                 一起旅行吧...
               </div>
               <div className="justfy-center flex h-[6.06rem] w-[74rem] items-center gap-[1rem] leading-[2.5rem]">
@@ -141,7 +153,7 @@ const AboutUsSection = forwardRef((props, ref) => {
                 </div>
               </div>
               <div className="justfy-center flex h-[5.77rem] w-[74rem] items-center leading-[2.5rem]">
-                <div className="font-cy flex flex-col justify-center pl-[4rem] text-xs font-thin">
+                <div className="flex flex-col justify-center pl-[4rem] font-cy text-xs font-thin">
                   <div>
                     想知道我們的魔法口袋裡藏了哪些寶貝，好一起開啟
                     <span className="text-base">合作冒險</span>嗎？
@@ -165,7 +177,7 @@ const AboutUsSection = forwardRef((props, ref) => {
               </div>
 
               <div className="justfy-center flex h-[5.77rem] w-[74rem] items-center leading-[2.5rem]">
-                <div className="font-cy flex flex-col justify-center pl-[8rem] text-xs font-thin">
+                <div className="flex flex-col justify-center pl-[8rem] font-cy text-xs font-thin">
                   <div>
                     當然，最重要的還是我們那顆永遠停不下來、
                     <span className="text-base">熱衷學習</span>的心
@@ -173,14 +185,14 @@ const AboutUsSection = forwardRef((props, ref) => {
                 </div>
               </div>
               <div className="justfy-center flex h-[5.77rem] w-[74rem] items-center self-end leading-[2.5rem]">
-                <div className="font-cy flex w-full justify-end pr-[4rem] text-xs font-thin">
+                <div className="flex w-full justify-end pr-[4rem] font-cy text-xs font-thin">
                   <div className="text-base">
                     Stand with Us, Spark Magic Together
                   </div>
                 </div>
               </div>
               <div className="justfy-center flex h-[2.5rem] w-[74rem] items-center self-end leading-[2.5rem]">
-                <div className="font-cy flex w-full justify-end text-xs font-thin">
+                <div className="flex w-full justify-end font-cy text-xs font-thin">
                   <div>... to be continue </div>
                 </div>
               </div>
