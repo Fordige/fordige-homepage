@@ -36,14 +36,14 @@ function Footer() {
       <div className="flex h-[4rem] w-[20rem] items-center justify-end gap-[1.5rem] md:w-[31.0625rem]">
         <img
           className="h-full w-[4rem] cursor-pointer"
-          src={lineIcon}
-          alt="lineIcon"
-          onClick={() => openModal(lineQrCode)}
+          src={igIcon}
+          alt="igIcon"
         />
         <img
           className="h-full w-[4rem] cursor-pointer"
-          src={igIcon}
-          alt="igIcon"
+          src={lineIcon}
+          alt="lineIcon"
+          onClick={() => openModal(lineQrCode)}
         />
       </div>
       <div className="md:hidden">

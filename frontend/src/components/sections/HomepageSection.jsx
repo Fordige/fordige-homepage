@@ -12,34 +12,32 @@ const HomepageSection = forwardRef((props, ref) => {
   const { isDarkMode } = useModeStore();
   return (
     <section
-      className="flex h-[100dvh] w-screen items-center justify-center gap-[4rem] bg-highlight dark:bg-black"
+      className="relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
       ref={ref}
     >
-      <div className="relative mb-[5rem] mt-[5rem] flex h-full w-full flex-col items-center justify-center overflow-hidden">
-        <video
-          className="absolute left-0 top-0 h-full w-full object-cover opacity-25 dark:opacity-100"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source src={homepageVideo} type="video/mp4"></source>
-        </video>
+      <video
+        className="absolute object-fill opacity-25 dark:opacity-100"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      >
+        <source src={homepageVideo} type="video/mp4"></source>
+      </video>
 
-        <div className="absolute flex h-full w-full flex-col items-center justify-center">
-          <div className="flex h-[25rem] w-[25rem] items-center justify-center">
-            <img
-              className="h-[18.09remrem] w-[16.28rem]"
-              src={isDarkMode ? bigLogo : bigLogoLight}
-              alt="bigLogo"
-            />
-          </div>
-          <div className="text-stroke-2 w-full text-center font-sf text-lg font-bold text-accent dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
-            {content.homepage_content}
-          </div>
-          <ContactUsButton />
+      <div className="absolute flex h-full w-full flex-col items-center justify-center">
+        <div className="flex h-[25rem] w-[25rem] items-center justify-center">
+          <img
+            className="h-[18.09remrem] w-[16.28rem]"
+            src={isDarkMode ? bigLogo : bigLogoLight}
+            alt="bigLogo"
+          />
         </div>
+        <div className="text-stroke-2 w-full text-center font-sf text-lg font-bold text-accent dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
+          {content.homepage_content}
+        </div>
+        <ContactUsButton />
       </div>
     </section>
   );

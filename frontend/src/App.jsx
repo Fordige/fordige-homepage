@@ -30,7 +30,7 @@ function App() {
       if (newSection !== currentSection) {
         isScrollingRef.current = true; // 標記為正在滾動
         setCurrentSection(newSection);
-        sectionRefs[newSection].current.scrollIntoView({ behavior: "smooth" });
+        scrollToSection(newSection);
 
         // 在滾動完成後重置標記
         setTimeout(() => {
@@ -62,7 +62,7 @@ function App() {
       if (newSection !== currentSection) {
         isScrollingRef.current = true;
         setCurrentSection(newSection);
-        sectionRefs[newSection].current.scrollIntoView({ behavior: "smooth" });
+        scrollToSection(newSection);
 
         setTimeout(() => {
           isScrollingRef.current = false;
@@ -83,12 +83,24 @@ function App() {
   }, [currentSection, totalSections]);
 
   const scrollToSection = (index) => {
-    sectionRefs[index].current.scrollIntoView({ behavior: "smooth" });
+    if (index === 0) {
+      // 對於第一個 section，滾動到頁面頂部
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // 對於其他 section，滾動到 section 上緣
+      sectionRefs[index].current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
     setCurrentSection(index);
   };
 
   return (
-    <div className="flex w-screen flex-col">
+    <div className="flex min-h-screen w-screen flex-col bg-highlight dark:bg-shadow3">
       <Navbar
         scrollToSection={scrollToSection}
         currentSection={currentSection}
