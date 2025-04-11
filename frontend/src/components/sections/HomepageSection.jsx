@@ -16,7 +16,7 @@ const HomepageSection = forwardRef((props, ref) => {
       ref={ref}
     >
       <video
-        className="absolute object-fill opacity-25 dark:opacity-100"
+        className="absolute h-full w-full object-fill opacity-25 dark:opacity-100"
         autoPlay
         loop
         muted
