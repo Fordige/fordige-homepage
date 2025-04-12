@@ -8,18 +8,19 @@ import bg from "../../assets/aboutUs/bg.webp";
 import bg2 from "../../assets/aboutUs/bg2.webp";
 
 const AboutUsSection = forwardRef((props, ref) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentPage((prevIndex) => prevIndex + 1);
   };
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => prevIndex - 1);
+    setCurrentPage((prevIndex) => prevIndex - 1);
   };
   return (
     <>
-      {currentIndex === 0 ? (
+      {currentPage === 0 ? (
         <section
-          className="relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
+          className={`relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3`}
           ref={ref}
         >
           <img
@@ -44,7 +45,7 @@ const AboutUsSection = forwardRef((props, ref) => {
         </section>
       ) : (
         <section
-          className="relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
+          className={`relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3`}
           ref={ref}
         >
           <img
@@ -64,10 +65,10 @@ const AboutUsSection = forwardRef((props, ref) => {
           </button>
           <div className="absolute bottom-[1rem] left-1/2 flex h-[1.5rem] w-[3rem] -translate-x-1/2 items-center justify-evenly rounded-[1rem] bg-white">
             <div
-              className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentIndex === 0 ? "bg-shadow3" : "bg-shadow2"}`}
+              className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentPage === 0 ? "bg-shadow3" : "bg-shadow2"}`}
             ></div>
             <div
-              className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentIndex === 1 ? "bg-shadow3" : "bg-shadow2"}`}
+              className={`h-[0.5rem] w-[0.5rem] rounded-full ${currentPage === 1 ? "bg-shadow3" : "bg-shadow2"}`}
             ></div>
           </div>
         </section>

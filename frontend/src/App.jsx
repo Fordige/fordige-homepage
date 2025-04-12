@@ -40,45 +40,45 @@ function App() {
     };
 
     // 處理觸控滾動事件
-    const handleTouchStart = (e) => {
-      touchStartYRef.current = e.touches[0].clientY;
-    };
+    // const handleTouchStart = (e) => {
+    //   touchStartYRef.current = e.touches[0].clientY;
+    // };
 
-    const handleTouchMove = (e) => {
-      if (isScrollingRef.current) return;
+    // const handleTouchMove = (e) => {
+    //   if (isScrollingRef.current) return;
 
-      const touchEndY = e.touches[0].clientY;
-      const deltaY = touchStartYRef.current - touchEndY;
+    //   const touchEndY = e.touches[0].clientY;
+    //   const deltaY = touchStartYRef.current - touchEndY;
 
-      // 設置一個閾值，避免過於靈敏
-      if (Math.abs(deltaY) < 50) return;
+    //   // 設置一個閾值，避免過於靈敏
+    //   if (Math.abs(deltaY) < 50) return;
 
-      const delta = deltaY > 0 ? 1 : -1;
-      const newSection = Math.min(
-        Math.max(currentSection + delta, 0),
-        totalSections - 1,
-      );
+    //   const delta = deltaY > 0 ? 1 : -1;
+    //   const newSection = Math.min(
+    //     Math.max(currentSection + delta, 0),
+    //     totalSections - 1,
+    //   );
 
-      if (newSection !== currentSection) {
-        isScrollingRef.current = true;
-        setCurrentSection(newSection);
-        scrollToSection(newSection);
+    //   if (newSection !== currentSection) {
+    //     isScrollingRef.current = true;
+    //     setCurrentSection(newSection);
+    //     scrollToSection(newSection);
 
-        setTimeout(() => {
-          isScrollingRef.current = false;
-        }, 500);
-      }
-    };
+    //     setTimeout(() => {
+    //       isScrollingRef.current = false;
+    //     }, 500);
+    //   }
+    // };
 
     window.addEventListener("wheel", handleWheel, { passive: false }); // 設置 passive 為 false 以防止瀏覽器滾動事件的預設行為
-    window.addEventListener("touchstart", handleTouchStart, { passive: false });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    // window.addEventListener("touchstart", handleTouchStart, { passive: false });
+    // window.addEventListener("touchmove", handleTouchMove, { passive: false });
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      window.addEventListener("touchstart", handleTouchStart, {
-        passive: false,
-      });
-      window.addEventListener("touchmove", handleTouchMove, { passive: false });
+      // window.addEventListener("touchstart", handleTouchStart, {
+      //   passive: false,
+      // });
+      // window.addEventListener("touchmove", handleTouchMove, { passive: false });
     };
   }, [currentSection, totalSections]);
 
