@@ -20,20 +20,20 @@ const AboutUsSection = forwardRef((props, ref) => {
       className="relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
       ref={ref}
     >
-      <img
-        className={`absolute h-full w-full object-fill transition-opacity duration-1000 ease-in-out ${
-          currentPage === 0 ? "opacity-100" : "opacity-0"
-        }`}
-        src={bg}
-        alt="bg"
-      />
-      <img
-        className={`absolute h-full w-full object-fill transition-opacity duration-1000 ease-in-out ${
-          currentPage === 1 ? "opacity-100" : "opacity-0"
-        }`}
-        src={bg2}
-        alt="bg2"
-      />
+      <div className="relative h-full w-full overflow-hidden">
+        <div
+          className="flex h-full w-[200%] transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${currentPage * 50}%)` }}
+        >
+          <div className="h-full w-[50%]">
+            <img className="h-full w-full object-fill" src={bg} alt="bg" />
+          </div>
+          <div className="h-full w-[50%]">
+            <img className="h-full w-full object-fill" src={bg2} alt="bg2" />
+          </div>
+        </div>
+      </div>
+
       {currentPage === 0 ? (
         <button
           className="absolute right-[1rem] top-1/2 z-10 -translate-y-1/2 opacity-25 hover:opacity-100"
