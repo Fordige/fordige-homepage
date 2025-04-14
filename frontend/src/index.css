@@ -59,3 +59,11 @@
   opacity: 0;
   transition: opacity 500ms ease-in;
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}

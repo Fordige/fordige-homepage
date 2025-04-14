@@ -56,14 +56,14 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen w-screen flex-col bg-highlight dark:bg-shadow3">
+    <div className="flex min-h-screen w-screen flex-col overflow-hidden bg-highlight dark:bg-shadow3">
       <Navbar
         scrollToSection={scrollToSection}
         currentSection={currentSection}
       />
       {currentSection !== 0 && <BackToTop scrollToSection={scrollToSection} />}
       <HomepageSection ref={sectionRefs[0]} />
-      <AboutUsSection ref={sectionRefs[1]} />
+      <AboutUsSection ref={sectionRefs[1]} scrollToSection={scrollToSection} />
       <Footer />
       <Modal />
     </div>

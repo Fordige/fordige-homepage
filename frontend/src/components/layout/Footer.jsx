@@ -1,8 +1,7 @@
 import useModalStore from "../../store/modalStore";
 import lineIcon from "../../assets/footer/line-icon.svg";
-import igIcon from "../../assets/footer/ig-icon.svg";
+
 import lineQrCode from "../../assets/line_qrcode.svg";
-import igQrCode from "../../assets/ig_qrcode.svg";
 import bannerDark from "../../assets/footer/banner-dark.svg";
 import bannerWhite from "../../assets/footer/banner-white.svg";
 import scrollIcon from "../../assets/footer/scroll.svg";
@@ -34,11 +33,6 @@ function Footer() {
         </p>
       </div>
       <div className="flex h-[4rem] w-[20rem] items-center justify-end gap-[1.5rem] md:w-[31.0625rem]">
-        <img
-          className="h-full w-[4rem] cursor-pointer"
-          src={igIcon}
-          alt="igIcon"
-        />
         <img
           className="h-full w-[4rem] cursor-pointer"
           src={lineIcon}
