@@ -36,7 +36,7 @@ const ContactUsSection = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen justify-center gap-[4rem] pb-[7rem] pt-[6rem]"
+      className="relative mb-[5rem] mt-[5rem] flex h-[calc(100vh-10rem)] max-w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
     >
       <Toaster />
       <div className="flex items-center justify-center gap-[4rem]">
@@ -111,13 +111,13 @@ const ContactUsSection = forwardRef((props, ref) => {
           <div className="mt-[2rem] flex h-[4.06rem] w-full justify-between">
             <button
               type="submit"
-              className="h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] font-inter text-lg font-extrabold text-highlight"
+              className="font-inter h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] text-lg font-extrabold text-highlight"
             >
               Submit
             </button>
             <button
               type="reset"
-              className="h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] font-inter text-lg font-[900] text-midtone"
+              className="font-inter h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] text-lg font-[900] text-midtone"
             >
               Clear
             </button>

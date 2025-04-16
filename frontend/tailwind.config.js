@@ -31,6 +31,7 @@ export default {
       sf: ["SF Pro Display", "sans-serif"],
       cy: ["ChenYuluoyan", "sans-serif"],
       cy2: ["ChenYuluoyan2", "sans-serif"],
+      han: ["Hannotate", "sans-serif"],
     },
   },
   plugins: [],

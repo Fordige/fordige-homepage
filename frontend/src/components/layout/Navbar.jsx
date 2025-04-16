@@ -1,4 +1,4 @@
-import { useState, useEffect, cloneElement } from "react";
+import { useState, useEffect, cloneElement, forwardRef } from "react";
 import { RiServiceFill } from "react-icons/ri";
 import { MdContactMail, MdLanguage } from "react-icons/md";
 import { BsFillPersonLinesFill, BsLamp, BsFillLampFill } from "react-icons/bs";
@@ -10,7 +10,7 @@ import darkToggle from "../../assets/navbar/dark-toggle.svg";
 import useLanguageStore from "../../store/languageStore";
 import useModeStore from "../../store/modeStore";
 
-function Navbar({ scrollToSection, currentSection }) {
+const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
   const { isDarkMode, setIsDarkMode } = useModeStore();
   const { setLanguage, content, language } = useLanguageStore();
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +48,10 @@ function Navbar({ scrollToSection, currentSection }) {
   ];
 
   return (
-    <nav className="fixed top-0 z-10 flex h-[5rem] w-full items-center justify-around bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2">
+    <nav
+      className="fixed top-0 z-10 flex h-[5rem] w-full items-center justify-around bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2"
+      ref={ref}
+    >
       {/* Logo */}
       <div className="h-[4.25rem] w-[5.4075rem]">
         <img
@@ -192,6 +195,6 @@ function Navbar({ scrollToSection, currentSection }) {
       </svg>
     </nav>
   );
-}
+});
 
 export default Navbar;

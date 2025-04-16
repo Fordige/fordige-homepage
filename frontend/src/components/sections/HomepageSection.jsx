@@ -7,12 +7,12 @@ import useLanguageStore from "../../store/languageStore";
 import useModeStore from "../../store/modeStore";
 import ContactUsButton from "../ui/ContactUsButton";
 
-const HomepageSection = forwardRef((props, ref) => {
+const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
   const { content } = useLanguageStore();
   const { isDarkMode } = useModeStore();
   return (
     <section
-      className="relative mb-[5rem] mt-[5rem] flex min-h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
+      className="relative mb-[5rem] mt-[5rem] flex h-[calc(100vh-10rem)] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
       ref={ref}
     >
       <video
@@ -37,7 +37,7 @@ const HomepageSection = forwardRef((props, ref) => {
         <div className="text-stroke-2 w-full text-center font-sf text-lg font-bold text-accent dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
           {content.homepage_content}
         </div>
-        <ContactUsButton />
+        <ContactUsButton onClick={() => scrollToSection(4)} />
       </div>
     </section>
   );

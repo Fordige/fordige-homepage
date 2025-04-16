@@ -33,7 +33,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
 
   const handleContactClick = (e) => {
     e.stopPropagation();
-    scrollToSection(0);
+    scrollToSection(4);
   };
 
   return (
