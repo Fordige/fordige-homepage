@@ -6,7 +6,6 @@ import bg from "../../assets/aboutUs/bg.webp";
 import bg2 from "../../assets/aboutUs/bg2.webp";
 import animation from "../../assets/aboutUs/animation.mp4";
 import animation2 from "../../assets/aboutUs/animation2.mp4";
-import contactUsButton from "../../assets/aboutUs/contactUsButton.svg";
 import chicken from "../../assets/aboutUs/chicken.gif";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
