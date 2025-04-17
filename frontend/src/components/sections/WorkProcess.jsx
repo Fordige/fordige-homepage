@@ -88,7 +88,7 @@ const WorkProcess = forwardRef((props, ref) => {
       y: "-2rem",
 
       transition: {
-        duration: 5,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -99,15 +99,15 @@ const WorkProcess = forwardRef((props, ref) => {
       className="relative mb-[5rem] mt-[5rem] flex h-[calc(100vh-10rem)] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3"
       ref={ref}
     >
-      <div className="5 w-full">
-        <Slider {...settings}>
+      <div className="w-full">
+        <Slider {...settings} className="h-full w-full">
           {carouselData.map((item, index) => (
             <div key={item.id}>
-              <div className="flex h-[34.704rem] w-[45.135rem] flex-col justify-evenly transition-all duration-500">
+              <div className="flex h-full w-[40rem] flex-col justify-evenly transition-all duration-500">
                 <img
                   src={item.image}
                   alt={item.text}
-                  className="w-full rounded-lg object-cover"
+                  className="h-[60vh] w-full rounded-lg object-fill"
                   loading="lazy"
                 />
                 <AnimatePresence mode="wait">
@@ -118,9 +118,9 @@ const WorkProcess = forwardRef((props, ref) => {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="font-han flex items-center justify-center gap-[1rem] text-center text-[3rem] font-normal text-shadow3 dark:text-highlight"
+                      className="font-han flex items-center justify-center gap-[1rem] text-center text-[2rem] font-normal text-shadow3 dark:text-highlight"
                     >
-                      <p className="font-sf text-[4rem] font-[274]">
+                      <p className="font-sf text-[3rem] font-[274]">
                         {index + 1}
                       </p>
                       {item.text}

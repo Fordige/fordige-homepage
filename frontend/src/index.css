@@ -70,16 +70,21 @@ body {
 
 /* react slick animation */
 
-/* 基本滑塊樣式 */
-
+/* 滑塊基本樣式 */
 .slick-slide {
   transition:
     transform 0.5s ease,
     opacity 0.5s ease !important;
-
   display: flex !important;
-  justify-content: center !important; /* 居中對齊 */
+  justify-content: center !important;
   align-items: center !important;
+  width: 100%;
+  height: 100% !important; /* 填充父容器高度 */
+  position: relative;
+  padding: 0 !important;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: visible !important;
 }
 
 /* 中間圖片 */
@@ -91,41 +96,30 @@ body {
 
 /* 非中間圖片 */
 .slick-slide:not(.slick-center) {
-  opacity: 0.3 !important;
+  opacity: 0.5 !important;
 }
 
+/* 非活躍滑塊隱藏 */
 .slick-slide:not(.slick-active) {
   transform: scale(0) !important;
   opacity: 0 !important;
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease !important; /* 确保平滑过渡 */
 }
 
 /* 滑塊列表 */
 .slick-list {
-  overflow: visible !important; /* 允許內容超出 */
+  overflow: visible !important;
   width: 100%;
+  height: 100% !important; /* 填充父容器高度 */
   padding: 0 !important;
-}
-
-/* 滑塊容器 */
-.slick-slider {
-  width: 100%;
-  position: relative;
-  padding: 0 !important; /* 移除內邊距，確保居中 */
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow: visible !important; /* 允許圖片超出視窗 */
 }
 
 /* 偏移左右圖片 */
 .slick-slide.slick-active:not(.slick-center) {
-  transform: scale(0.7) translateX(-80%) !important; /*左邊圖片向左偏移整個寬度*/
+  transform: scale(0.7) translateX(-70%) !important; /* 減少縮放和偏移 */
 }
 
 .slick-slide.slick-active + .slick-slide:not(.slick-center) {
-  transform: scale(0.7) translateX(80%) !important; /*右邊圖片向右偏移整個寬度*/
+  transform: scale(0.7) translateX(70%) !important; /* 減少縮放和偏移 */
 }
 
 /* 箭頭樣式 */
@@ -140,7 +134,7 @@ body {
 
 .slick-prev::before,
 .slick-next::before {
-  content: "" !important; /* 自定義箭頭符號 */
+  content: "" !important;
 }
 
 .slick-prev {
@@ -164,6 +158,7 @@ body {
   background: url("./assets/workProcess/btn-next.svg") no-repeat center !important;
 }
 
+/* 導航點樣式 */
 .slick-dots {
   bottom: 0.2rem !important;
   display: flex !important;
@@ -171,47 +166,37 @@ body {
   align-items: center !important;
 }
 
-/* 每個導航點的 li */
 .slick-dots li {
-  margin: 0 0.5rem !important; /* 調整導航點間距 */
+  margin: 0 0.5rem !important;
   width: 0.75rem !important;
   height: 0.75rem !important;
 }
 
-/* 導航點按鈕 */
 .slick-dots li button {
   width: 0.75rem !important;
   height: 0.75rem !important;
-  border-radius: 100% !important; /* 改為方形（可選） */
-  background: #ccc !important; /* 正常模式的背景色 */
+  border-radius: 100% !important;
+  background: #ccc !important;
   transition: background 0.3s ease !important;
 }
 
 .slick-dots .slick-active button {
   width: 1rem !important;
   height: 1rem !important;
-
-  background: black !important; /* 正常模式的背景色 */
+  background: black !important;
 }
 
 .dark .slick-dots li button {
-  width: 0.75rem !important;
-  height: 0.75rem !important;
-  border-radius: 100% !important; /* 改為方形（可選） */
-  background: #aaa !important; /* 正常模式的背景色 */
-  transition: background 0.3s ease !important;
+  background: #aaa !important;
 }
 
 .dark .slick-dots .slick-active button {
-  width: 1rem !important;
-  height: 1rem !important;
-
-  background: white !important; /* 正常模式的背景色 */
+  background: white !important;
 }
 
 .slick-dots li button::before {
-  content: "" !important; /* 清除預設圓點 */
-  display: none !important; /* 或者完全隱藏偽元素 */
+  content: "" !important;
+  display: none !important;
 }
 
 /* 手機模式 */
@@ -219,14 +204,22 @@ body {
   .slick-slide {
     transform: scale(1) !important;
     opacity: 1 !important;
+    padding: 0 !important;
   }
   .slick-slide > div {
-    width: 100vw;
+    width: 100vw !important;
   }
   .slick-slide:not(.slick-center) {
     transform: none !important;
   }
   .slick-slider {
     padding: 0 !important;
+  }
+  .slick-list {
+    height: 100% !important;
+  }
+  .slick-slide img {
+    width: 100vw !important; /* 手機模式下填滿螢幕寬度 */
+    height: 50vh !important; /* 手機模式下調整高度 */
   }
 }
