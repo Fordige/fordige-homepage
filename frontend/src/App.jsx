@@ -48,7 +48,7 @@ function App() {
 
         setTimeout(() => {
           isScrollingRef.current = false;
-        }, 2000);
+        }, 1500);
       }
     };
 
