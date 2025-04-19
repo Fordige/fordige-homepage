@@ -103,7 +103,7 @@ const ContactUsSection = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="relative flex h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
+      className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
     >
       <Toaster />
       <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full">
@@ -111,7 +111,7 @@ const ContactUsSection = forwardRef((props, ref) => {
           <div className="grid h-full w-full grid-cols-[16.7fr_66.6fr_16.7fr] justify-around px-[2rem]">
             <img className="h-full w-full" src={fIcon} alt="fIcon" />
             <div className="justfy-center flex flex-col gap-[1rem] pt-[0.5rem] dark:text-highlight">
-              <h1 className="text-xlg text-center font-sf font-semibold">
+              <h1 className="text-center font-sf text-xlg font-semibold">
                 您的故事，化為數位傑作
               </h1>
               <p className="px-[2rem] font-sf text-xxs font-medium">
@@ -125,86 +125,81 @@ const ContactUsSection = forwardRef((props, ref) => {
             />
           </div>
           <div className="grid h-full w-full grid-cols-[1fr_1fr] gap-[2rem] px-[2rem]">
-            <div className="flex flex-col justify-start gap-[1rem]">
-              <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
+            <div className="flex flex-col justify-between">
+              <div className="font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
                 聯絡方式
               </div>
-              <div className="flex flex-col justify-center gap-[1rem]">
-                <div>
-                  <label className="flex flex-col gap-[0.25rem]">
-                    <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
-                        姓名
-                      </div>
-                      {errors.name && (
-                        <div className="font-sf text-xs font-normal text-[#999999]">
-                          {errors.name.message}
-                        </div>
-                      )}
+
+              <label className="flex flex-col gap-[0.25rem]">
+                <div className="flex items-center gap-[1rem]">
+                  <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
+                    姓名
+                  </div>
+                  {errors.name && (
+                    <div className="font-sf text-xs font-normal text-[#999999]">
+                      {errors.name.message}
                     </div>
-                    <input
-                      {...register("name", {
-                        required: "＊噢不～輸入有誤 (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)",
-                      })}
-                      type="text"
-                      placeholder="請輸入稱呼"
-                      className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
-                    />
-                  </label>
+                  )}
                 </div>
-                <div>
-                  <label className="flex flex-col gap-[0.25rem]">
-                    <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
-                        信箱
-                      </div>
-                      {errors.email && (
-                        <div className="font-sf text-xs font-normal text-[#999999]">
-                          {errors.email.message}
-                        </div>
-                      )}
+                <input
+                  {...register("name", {
+                    required: "＊噢不～輸入有誤 (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)",
+                  })}
+                  type="text"
+                  placeholder="請輸入稱呼"
+                  className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
+                />
+              </label>
+
+              <label className="flex flex-col gap-[0.25rem]">
+                <div className="flex items-center gap-[1rem]">
+                  <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
+                    信箱
+                  </div>
+                  {errors.email && (
+                    <div className="font-sf text-xs font-normal text-[#999999]">
+                      {errors.email.message}
                     </div>
-                    <input
-                      {...register("email", {
-                        required: "＊噢不～信箱格式錯誤 (⊙_⊙)",
-                        pattern: {
-                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                          message: "＊噢不～信箱格式錯誤 (⊙_⊙)",
-                        },
-                      })}
-                      type="text"
-                      placeholder="請輸入信箱"
-                      className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
-                    />
-                  </label>
+                  )}
                 </div>
-                <div>
-                  <label className="flex flex-col gap-[0.25rem]">
-                    <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
-                        LINE ID
-                      </div>
-                      {errors.line_id && (
-                        <div className="font-sf text-xs font-normal text-[#999999]">
-                          {errors.line_id.message}
-                        </div>
-                      )}
+                <input
+                  {...register("email", {
+                    required: "＊噢不～信箱格式錯誤 (⊙_⊙)",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "＊噢不～信箱格式錯誤 (⊙_⊙)",
+                    },
+                  })}
+                  type="text"
+                  placeholder="請輸入信箱"
+                  className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
+                />
+              </label>
+
+              <label className="flex flex-col gap-[0.25rem]">
+                <div className="flex items-center gap-[1rem]">
+                  <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
+                    LINE ID
+                  </div>
+                  {errors.line_id && (
+                    <div className="font-sf text-xs font-normal text-[#999999]">
+                      {errors.line_id.message}
                     </div>
-                    <input
-                      {...register("line_id", {
-                        required: "＊噢不～ID看起來有誤(´･ω･`)",
-                      })}
-                      type="text"
-                      placeholder="請輸入稱呼"
-                      className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
-                    />
-                  </label>
+                  )}
                 </div>
-              </div>
+                <input
+                  {...register("line_id", {
+                    required: "＊噢不～ID看起來有誤(´･ω･`)",
+                  })}
+                  type="text"
+                  placeholder="請輸入稱呼"
+                  className="w-full rounded-[1rem] border-[0.17rem] py-[0.25rem] pl-[2rem] font-sf text-sm font-medium"
+                />
+              </label>
             </div>
             <div className="flex flex-col justify-between gap-[1rem]">
               <div className="flex flex-col gap-[1rem]">
-                <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
+                <div className="font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
                   需要的服務類型
                 </div>
 
@@ -239,7 +234,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 </div>
               </div>
               <div className="flex flex-col gap-[1rem]">
-                <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
+                <div className="font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
                   大約預算是
                 </div>
                 <div className="flex justify-around">
