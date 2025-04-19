@@ -52,7 +52,7 @@ function App() {
     // 滾動完成後重置標誌（假設 500ms 後滾動完成）
     const timeout = setTimeout(() => {
       setIsProgrammaticScroll(false);
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [currentSection, isProgrammaticScroll]);
@@ -80,7 +80,7 @@ function App() {
           break;
         }
       }
-    }, 100); // 節流時間改為 100ms
+    }, 100);
 
     window.addEventListener("scroll", handleScroll);
 
