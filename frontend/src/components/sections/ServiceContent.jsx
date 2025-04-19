@@ -1,7 +1,7 @@
 import { forwardRef, useState } from "react";
 
 import imageIcon from "../../assets/serviceContent/icon-image.svg";
-import ServiceButton from "../ui/serviceButton";
+import ServiceButton from "../ui/ServiceButton";
 import showImage from "../../assets/serviceContent/show-image.webp";
 import showBusiness from "../../assets/serviceContent/show-business.webp";
 import showSpa from "../../assets/serviceContent/show-spa.webp";
