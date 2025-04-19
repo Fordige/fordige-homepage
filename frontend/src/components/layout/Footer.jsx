@@ -13,7 +13,7 @@ function Footer() {
   const { isDarkMode } = useModeStore();
 
   return (
-    <footer className="fixed bottom-0 z-10 flex h-[5rem] w-full items-center justify-between bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
+    <footer className="flex h-[5rem] w-full items-center justify-between bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
       <div className="hidden h-[4rem] w-[31.0625rem] items-center justify-start md:flex">
         <img
           className="h-full w-[18.321rem]"
@@ -21,13 +21,7 @@ function Footer() {
           alt="bannerDark"
         />
       </div>
-      <div className="hidden h-[4rem] w-[13.875rem] flex-col items-center justify-center md:flex">
-        <img
-          className="h-[3.125rem] w-[3.75rem] fill-[url(#myGradient)] dark:fill-black"
-          src={isDarkMode ? scrollIcon : scrollLightIcon}
-          alt="scrollIcon"
-        />
-
+      <div className="hidden h-[4rem] w-[13.875rem] flex-col items-center justify-end md:flex">
         <p className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-xxxs font-normal text-transparent dark:text-shadow">
           Copyright © 2025 Fordige. All rights reserved.
         </p>

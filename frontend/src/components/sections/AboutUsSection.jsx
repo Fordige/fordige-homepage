@@ -67,7 +67,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
 
   return (
     <section
-      className="relative mb-[5rem] mt-[5rem] flex h-[calc(100vh-10rem)] max-w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3"
+      className="relative flex h-[80vh] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3"
       style={{
         cursor: showButton ? "none" : "auto",
       }}

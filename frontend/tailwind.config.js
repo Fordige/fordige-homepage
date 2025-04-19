@@ -18,12 +18,14 @@ export default {
         sm: "1.5rem", // 24px
         base: "2rem", // 32px
         lg: "2.25rem", // 36px
+        xlg: "2.5rem", // 40px
         lgg: "3.125rem", //50px
         xl: "4rem", // 64px
       },
       fontWeight: {
         regualar: 400,
         medium: 500,
+        semibold: 590,
         extrabold: 800,
       },
     },

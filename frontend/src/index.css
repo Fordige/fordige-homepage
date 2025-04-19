@@ -62,10 +62,11 @@
 
 html,
 body {
+  width: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* react slick animation */
