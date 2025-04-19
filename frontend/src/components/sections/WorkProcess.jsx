@@ -96,9 +96,12 @@ const WorkProcess = forwardRef((props, ref) => {
 
   return (
     <div
-      className="relative mb-[5rem] mt-[5rem] flex h-[calc(100vh-10rem)] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3"
+      className="relative flex h-[calc(100vh-10rem)] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3"
       ref={ref}
     >
+      <div className="text-xlg text-center font-sf font-semibold text-shadow3 dark:text-highlight">
+        專案流程
+      </div>
       <div className="w-full">
         <Slider {...settings} className="h-full w-full">
           {carouselData.map((item, index) => (
@@ -118,7 +121,7 @@ const WorkProcess = forwardRef((props, ref) => {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="font-han flex items-center justify-center gap-[1rem] text-center text-[2rem] font-normal text-shadow3 dark:text-highlight"
+                      className="flex items-center justify-center gap-[1rem] text-center font-han text-[2rem] font-normal text-shadow3 dark:text-highlight"
                     >
                       <p className="font-sf text-[3rem] font-[274]">
                         {index + 1}

@@ -17,6 +17,7 @@ const ContactUsSection = forwardRef((props, ref) => {
 
   const {
     register,
+    watch,
     handleSubmit,
     reset,
     formState: { errors },
@@ -26,6 +27,8 @@ const ContactUsSection = forwardRef((props, ref) => {
       budget: "under_30000",
     },
   });
+  const selectedService = watch("service", "image");
+  const selectedBudget = watch("budget", "under_30000");
 
   const services = [
     {
@@ -104,7 +107,7 @@ const ContactUsSection = forwardRef((props, ref) => {
     >
       <Toaster />
       <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full">
-        <div className="grid h-full w-full grid-rows-[23.57fr_69.29fr_7.14fr]">
+        <div className="grid h-full w-full grid-rows-[23.57fr_69.29fr_7.14fr] gap-[1rem]">
           <div className="grid h-full w-full grid-cols-[16.7fr_66.6fr_16.7fr] justify-around px-[2rem]">
             <img className="h-full w-full" src={fIcon} alt="fIcon" />
             <div className="justfy-center flex flex-col gap-[1rem] pt-[0.5rem] dark:text-highlight">
@@ -123,14 +126,14 @@ const ContactUsSection = forwardRef((props, ref) => {
           </div>
           <div className="grid h-full w-full grid-cols-[1fr_1fr] gap-[2rem] px-[2rem]">
             <div className="flex flex-col justify-start gap-[1rem]">
-              <div className="text-xlg font-sf font-semibold text-highlight">
+              <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
                 聯絡方式
               </div>
               <div className="flex flex-col justify-center gap-[1rem]">
                 <div>
                   <label className="flex flex-col gap-[0.25rem]">
                     <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-highlight">
+                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
                         姓名
                       </div>
                       {errors.name && (
@@ -152,7 +155,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 <div>
                   <label className="flex flex-col gap-[0.25rem]">
                     <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-highlight">
+                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
                         信箱
                       </div>
                       {errors.email && (
@@ -178,7 +181,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 <div>
                   <label className="flex flex-col gap-[0.25rem]">
                     <div className="flex items-center gap-[1rem]">
-                      <div className="font-sf text-xs font-normal text-highlight">
+                      <div className="font-sf text-xs font-normal text-shadow3 dark:text-highlight">
                         LINE ID
                       </div>
                       {errors.line_id && (
@@ -199,57 +202,67 @@ const ContactUsSection = forwardRef((props, ref) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-start gap-[1rem]">
-              <div className="text-xlg font-sf font-semibold text-highlight">
-                需要的服務類型
-              </div>
+            <div className="flex flex-col justify-between gap-[1rem]">
+              <div className="flex flex-col gap-[1rem]">
+                <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
+                  需要的服務類型
+                </div>
 
-              <div className="flex justify-around">
-                {services.map((service) => (
-                  <label key={service.id} className="radio-image">
-                    <input
-                      {...register("service")}
-                      type="radio"
-                      id={service.id}
-                      value={service.value}
-                      className="hidden"
-                      defaultChecked={service.value === "image"}
-                    />
-                    <div className="flex flex-col items-center justify-center gap-[0.25rem]">
-                      <img
-                        src={service.image}
-                        alt={service.alt}
-                        className="h-[5rem] w-[5rem]"
+                <div className="flex justify-around">
+                  {services.map((service) => (
+                    <label
+                      key={service.id}
+                      className="radio-image cursor-pointer"
+                    >
+                      <input
+                        {...register("service")}
+                        type="radio"
+                        id={service.id}
+                        value={service.value}
+                        className="hidden"
+                        defaultChecked={service.value === "image"}
                       />
-                      <p className="font-sf text-[1.125rem] font-[620] text-highlight">
-                        {service.alt}
-                      </p>
-                    </div>
-                  </label>
-                ))}
+                      <div
+                        className={`flex flex-col items-center justify-center gap-[0.25rem] p-[1rem] ${selectedService === service.value ? "border-[6px] border-shadow dark:bg-shadow" : "bg-transparent"}`}
+                      >
+                        <img
+                          src={service.image}
+                          alt={service.alt}
+                          className="h-[5rem] w-[7rem] bg-shadow3 dark:bg-transparent"
+                        />
+                        <p className="font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight">
+                          {service.alt}
+                        </p>
+                      </div>
+                    </label>
+                  ))}
+                </div>
               </div>
-
-              <div className="text-xlg font-sf font-semibold text-highlight">
-                大約預算是
-              </div>
-              <div className="flex justify-around">
-                {budgets.map((budget) => (
-                  <label key={budget.id} className="radio-image">
-                    <input
-                      {...register("budget")}
-                      type="radio"
-                      id={budget.id}
-                      value={budget.value}
-                      className="hidden"
-                      defaultChecked={budget.value === "under_30000"}
-                    />
-                    <div className="flex flex-col items-center justify-center">
-                      <button className="rounded-[0.5rem] border px-[0.5rem] py-[0.25rem] font-sf text-[1.125rem] font-[620] text-highlight">
-                        {budget.text}
-                      </button>
-                    </div>
-                  </label>
-                ))}
+              <div className="flex flex-col gap-[1rem]">
+                <div className="text-xlg font-sf font-semibold text-shadow3 dark:text-highlight">
+                  大約預算是
+                </div>
+                <div className="flex justify-around">
+                  {budgets.map((budget) => (
+                    <label key={budget.id} className="radio-image">
+                      <input
+                        {...register("budget")}
+                        type="radio"
+                        id={budget.id}
+                        value={budget.value}
+                        className="hidden"
+                        defaultChecked={budget.value === "under_30000"}
+                      />
+                      <div className="flex cursor-pointer flex-col items-center justify-center">
+                        <div
+                          className={`rounded-[0.5rem] px-[0.5rem] py-[0.25rem] font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight ${selectedBudget === budget.value ? "border-[6px] border-shadow dark:bg-shadow" : "border border-shadow3 bg-transparent dark:border-highlight"}`}
+                        >
+                          {budget.text}
+                        </div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -265,92 +278,3 @@ const ContactUsSection = forwardRef((props, ref) => {
 });
 
 export default ContactUsSection;
-
-{
-  /* <form
-          className="flex h-[42.5rem] w-[52rem] flex-col justify-start"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="flex h-[11.146rem] w-full flex-col justify-start">
-            <label>
-              <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-regualar">Name</div>
-                {errors.user_id && (
-                  <div className="font-inter text-sm text-accent">
-                    {errors.user_id.message}
-                  </div>
-                )}
-              </div>
-              <input
-                {...register("user_id", {
-                  required: "＊Oops, input info error—gotcha! (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)",
-                })}
-                type="text"
-                placeholder="請輸入稱呼"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
-              />
-            </label>
-          </div>
-          <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
-            <label>
-              <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-regualar">Email</div>
-                {errors.email && (
-                  <div className="font-inter text-sm text-accent">
-                    {errors.email.message}
-                  </div>
-                )}
-              </div>
-              <input
-                {...register("email", {
-                  required: "＊Oops, mail format error—whaaat?! (⊙_⊙)",
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "＊Oops, mail format error—whaaat?! (⊙_⊙)",
-                  },
-                })}
-                type="text"
-                placeholder="請輸入信箱"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
-              />
-            </label>
-          </div>
-          <div className="mt-[1.5rem] flex h-[11.146rem] w-full flex-col justify-start">
-            <label>
-              <div className="flex items-center gap-[1rem]">
-                <div className="text-base font-regualar">Line ID</div>
-                {errors.user_line_id && (
-                  <div className="font-inter text-sm text-accent">
-                    {errors.user_line_id.message}
-                  </div>
-                )}
-              </div>
-              <input
-                {...register("user_line_id", {
-                  required: "＊Oops, ID seems error (´･ω･`)",
-                })}
-                type="text"
-                placeholder="請輸入帳號"
-                className="mt-[1rem] h-[6.95rem] w-full rounded-[1rem] border-[0.17rem] py-[2.09rem] pl-[2.78rem] text-base font-regualar"
-              />
-            </label>
-          </div>
-          <div className="mt-[2rem] flex h-[4.06rem] w-full justify-between">
-            <button
-              type="submit"
-              className="font-inter h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] text-lg font-extrabold text-highlight"
-            >
-              Submit
-            </button>
-            <button
-              type="reset"
-              className="font-inter h-full w-[19.69rem] rounded-[1.875rem] bg-[#A8A8A8] text-lg font-[900] text-midtone"
-            >
-              Clear
-            </button>
-          </div>
-        </form>
-        <div className="flex h-[42.5rem] w-[52rem] items-center justify-center bg-midtone">
-          <div className="font-noto text-[3rem] font-[900]">LOGO</div>
-        </div> */
-}

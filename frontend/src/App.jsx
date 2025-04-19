@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { throttle } from "lodash";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/ui/Modal";
@@ -16,8 +17,7 @@ function App() {
     useRef(null),
     useRef(null),
   ];
-  const navbarRef = useRef(null); // 用於獲取 Navbar 高度
-
+  const navbarRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
 
   // 動態計算 Navbar 高度
@@ -25,25 +25,56 @@ function App() {
     if (navbarRef.current) {
       return navbarRef.current.getBoundingClientRect().height;
     }
-    return 80; // 備用值（若 Navbar 未渲染）
+    return 80;
   };
 
+  // 點擊導航時滾動到指定 section
   const scrollToSection = (index) => {
-    const navbarHeight = getNavbarHeight(); // 動態獲取高度
+    const navbarHeight = getNavbarHeight();
     const sectionTop =
       sectionRefs[index].current.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
       top: sectionTop - navbarHeight,
       behavior: "smooth",
     });
-
     setCurrentSection(index);
   };
 
+  // 監聽滾動事件，動態更新 currentSection
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      const navbarHeight = getNavbarHeight();
+      const scrollPosition = window.scrollY + navbarHeight;
+
+      for (let i = 0; i < sectionRefs.length; i++) {
+        const section = sectionRefs[i].current;
+        if (!section) continue;
+
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (
+          scrollPosition >= sectionTop - 50 &&
+          scrollPosition < sectionBottom
+        ) {
+          setCurrentSection(i);
+          break;
+        }
+      }
+    }, 1000);
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel(); // 清理節流
+    };
+  }, [sectionRefs]);
+
   return (
-    <div className="flex w-screen flex-col items-center gap-[1rem] bg-highlight dark:bg-shadow3">
+    <div className="flex w-screen flex-col items-center gap-[5rem] bg-highlight dark:bg-shadow3">
       <Navbar
-        ref={navbarRef} // 傳遞 ref 給 Navbar
+        ref={navbarRef}
         scrollToSection={scrollToSection}
         currentSection={currentSection}
       />

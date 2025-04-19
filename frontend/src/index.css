@@ -69,6 +69,10 @@ body {
   overflow-x: hidden;
 }
 
+.nav-item {
+  transition: all 0.3s ease;
+}
+
 /* react slick animation */
 
 /* 滑塊基本樣式 */

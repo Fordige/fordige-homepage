@@ -4,8 +4,7 @@ import lineIcon from "../../assets/footer/line-icon.svg";
 import lineQrCode from "../../assets/line_qrcode.svg";
 import bannerDark from "../../assets/footer/banner-dark.svg";
 import bannerWhite from "../../assets/footer/banner-white.svg";
-import scrollIcon from "../../assets/footer/scroll.svg";
-import scrollLightIcon from "../../assets/footer/scroll-light.svg";
+
 import useModeStore from "../../store/modeStore";
 
 function Footer() {
@@ -13,7 +12,7 @@ function Footer() {
   const { isDarkMode } = useModeStore();
 
   return (
-    <footer className="flex h-[5rem] w-full items-center justify-between bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
+    <footer className="flex h-[5rem] w-full items-center justify-between border-t-[2px] border-t-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
       <div className="hidden h-[4rem] w-[31.0625rem] items-center justify-start md:flex">
         <img
           className="h-full w-[18.321rem]"

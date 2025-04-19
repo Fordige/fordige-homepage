@@ -49,7 +49,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
   return (
     <nav
-      className="fixed top-0 z-50 flex h-[5rem] w-full items-center justify-around bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2"
+      className="nav-item fixed left-0 top-0 z-50 flex h-[5rem] w-full items-center justify-around border-b-[2px] border-b-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2"
       ref={ref}
     >
       {/* Logo */}
