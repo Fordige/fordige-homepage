@@ -10,7 +10,7 @@ import useModeStore from "../../store/modeStore";
 
 const ServiceContent = forwardRef((props, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const { isDarkMode, setIsDarkMode } = useModeStore();
+  const { isDarkMode } = useModeStore();
 
   const ImageIcon = () => (
     <svg

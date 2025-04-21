@@ -14,7 +14,7 @@ import otherBtn from "../../assets/contactUs/btn-other.svg";
 import useModalStore from "../../store/modalStore";
 
 const ContactUsSection = forwardRef((props, ref) => {
-  const { createCase, getCsrfToken, csrfToken } = useCsrfStore();
+  const { createCase, getCsrfToken } = useCsrfStore();
   const openModal = useModalStore((state) => state.openModal);
 
   const {
