@@ -167,9 +167,12 @@ JAZZMIN_SETTINGS = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 # CSRF settings
-CSRF_COOKIE_SECURE =True  # 開發時設為 False，生產設為 True
+CSRF_COOKIE_SECURE =True 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_DOMAIN = '.fordige.com'
 CSRF_COOKIE_HTTPONLY = False  # 允許 JS 存取（若需要）
 CSRF_TRUSTED_ORIGINS = [
     'http://.localhost',   
-    'https://.fordige.com'
+    'https://fordige.com',
+    'https://www.fordige.com',
 ]
