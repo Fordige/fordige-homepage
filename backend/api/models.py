@@ -18,9 +18,11 @@ class CaseModel(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)  
     finished_dt = models.DateTimeField(null=True, blank=True)  
     price = models.IntegerField(default=0)
-    user_id = models.CharField(max_length=100)
-    user_line_id = models.CharField(max_length=100)
+    line_id = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     email = models.EmailField()
+    budget = models.CharField(max_length=100)
+    service = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.case_id} - {self.case_title}"
