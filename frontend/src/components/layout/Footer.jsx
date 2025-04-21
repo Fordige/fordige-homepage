@@ -1,7 +1,6 @@
 import useModalStore from "../../store/modalStore";
 import lineIcon from "../../assets/footer/line-icon.svg";
 
-import lineQrCode from "../../assets/line_qrcode.svg";
 import bannerDark from "../../assets/footer/banner-dark.svg";
 import bannerWhite from "../../assets/footer/banner-white.svg";
 
@@ -30,7 +29,7 @@ function Footer() {
           className="h-full w-[4rem] cursor-pointer"
           src={lineIcon}
           alt="lineIcon"
-          onClick={() => openModal(lineQrCode)}
+          onClick={() => openModal()}
         />
       </div>
       <div className="md:hidden">

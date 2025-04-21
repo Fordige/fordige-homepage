@@ -11,9 +11,11 @@ import imageBtn from "../../assets/contactUs/btn-image.svg";
 import businessBtn from "../../assets/contactUs/btn-business.svg";
 import spaBtn from "../../assets/contactUs/btn-spa.svg";
 import otherBtn from "../../assets/contactUs/btn-other.svg";
+import useModalStore from "../../store/modalStore";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const { createCase, getCsrfToken, csrfToken } = useCsrfStore();
+  const openModal = useModalStore((state) => state.openModal);
 
   const {
     register,
@@ -85,6 +87,7 @@ const ContactUsSection = forwardRef((props, ref) => {
     if (res.data) {
       showRegisterSuccessToast();
       reset();
+      openModal();
     } else {
       console.log(res);
     }
