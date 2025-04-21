@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'  # 根據環境動態設置
+SECURE_SSL_REDIRECT = True
 
-ALLOWED_HOSTS = ['.fordige.com', '.elasticbeanstalk.com', 'localhost']
+ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
@@ -167,12 +168,15 @@ JAZZMIN_SETTINGS = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 # CSRF settings
-CSRF_COOKIE_SECURE =True 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = '.fordige.com'
-CSRF_COOKIE_HTTPONLY = False  # 允許 JS 存取（若需要）
+
 CSRF_TRUSTED_ORIGINS = [
     'http://.localhost',   
     'https://fordige.com',
     'https://www.fordige.com',
+    'https://*.fordige.com',
 ]
+
+CSRF_COOKIE_SECURE =True 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_DOMAIN = '.fordige.com'
+CSRF_COOKIE_HTTPONLY = False  # 允許 JS 存取（若需要）

@@ -81,16 +81,13 @@ const ContactUsSection = forwardRef((props, ref) => {
   ];
 
   const onSubmit = async (data) => {
-    // const res = await createCase(data);
-    // console.log(csrfToken);
-    // if (res.data) {
-    //   showRegisterSuccessToast();
-    //   reset();
-    // } else {
-    //   // alert("Oops, something went wrong. Please try again later.");
-    //   console.log(res);
-    // }
-    console.log(data);
+    const res = await createCase(data);
+    if (res.data) {
+      showRegisterSuccessToast();
+      reset();
+    } else {
+      console.log(res);
+    }
   };
 
   useEffect(() => {
