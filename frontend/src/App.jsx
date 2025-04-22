@@ -91,7 +91,7 @@ function App() {
   }, [isProgrammaticScroll]); // 依賴 isProgrammaticScroll
 
   return (
-    <div className="flex w-screen flex-col items-center gap-[5rem] bg-highlight dark:bg-shadow3">
+    <div className="flex w-screen flex-col items-center gap-[8rem] bg-highlight dark:bg-shadow3">
       <Navbar
         ref={navbarRef}
         scrollToSection={scrollToSection}

@@ -7,6 +7,7 @@ import { GoProjectRoadmap } from "react-icons/go";
 import smallLogo from "../../assets/navbar/small-logo.svg";
 import lightToggle from "../../assets/navbar/light-toggle.svg";
 import darkToggle from "../../assets/navbar/dark-toggle.svg";
+import darkToggleMobile from "../../assets/navbar/dark-toggle-mobile.svg";
 import useLanguageStore from "../../store/languageStore";
 import useModeStore from "../../store/modeStore";
 
@@ -49,7 +50,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
   return (
     <nav
-      className="nav-item fixed left-0 top-0 z-50 flex h-[5rem] w-full items-center justify-around border-b-[2px] border-b-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2"
+      className="nav-item fixed left-0 top-0 z-50 flex h-[8rem] w-full items-center justify-between border-b-[2px] border-b-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:h-[5rem] md:justify-around"
       ref={ref}
     >
       {/* Logo */}
@@ -93,7 +94,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
           className="focus:outline-none"
         >
           <svg
-            className="h-8 w-8 text-[url(#myGradient)] dark:text-black"
+            className="h-[3rem] w-[3rem] text-[url(#myGradient)] dark:text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -140,25 +141,40 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
       {/* 手機版下拉選單 */}
       {isOpen && (
-        <div className="absolute left-0 top-[5rem] flex w-full flex-col items-center gap-4 bg-highlight px-8 py-4 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:hidden">
-          {navItems.map((item) => (
-            <button
-              key={item.name}
-              className="flex items-center justify-start gap-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.icon}
-              <span className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text text-transparent dark:text-shadow">
-                {item.name}
-              </span>
-            </button>
-          ))}
+        <div className="absolute left-0 top-[8rem] grid h-[calc(100vh-8rem)] w-full grid-rows-[6fr_2fr] gap-4 bg-highlight px-8 py-4 opacity-[0.8] dark:bg-shadow3 md:hidden">
+          <div className="flex flex-col justify-around">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                className="flex flex-col items-center justify-start gap-2"
+                onClick={() => {
+                  setIsOpen(false);
+                  scrollToSection(navItems.indexOf(item) + 1);
+                }}
+              >
+                <div
+                  className={`h-[5rem] w-[8.75rem] rounded-[3rem] ${
+                    currentSection === navItems.indexOf(item) + 1
+                      ? "bg-[#E0E4DB] dark:bg-shadow"
+                      : ""
+                  }`}
+                >
+                  {cloneElement(item.icon, {
+                    className: "w-full h-full fill-shadow dark:fill-highlight",
+                  })}
+                </div>
+                <span className="dark:text-highligh font-sf text-sm font-[590] text-shadow dark:text-highlight">
+                  {item.name}
+                </span>
+              </button>
+            ))}
+          </div>
           {/* 手機版語言與模式切換 */}
-          <div className="mt-8 flex items-center justify-center gap-10">
-            <div className="flex items-center gap-2">
-              <MdLanguage className="h-[1.5rem] w-[1.5rem] fill-[url(#myGradient)] dark:fill-black" />
+          <div className="flex flex-col justify-around">
+            <div className="flex flex-col items-center gap-2">
+              <MdLanguage className="h-[3rem] w-[3rem] fill-shadow dark:fill-highlight" />
               <select
-                className="w-[6.25rem] cursor-pointer rounded-[0.5rem] border-[0.125rem] border-midtone bg-highlight dark:border-black dark:bg-shadow2"
+                className="w-[10rem] cursor-pointer rounded-[1rem] border-[0.1rem] border-shadow bg-highlight text-sm text-shadow dark:border-highlight dark:bg-shadow dark:text-highlight"
                 onChange={(e) => setLanguage(e.target.value)}
                 value={language}
               >
@@ -166,16 +182,16 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
                 <option value="en">English</option>
               </select>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-center gap-2">
               {isDarkMode ? (
-                <BsFillLampFill className="h-[1.5rem] w-[1.5rem]" />
+                <BsFillLampFill className="h-[3rem] w-[3rem] fill-highlight" />
               ) : (
-                <BsLamp className="h-[1.5rem] w-[1.5rem] fill-[url(#myGradient)]" />
+                <BsFillLampFill className="h-[3rem] w-[3rem] fill-shadow" />
               )}
               <button onClick={handleToggle}>
                 <img
-                  className="h-[1.5rem] w-[3.5rem]"
-                  src={isDarkMode ? darkToggle : lightToggle}
+                  className="h-[2rem] w-[8rem]"
+                  src={isDarkMode ? darkToggleMobile : lightToggle}
                   alt="lightToggle"
                 />
               </button>

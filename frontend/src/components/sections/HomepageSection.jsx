@@ -12,7 +12,7 @@ const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
   const { isDarkMode } = useModeStore();
   return (
     <section
-      className="relative mt-[5rem] flex h-[80vh] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3"
+      className="relative mt-[8rem] flex h-[90vh] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3 md:mt-[5rem] md:h-[80vh]"
       ref={ref}
     >
       <video
@@ -26,15 +26,15 @@ const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
         <source src={homepageVideo} type="video/mp4"></source>
       </video>
 
-      <div className="absolute flex h-full w-full flex-col items-center justify-center">
-        <div className="flex h-[25rem] w-[25rem] items-center justify-center">
+      <div className="absolute flex h-full w-full flex-col items-center justify-evenly md:justify-center">
+        <div className="flex h-[20.5rem] w-[20.5rem] items-center justify-center md:h-[25rem] md:w-[25rem]">
           <img
-            className="h-[18.09remrem] w-[16.28rem]"
+            className="h-full w-full object-contain"
             src={isDarkMode ? bigLogo : bigLogoLight}
             alt="bigLogo"
           />
         </div>
-        <div className="w-full text-center font-sf text-lg font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight">
+        <div className="w-full text-center font-sf text-[3rem] font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight md:text-lg">
           {content.homepage_content}
         </div>
         <ContactUsButton onClick={() => scrollToSection(4)} />
