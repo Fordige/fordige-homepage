@@ -6,7 +6,7 @@ const ContactUsButton = ({ onClick }) => {
   const { content } = useLanguageStore();
   return (
     <motion.button
-      className="flex w-[13.75rem] items-center justify-center rounded-[2.5rem] bg-accent p-1 font-sf text-[2rem] font-medium text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3 md:w-[10rem] md:text-xs"
+      className="flex w-[34.375vw] items-center justify-center rounded-[2.5rem] bg-accent p-1 font-sf text-[5vw] font-medium text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3 md:w-[10rem] md:text-xs"
       onClick={onClick}
       animate={{
         scale: 1.5,
@@ -21,7 +21,7 @@ const ContactUsButton = ({ onClick }) => {
     >
       {content.homepage_button}
       <img
-        className="h-[1.219rem] w-[1.219rem]"
+        className="h-[1.71879vh] w-[3.0475vw]"
         src={quickContact}
         alt="quickContact"
       />

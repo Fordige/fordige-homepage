@@ -27,14 +27,14 @@ const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
       </video>
 
       <div className="absolute flex h-full w-full flex-col items-center justify-evenly md:justify-center">
-        <div className="flex h-[20.5rem] w-[20.5rem] items-center justify-center md:h-[25rem] md:w-[25rem]">
+        <div className="flex h-[28.905vh] w-[51.25vw] items-center justify-center md:h-[25rem] md:w-[25rem]">
           <img
             className="h-full w-full object-contain"
             src={isDarkMode ? bigLogo : bigLogoLight}
             alt="bigLogo"
           />
         </div>
-        <div className="w-full text-center font-sf text-[3rem] font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight md:text-lg">
+        <div className="w-full text-center font-sf text-[7.5vw] font-bold text-midtone dark:bg-[radial-gradient(ellipse_at_center,#20591E,#000000)] dark:text-highlight md:text-lg">
           {content.homepage_content}
         </div>
         <ContactUsButton onClick={() => scrollToSection(4)} />
