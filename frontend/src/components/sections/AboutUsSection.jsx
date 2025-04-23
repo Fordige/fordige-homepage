@@ -67,7 +67,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   };
 
   return (
-    <>
+    <div ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] items-center justify-center bg-highlight dark:bg-shadow3 md:hidden">
         <img className="w-[90%]" src={bgMobile} alt="bgMobile" />
@@ -78,7 +78,6 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
         style={{
           cursor: showButton ? "none" : "auto",
         }}
-        ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -183,7 +182,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           ></div>
         </div>
       </section>
-    </>
+    </div>
   );
 });
 

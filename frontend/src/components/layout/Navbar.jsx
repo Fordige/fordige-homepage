@@ -141,62 +141,56 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
       {/* 手機版下拉選單 */}
       {isOpen && (
-        <div className="absolute left-0 top-[12vh] grid h-[88vh] w-full grid-rows-[6fr_2fr] gap-4 bg-highlight px-8 py-4 opacity-[0.8] dark:bg-shadow3 md:hidden">
-          <div className="flex flex-col justify-around">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                className="flex flex-col items-center justify-start gap-2"
-                onClick={() => {
-                  setIsOpen(false);
-                  scrollToSection(navItems.indexOf(item) + 1);
-                }}
+        <div className="absolute left-0 top-[12vh] flex h-[88vh] w-full flex-col justify-start gap-[2.82vh] bg-highlight pt-[2.82vh] opacity-[0.8] dark:bg-shadow3 md:hidden">
+          {navItems.map((item) => (
+            <button
+              key={item.name}
+              className="flex flex-col items-center justify-start gap-2"
+              onClick={() => scrollToSection(navItems.indexOf(item) + 1)}
+            >
+              <div
+                className={`h-[7.05vh] w-[21.875vw] rounded-[3rem] ${
+                  currentSection === navItems.indexOf(item) + 1
+                    ? "bg-[#E0E4DB] dark:bg-shadow"
+                    : ""
+                }`}
               >
-                <div
-                  className={`h-[7.05vh] w-[21.875vw] rounded-[3rem] ${
-                    currentSection === navItems.indexOf(item) + 1
-                      ? "bg-[#E0E4DB] dark:bg-shadow"
-                      : ""
-                  }`}
-                >
-                  {cloneElement(item.icon, {
-                    className: "w-full h-full fill-shadow dark:fill-highlight",
-                  })}
-                </div>
-                <span className="dark:text-highligh font-sf text-sm font-[590] text-shadow dark:text-highlight">
-                  {item.name}
-                </span>
-              </button>
-            ))}
+                {cloneElement(item.icon, {
+                  className: "w-full h-full fill-shadow dark:fill-highlight",
+                })}
+              </div>
+              <span className="dark:text-highligh font-sf text-[3.75vw] font-[590] text-shadow dark:text-highlight">
+                {item.name}
+              </span>
+            </button>
+          ))}
+          <div className="flex flex-col items-center gap-2">
+            <MdLanguage className="h-[4.24vh] w-[7.5vh] fill-shadow dark:fill-highlight" />
+            <select
+              className="w-[10rem] cursor-pointer rounded-[1rem] border-[0.1rem] border-shadow bg-highlight text-sm text-shadow dark:border-highlight dark:bg-shadow dark:text-highlight"
+              onChange={(e) => setLanguage(e.target.value)}
+              value={language}
+            >
+              <option value="zh">繁體中文</option>
+              <option value="en">English</option>
+            </select>
           </div>
+          <div className="flex flex-col items-center gap-2">
+            {isDarkMode ? (
+              <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-highlight" />
+            ) : (
+              <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-shadow" />
+            )}
+            <button onClick={handleToggle}>
+              <img
+                className="h-[2.82vh] w-[20vw]"
+                src={isDarkMode ? darkToggleMobile : lightToggle}
+                alt="lightToggle"
+              />
+            </button>
+          </div>
+
           {/* 手機版語言與模式切換 */}
-          <div className="flex flex-col justify-around">
-            <div className="flex flex-col items-center gap-2">
-              <MdLanguage className="h-[4.24vh] w-[7.5vh] fill-shadow dark:fill-highlight" />
-              <select
-                className="w-[10rem] cursor-pointer rounded-[1rem] border-[0.1rem] border-shadow bg-highlight text-sm text-shadow dark:border-highlight dark:bg-shadow dark:text-highlight"
-                onChange={(e) => setLanguage(e.target.value)}
-                value={language}
-              >
-                <option value="zh">繁體中文</option>
-                <option value="en">English</option>
-              </select>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              {isDarkMode ? (
-                <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-highlight" />
-              ) : (
-                <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-shadow" />
-              )}
-              <button onClick={handleToggle}>
-                <img
-                  className="h-[2.82vh] w-[20vw]"
-                  src={isDarkMode ? darkToggleMobile : lightToggle}
-                  alt="lightToggle"
-                />
-              </button>
-            </div>
-          </div>
         </div>
       )}
 
