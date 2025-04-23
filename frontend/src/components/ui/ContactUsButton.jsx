@@ -6,7 +6,7 @@ const ContactUsButton = ({ onClick }) => {
   const { content } = useLanguageStore();
   return (
     <motion.button
-      className="flex w-[34.375vw] items-center justify-center rounded-[2.5rem] bg-accent p-1 font-sf text-[5vw] font-medium text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3 md:w-[10rem] md:text-xs"
+      className="flex w-[38vw] items-center justify-center gap-[1vw] rounded-[2.5rem] bg-accent p-1 font-sf text-[5vw] font-medium text-shadow3 shadow-lg shadow-midtone dark:shadow-shadow3 md:w-[10rem] md:gap-0 md:text-xs"
       onClick={onClick}
       animate={{
         scale: 1.5,

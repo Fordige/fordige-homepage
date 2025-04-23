@@ -69,8 +69,8 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   return (
     <div ref={ref}>
       {/* 手機 */}
-      <section className="flex h-[90vh] items-center justify-center bg-highlight dark:bg-shadow3 md:hidden">
-        <img className="w-[90%]" src={bgMobile} alt="bgMobile" />
+      <section className="flex h-[90vh] w-full items-center justify-center bg-highlight dark:bg-shadow3 md:hidden">
+        <img className="w-[90vw]" src={bgMobile} alt="bgMobile" />
       </section>
       {/* 桌面 */}
       <section

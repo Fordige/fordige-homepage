@@ -12,7 +12,7 @@ const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
   const { isDarkMode } = useModeStore();
   return (
     <section
-      className="relative mt-[8rem] flex h-[90vh] w-full flex-col items-center justify-center bg-highlight dark:bg-shadow3 md:mt-[5rem] md:h-[80vh]"
+      className="relative mt-[8.46vh] flex h-[90vh] w-full bg-highlight dark:bg-shadow3 md:mt-[5rem] md:h-[80vh]"
       ref={ref}
     >
       <video
