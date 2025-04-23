@@ -39,3 +39,5 @@ export default {
   plugins: [],
   darkMode: "class",
 };
+
+// 1rem = 8px = 2.5vw = 1.41vh

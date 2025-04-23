@@ -50,11 +50,11 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
   return (
     <nav
-      className="nav-item fixed left-0 top-0 z-50 flex h-[8rem] w-full items-center justify-between border-b-[2px] border-b-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:h-[5rem] md:justify-around"
+      className="nav-item fixed left-0 top-0 z-50 flex h-[12vh] w-full items-center justify-between border-b-[2px] border-b-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:h-[5rem] md:justify-around"
       ref={ref}
     >
       {/* Logo */}
-      <div className="h-[4.25rem] w-[5.4075rem]">
+      <div className="h-[60%]">
         <img
           className="h-full w-full cursor-pointer"
           src={smallLogo}
@@ -94,7 +94,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
           className="focus:outline-none"
         >
           <svg
-            className="h-[3rem] w-[3rem] text-[url(#myGradient)] dark:text-black"
+            className="w-[7.5vw] text-[url(#myGradient)] dark:text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -141,7 +141,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
       {/* 手機版下拉選單 */}
       {isOpen && (
-        <div className="absolute left-0 top-[8rem] grid h-[calc(100vh-8rem)] w-full grid-rows-[6fr_2fr] gap-4 bg-highlight px-8 py-4 opacity-[0.8] dark:bg-shadow3 md:hidden">
+        <div className="absolute left-0 top-[12vh] grid h-[88vh] w-full grid-rows-[6fr_2fr] gap-4 bg-highlight px-8 py-4 opacity-[0.8] dark:bg-shadow3 md:hidden">
           <div className="flex flex-col justify-around">
             {navItems.map((item) => (
               <button
@@ -153,7 +153,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
                 }}
               >
                 <div
-                  className={`h-[5rem] w-[8.75rem] rounded-[3rem] ${
+                  className={`h-[7.05vh] w-[21.875vw] rounded-[3rem] ${
                     currentSection === navItems.indexOf(item) + 1
                       ? "bg-[#E0E4DB] dark:bg-shadow"
                       : ""
@@ -172,7 +172,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
           {/* 手機版語言與模式切換 */}
           <div className="flex flex-col justify-around">
             <div className="flex flex-col items-center gap-2">
-              <MdLanguage className="h-[3rem] w-[3rem] fill-shadow dark:fill-highlight" />
+              <MdLanguage className="h-[4.24vh] w-[7.5vh] fill-shadow dark:fill-highlight" />
               <select
                 className="w-[10rem] cursor-pointer rounded-[1rem] border-[0.1rem] border-shadow bg-highlight text-sm text-shadow dark:border-highlight dark:bg-shadow dark:text-highlight"
                 onChange={(e) => setLanguage(e.target.value)}
@@ -184,13 +184,13 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
             </div>
             <div className="flex flex-col items-center gap-2">
               {isDarkMode ? (
-                <BsFillLampFill className="h-[3rem] w-[3rem] fill-highlight" />
+                <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-highlight" />
               ) : (
-                <BsFillLampFill className="h-[3rem] w-[3rem] fill-shadow" />
+                <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-shadow" />
               )}
               <button onClick={handleToggle}>
                 <img
-                  className="h-[2rem] w-[8rem]"
+                  className="h-[2.82vh] w-[20vw]"
                   src={isDarkMode ? darkToggleMobile : lightToggle}
                   alt="lightToggle"
                 />
