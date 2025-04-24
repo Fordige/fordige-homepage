@@ -107,7 +107,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
         className="flex h-[90vh] w-full items-center justify-center bg-highlight dark:bg-shadow3 md:hidden"
         ref={sectionRef}
       >
-        <div className="relative h-[85vh] w-[85vw] bg-yellow-100">
+        <div className="relative h-[85vh] w-[85vw]">
           <video
             ref={videoRefMobileRef}
             className={`absolute inset-0 z-20 h-full w-full object-fill`}
