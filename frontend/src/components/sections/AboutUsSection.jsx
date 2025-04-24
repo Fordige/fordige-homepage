@@ -8,6 +8,7 @@ import bgMobile from "../../assets/aboutUs/bg-mobile.webp";
 import animation from "../../assets/aboutUs/animation.mp4";
 import animation2 from "../../assets/aboutUs/animation2.mp4";
 import chicken from "../../assets/aboutUs/chicken.gif";
+import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -16,6 +17,9 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [showVideo, setShowVideo] = useState(false);
   const videoRef1 = useRef(null); // 用於 animation.mp4
   const videoRef2 = useRef(null); // 用於 animation2.mp4
+
+  const sectionRef = useRef(null);
+  const videoRefMobileRef = useRef(null);
 
   // 當 showVideo 或 currentPage 改變時，播放對應的影片
   useEffect(() => {
@@ -33,6 +37,36 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
       }
     }
   }, [showVideo, currentPage]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          // 當 section 進入視野，播放影片
+          videoRefMobileRef.current.play();
+        } else {
+          // 當 section 離開視野，暫停影片
+          videoRefMobileRef.current.pause();
+          videoRefMobileRef.current.currentTime = 0;
+        }
+      },
+      {
+        threshold: 0.7,
+      },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // 清理 observer
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handleNext = () => {
     setCurrentPage((prevIndex) => prevIndex + 1);
@@ -69,8 +103,20 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   return (
     <div ref={ref}>
       {/* 手機 */}
-      <section className="flex h-[90vh] w-full items-center justify-center bg-highlight dark:bg-shadow3 md:hidden">
-        <img className="w-[90vw]" src={bgMobile} alt="bgMobile" />
+      <section
+        className="flex h-[90vh] w-full items-center justify-center bg-highlight dark:bg-shadow3 md:hidden"
+        ref={sectionRef}
+      >
+        <div className="relative h-[85vh] w-[85vw] bg-yellow-100">
+          <video
+            ref={videoRefMobileRef}
+            className={`absolute inset-0 z-20 h-full w-full object-fill`}
+            src={animationMobile}
+            muted
+            playsInline
+            preload="auto"
+          />
+        </div>
       </section>
       {/* 桌面 */}
       <section
