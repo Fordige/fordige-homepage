@@ -122,7 +122,7 @@ const ServiceContent = forwardRef((props, ref) => {
       width: "100%",
 
       transition: {
-        duration: 0.5, // <hr /> 延伸動畫持續 0.5 秒
+        duration: 0.5, // hr 延伸動畫持續 0.5 秒
         ease: easeInOut,
       },
     },
