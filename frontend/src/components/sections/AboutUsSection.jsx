@@ -1,10 +1,10 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
+import { easeInOut, motion } from "framer-motion";
 
 import rightButton from "../../assets/aboutUs/right-button.svg";
 import leftButton from "../../assets/aboutUs/left-button.svg";
 import bg from "../../assets/aboutUs/bg.webp";
 import bg2 from "../../assets/aboutUs/bg2.webp";
-import bgMobile from "../../assets/aboutUs/bg-mobile.webp";
 import animation from "../../assets/aboutUs/animation.mp4";
 import animation2 from "../../assets/aboutUs/animation2.mp4";
 import chicken from "../../assets/aboutUs/chicken.gif";
@@ -15,6 +15,8 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [showButton, setShowButton] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [showVideo, setShowVideo] = useState(false);
+  const [isTextVisible, setIsTextVisible] = useState(false);
+  const [showHr, setShowHr] = useState(false);
   const videoRef1 = useRef(null); // 用於 animation.mp4
   const videoRef2 = useRef(null); // 用於 animation2.mp4
 
@@ -44,15 +46,19 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
           // 當 section 進入視野，播放影片
+          setIsTextVisible(true);
+          setShowHr(false);
           videoRefMobileRef.current.play();
         } else {
           // 當 section 離開視野，暫停影片
+          setIsTextVisible(false);
+          setShowHr(false);
           videoRefMobileRef.current.pause();
           videoRefMobileRef.current.currentTime = 0;
         }
       },
       {
-        threshold: 0.7,
+        threshold: 0.3,
       },
     );
 
@@ -100,14 +106,79 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
     setShowVideo(false); // 動畫播放結束後隱藏
   };
 
+  // 定義文字動畫變體
+  const textVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (i) => ({
+      opacity: 1,
+      scale: [0.8, 2, 1], // 從 0.8 放大到 2，然後縮回到 1
+      transition: {
+        delay: i * 0.3, // 每個字元延遲 0.15 秒
+        duration: 1.2, // 整體動畫持續 0.6 秒
+        ease: easeInOut,
+      },
+    }),
+  };
+  // 定義 <hr /> 動畫變體
+  const hrVariants = {
+    hidden: { width: "0%" },
+    visible: {
+      width: "100%",
+
+      transition: {
+        duration: 0.5, // <hr /> 延伸動畫持續 0.5 秒
+        ease: easeInOut,
+      },
+    },
+  };
+
+  // 將文字分割成單個字元
+  const text = "關於我們";
+  const characters = text.split("");
+
+  // 檢查所有字元動畫完成
+  const handleTextAnimationComplete = () => {
+    console.log("All text animations completed"); // 除錯日誌
+    setShowHr(true); // 文字動畫完成後觸發 <hr /> 動畫
+  };
+
   return (
     <div ref={ref}>
       {/* 手機 */}
       <section
-        className="flex h-[90vh] w-full items-center justify-center bg-highlight dark:bg-shadow3 md:hidden"
+        className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden"
         ref={sectionRef}
       >
-        <div className="relative h-[85vh] w-[85vw]">
+        <div className="w-full">
+          <motion.div
+            className="text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight"
+            initial="hidden"
+            animate={isTextVisible ? "visible" : "hidden"}
+          >
+            {characters.map((char, index) => (
+              <motion.span
+                key={`${char}-${index}`}
+                custom={index}
+                variants={textVariants}
+                style={{ display: "inline-block", transformOrigin: "center" }}
+                onAnimationComplete={
+                  index === characters.length - 1
+                    ? handleTextAnimationComplete
+                    : undefined
+                } // 僅最後一個字元觸發 <hr />
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.hr
+            className="mt-[0.5rem] border-t-2 border-shadow3 dark:border-highlight"
+            initial="hidden"
+            animate={showHr ? "visible" : "hidden"}
+            variants={hrVariants}
+          />
+        </div>
+        <div className="relative h-[70vh] w-[85vw]">
           <video
             ref={videoRefMobileRef}
             className={`absolute inset-0 z-20 h-full w-full object-fill`}

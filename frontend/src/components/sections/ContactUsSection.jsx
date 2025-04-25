@@ -7,15 +7,13 @@ import useCsrfStore from "../../store/csrfStore";
 import fIcon from "../../assets/contactUs/f-icon.webp";
 import dIcon from "../../assets/contactUs/d-icon.webp";
 import submitBtn from "../../assets/contactUs/btn-submit.svg";
-import imageBtn from "../../assets/contactUs/btn-image.svg";
-import businessBtn from "../../assets/contactUs/btn-business.svg";
-import spaBtn from "../../assets/contactUs/btn-spa.svg";
-import otherBtn from "../../assets/contactUs/btn-other.svg";
 import useModalStore from "../../store/modalStore";
+import useServiceStore from "../../store/serviceStore";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const { createCase, getCsrfToken } = useCsrfStore();
   const openModal = useModalStore((state) => state.openModal);
+  const { services } = useServiceStore();
 
   const {
     register,
@@ -31,33 +29,6 @@ const ContactUsSection = forwardRef((props, ref) => {
   });
   const selectedService = watch("service", "image");
   const selectedBudget = watch("budget", "under_30000");
-
-  const services = [
-    {
-      id: "service1",
-      value: "image",
-      image: imageBtn,
-      alt: "形象官網",
-    },
-    {
-      id: "service2",
-      value: "business",
-      image: businessBtn,
-      alt: "商務網站",
-    },
-    {
-      id: "service3",
-      value: "spa",
-      image: spaBtn,
-      alt: "一頁式網站",
-    },
-    {
-      id: "service4",
-      value: "other",
-      image: otherBtn,
-      alt: "其他",
-    },
-  ];
 
   const budgets = [
     {

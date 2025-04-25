@@ -1,16 +1,18 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import { easeInOut, motion } from "framer-motion";
 
-import showImage from "../../assets/serviceContent/show-image.webp";
-import showBusiness from "../../assets/serviceContent/show-business.webp";
-import showSpa from "../../assets/serviceContent/show-spa.webp";
-import showOther from "../../assets/serviceContent/show-other.webp";
 import service from "../../assets/serviceContent/service.webp";
 import serviceLight from "../../assets/serviceContent/service-light.webp";
 import useModeStore from "../../store/modeStore";
+import useServiceStore from "../../store/serviceStore";
 
 const ServiceContent = forwardRef((props, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
   const { isDarkMode } = useModeStore();
+  const { services } = useServiceStore();
+  const [isTextVisible, setIsTextVisible] = useState(false);
+  const [showHr, setShowHr] = useState(false);
+  const sectionRef = useRef(null);
 
   const ImageIcon = () => (
     <svg
@@ -68,66 +70,181 @@ const ServiceContent = forwardRef((props, ref) => {
     </svg>
   );
 
-  const services = [
-    {
-      title: "形象官網",
-      description:
-        "打造專業且具吸引力的形象網頁，展示您的品牌價值與獨特風格，立即提升客戶信任感！透過精心設計的視覺與內容，吸引更多潛在客戶，讓您的品牌在競爭中脫穎而出，轉化為實質商機，助您賺取更多利潤！",
-      icon: showImage,
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          // 當 section 進入視野，播放影片
+          setIsTextVisible(true);
+          setShowHr(false);
+        } else {
+          // 當 section 離開視野，暫停影片
+          setIsTextVisible(false);
+          setShowHr(false);
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // 清理 observer
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // 定義文字動畫變體
+  const textVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (i) => ({
+      opacity: 1,
+      scale: [0.8, 2, 1], // 從 0.8 放大到 2，然後縮回到 1
+      transition: {
+        delay: i * 0.3, // 每個字元延遲 0.15 秒
+        duration: 1.2, // 整體動畫持續 0.6 秒
+        ease: easeInOut,
+      },
+    }),
+  };
+
+  // 定義 <hr /> 動畫變體
+  const hrVariants = {
+    hidden: { width: "0%" },
+    visible: {
+      width: "100%",
+
+      transition: {
+        duration: 0.5, // <hr /> 延伸動畫持續 0.5 秒
+        ease: easeInOut,
+      },
     },
-    {
-      title: "商務網站",
-      description:
-        "功能強大的商務網站，整合線上購物、金流系統與客戶管理，簡化您的業務流程！提供順暢的用戶體驗，增加客戶留存率與回購率，讓您的電商事業快速成長，輕鬆將流量轉化為穩定收入！！",
-      icon: showBusiness,
-    },
-    {
-      title: "一頁式網站",
-      description:
-        "簡潔高效的一頁式網站，專為快速轉換設計，完美呈現產品或服務優勢！透過清晰的引導與強烈的行動號召，讓訪客迅速下單或聯繫您，縮短銷售路徑，快速提升您的業績與獲利！",
-      icon: showSpa,
-    },
-    {
-      title: "其他",
-      description:
-        "客製化解決方案，滿足您獨特的業務需求，無論是活動頁面、會員系統或其他創新功能APP！我們為您量身打造專屬工具，幫助您優化運營效率，吸引更多客戶，創造更多收入來源！",
-      icon: showOther,
-    },
-  ];
+  };
+
+  // 將文字分割成單個字元
+  const text = "服務內容";
+  const characters = text.split("");
+
+  // 檢查所有字元動畫完成
+  const handleTextAnimationComplete = () => {
+    console.log("All text animations completed"); // 除錯日誌
+    setShowHr(true); // 文字動畫完成後觸發 <hr /> 動畫
+  };
+
   return (
-    <section
-      className="flex h-[80vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3"
-      ref={ref}
-    >
-      <div className="flex h-[13.33%] flex-col items-start justify-center text-center font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
-        <div>從設計到智能</div>
-        <div className="px-[5rem]">解決您的數位需求</div>
-      </div>
-      <div className="flex h-[75%] w-full justify-around">
-        <div className="flex w-[32.22%] items-end justify-center">
-          <div className="justfy-start relative flex h-[18.5rem] w-[25.75rem]">
-            <img
-              className="h-full w-[22rem]"
-              src={isDarkMode ? service : serviceLight}
-              alt="service"
-            />
-            <ImageIcon />
-            <BusinessIcon />
-            <SpaIcon />
-            <OtherIcon />
+    <div ref={ref}>
+      {/* 手機版 */}
+      <section
+        className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden"
+        ref={sectionRef}
+      >
+        <div className="w-full">
+          <motion.div
+            className="text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight"
+            initial="hidden"
+            animate={isTextVisible ? "visible" : "hidden"}
+          >
+            {characters.map((char, index) => (
+              <motion.span
+                key={`${char}-${index}`}
+                custom={index}
+                variants={textVariants}
+                style={{ display: "inline-block", transformOrigin: "center" }}
+                onAnimationComplete={
+                  index === characters.length - 1
+                    ? handleTextAnimationComplete
+                    : undefined
+                } // 僅最後一個字元觸發 <hr />
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.hr
+            className="mt-[0.5rem] border-t-2 border-shadow3 dark:border-highlight"
+            initial="hidden"
+            animate={showHr ? "visible" : "hidden"}
+            variants={hrVariants}
+          />
+        </div>
+        <div className="flex flex-col items-center justify-center gap-[1.14vh] font-sf text-[5vw] font-medium text-shadow3 dark:text-highlight">
+          {services.map((service, index) => (
+            <button
+              key={index}
+              className={`relative flex h-[4.845vh] w-[46.845vw] items-center justify-center gap-[2.5vw] rounded-[5.3125vw] border ${currentPage === index ? "bg-shadow" : ""}`}
+              onClick={() => setCurrentPage(index)}
+            >
+              <p>{service.title}</p>
+              <img
+                className="absolute right-[2.5vw] h-[3.42vh] w-[7.5vw]"
+                src={service.image}
+                alt={service.alt}
+              />
+            </button>
+          ))}
+        </div>
+        <div>
+          <div className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+            <div>從設計到智能</div>
+            <div className="px-[5rem]">解決您的數位需求</div>
           </div>
         </div>
-        <div className="flex w-[60.31%] flex-col justify-around border border-shadow3 p-[1rem] dark:border-shadow2">
-          <h1 className="font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight">
-            {services[currentPage].title}
-          </h1>
-          <p className="font-sf text-xxs font-medium text-shadow3 dark:text-highlight">
+        <div className="flex h-[26.0775vh] w-[80vw] flex-col justify-around rounded-[8.75vw] border border-shadow3 p-[2.5vw] dark:border-shadow2">
+          <p className="font-sf text-[3.125vw] font-medium text-shadow3 dark:text-highlight">
             {services[currentPage].description}
           </p>
-          <img src={services[currentPage].icon} alt={`${services[0].title}`} />
+          <img
+            className="h-[6.7vh] w-[70vw]"
+            src={services[currentPage].icon}
+            alt={`${services[0].title}`}
+          />
         </div>
-      </div>
-    </section>
+      </section>
+      {/* 桌面版 */}
+      <section
+        className="hidden h-[80vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:flex"
+        ref={ref}
+      >
+        <div className="flex h-[13.33%] flex-col items-start justify-center text-center font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
+          <div>從設計到智能</div>
+          <div className="px-[5rem]">解決您的數位需求</div>
+        </div>
+        <div className="flex h-[75%] w-full justify-around">
+          <div className="flex w-[32.22%] items-end justify-center">
+            <div className="justfy-start relative flex h-[18.5rem] w-[25.75rem]">
+              <img
+                className="h-full w-[22rem]"
+                src={isDarkMode ? service : serviceLight}
+                alt="service"
+              />
+              <ImageIcon />
+              <BusinessIcon />
+              <SpaIcon />
+              <OtherIcon />
+            </div>
+          </div>
+          <div className="flex w-[60.31%] flex-col justify-around border border-shadow3 p-[1rem] dark:border-shadow2">
+            <h1 className="font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight">
+              {services[currentPage].title}
+            </h1>
+            <p className="font-sf text-xxs font-medium text-shadow3 dark:text-highlight">
+              {services[currentPage].description}
+            </p>
+            <img
+              src={services[currentPage].icon}
+              alt={`${services[0].title}`}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 });
 
