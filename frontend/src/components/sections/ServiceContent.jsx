@@ -191,7 +191,7 @@ const ServiceContent = forwardRef((props, ref) => {
         <div>
           <div className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
             <div>從設計到智能</div>
-            <div className="px-[5rem]">解決您的數位需求</div>
+            <div className="px-[12.5vw]">解決您的數位需求</div>
           </div>
         </div>
         <div className="flex h-[26.0775vh] w-[80vw] flex-col justify-around rounded-[8.75vw] border border-shadow3 p-[2.5vw] dark:border-shadow2">
