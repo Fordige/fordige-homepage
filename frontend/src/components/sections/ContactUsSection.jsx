@@ -278,7 +278,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                   type="radio"
                   id={service.id}
                   value={service.value}
-                  className="hidden"
+                  className="h-0 w-0 opacity-0"
                   defaultChecked={service.value === "image"}
                 />
                 <div
@@ -308,7 +308,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                   type="radio"
                   id={budget.id}
                   value={budget.value}
-                  className="hidden"
+                  className="h-0 w-0 opacity-0"
                   defaultChecked={budget.value === "under_30000"}
                 />
                 <div className="flex cursor-pointer flex-col items-center justify-center">
