@@ -50,3 +50,4 @@ credentials.json
 *.swp
 *~
 db.sqlite3
+*.sqlite3
