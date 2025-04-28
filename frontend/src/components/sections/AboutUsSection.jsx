@@ -47,7 +47,6 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
         if (entry.isIntersecting) {
           // 當 section 進入視野，播放影片
           setIsTextVisible(true);
-          setShowHr(false);
           videoRefMobileRef.current.play();
         } else {
           // 當 section 離開視野，暫停影片
@@ -113,8 +112,8 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
       opacity: 1,
       scale: [0.8, 2, 1], // 從 0.8 放大到 2，然後縮回到 1
       transition: {
-        delay: i * 0.3, // 每個字元延遲 0.15 秒
-        duration: 1.2, // 整體動畫持續 0.6 秒
+        delay: i * 0.15, // 每個字元延遲 0.15 秒
+        duration: 0.6, // 整體動畫持續 0.6 秒
         ease: easeInOut,
       },
     }),
@@ -124,7 +123,6 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
     hidden: { width: "0%" },
     visible: {
       width: "100%",
-
       transition: {
         duration: 0.5, // <hr /> 延伸動畫持續 0.5 秒
         ease: easeInOut,
@@ -138,7 +136,6 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
 
   // 檢查所有字元動畫完成
   const handleTextAnimationComplete = () => {
-    console.log("All text animations completed"); // 除錯日誌
     setShowHr(true); // 文字動畫完成後觸發 <hr /> 動畫
   };
 
