@@ -24,15 +24,21 @@ const ContactUsSection = forwardRef((props, ref) => {
     watch,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
       service: "image",
       budget: "under_30000",
     },
+    mode: "onChange",
   });
   const selectedService = watch("service", "image");
   const selectedBudget = watch("budget", "under_30000");
+
+  useEffect(() => {
+    console.log("selectedService updated:", selectedService);
+  }, [selectedService]);
 
   const budgets = [
     {
@@ -80,10 +86,8 @@ const ContactUsSection = forwardRef((props, ref) => {
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting) {
-          // 當 section 進入視野，播放影片
           setIsTextVisible(true);
         } else {
-          // 當 section 離開視野，暫停影片
           setIsTextVisible(false);
           setShowHr(false);
         }
@@ -97,7 +101,6 @@ const ContactUsSection = forwardRef((props, ref) => {
       observer.observe(sectionRef.current);
     }
 
-    // 清理 observer
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -105,40 +108,35 @@ const ContactUsSection = forwardRef((props, ref) => {
     };
   }, []);
 
-  // 定義文字動畫變體
   const textVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: (i) => ({
       opacity: 1,
-      scale: [0.8, 2, 1], // 從 0.8 放大到 2，然後縮回到 1
+      scale: [0.8, 2, 1],
       transition: {
-        delay: i * 0.15, // 每個字元延遲 0.15 秒
-        duration: 0.6, // 整體動畫持續 0.6 秒
+        delay: i * 0.15,
+        duration: 0.6,
         ease: easeInOut,
       },
     }),
   };
 
-  // 定義 <hr /> 動畫變體
   const hrVariants = {
     hidden: { width: "0%" },
     visible: {
       width: "100%",
-
       transition: {
-        duration: 0.5, // hr 延伸動畫持續 0.5 秒
+        duration: 0.5,
         ease: easeInOut,
       },
     },
   };
 
-  // 將文字分割成單個字元
   const text = "聯絡我們";
   const characters = text.split("");
 
-  // 檢查所有字元動畫完成
   const handleTextAnimationComplete = () => {
-    setShowHr(true); // 文字動畫完成後觸發 <hr /> 動畫
+    setShowHr(true);
   };
 
   return (
@@ -166,7 +164,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                     index === characters.length - 1
                       ? handleTextAnimationComplete
                       : undefined
-                  } // 僅最後一個字元觸發 <hr />
+                  }
                 >
                   {char}
                 </motion.span>
@@ -272,17 +270,32 @@ const ContactUsSection = forwardRef((props, ref) => {
 
           <div className="flex items-center justify-around">
             {services.map((service) => (
-              <label key={service.id} className="radio-image cursor-pointer">
+              <label
+                key={service.id}
+                className="radio-image cursor-pointer"
+                htmlFor={service.id}
+                onTouchStart={() => console.log("Touch started:", service.id)}
+              >
                 <input
                   {...register("service")}
                   type="radio"
+                  name="service"
                   id={service.id}
                   value={service.value}
                   className="absolute h-0 w-0 opacity-0"
                   defaultChecked={service.value === "image"}
+                  onChange={(e) => {
+                    setValue("service", e.target.value, {
+                      shouldValidate: true,
+                    });
+                  }}
                 />
                 <div
-                  className={`flex flex-col items-center justify-center gap-[0.625rem] p-[2.5vw] ${selectedService === service.value ? "border-[1.875vw] border-shadow dark:bg-shadow" : "bg-transparent"}`}
+                  className={`flex flex-col items-center justify-center gap-[0.625rem] p-[2.5vw] ${
+                    selectedService === service.value
+                      ? "border-[0.5vw] border-shadow bg-blue-200 dark:bg-shadow"
+                      : "bg-transparent"
+                  }`}
                 >
                   <img
                     src={service.image}
@@ -302,18 +315,33 @@ const ContactUsSection = forwardRef((props, ref) => {
           </div>
           <div className="bg-yellow flex items-center justify-center gap-[2.5vw]">
             {budgets.map((budget) => (
-              <label key={budget.id} className="radio-image">
+              <label
+                key={budget.id}
+                className="radio-image cursor-pointer"
+                htmlFor={budget.id}
+                onTouchStart={() => console.log("Touch started:", budget.id)}
+              >
                 <input
                   {...register("budget")}
                   type="radio"
+                  name="budget"
                   id={budget.id}
                   value={budget.value}
                   className="absolute h-0 w-0 opacity-0"
                   defaultChecked={budget.value === "under_30000"}
+                  onChange={(e) => {
+                    setValue("budget", e.target.value, {
+                      shouldValidate: true,
+                    });
+                  }}
                 />
                 <div className="flex cursor-pointer flex-col items-center justify-center">
                   <div
-                    className={`w-[19.0625vw] rounded-[1.25vw] px-[1.25vw] py-[0.625vw] text-center font-sf text-[4.375vw] font-[620] text-shadow3 dark:text-highlight ${selectedBudget === budget.value ? "border-[1.875vw] border-shadow dark:bg-shadow" : "border border-shadow3 bg-transparent dark:border-highlight"}`}
+                    className={`w-[19.0625vw] rounded-[1.25vw] px-[1.25vw] py-[0.625vw] text-center font-sf text-[4.375vw] font-[620] text-shadow3 dark:text-highlight ${
+                      selectedBudget === budget.value
+                        ? "border-[0.5vw] border-shadow bg-blue-200 dark:bg-shadow"
+                        : "border border-shadow3 bg-transparent dark:border-highlight"
+                    }`}
                   >
                     {budget.text}
                   </div>
@@ -354,7 +382,7 @@ const ContactUsSection = forwardRef((props, ref) => {
               <img
                 className="h-full w-full opacity-[0.7]"
                 src={dIcon}
-                alt="fIcon"
+                alt="dIcon"
               />
             </div>
             <div className="grid h-full w-full grid-cols-[1fr_1fr] gap-[2rem] px-[2rem]">
@@ -441,17 +469,28 @@ const ContactUsSection = forwardRef((props, ref) => {
                       <label
                         key={service.id}
                         className="radio-image cursor-pointer"
+                        htmlFor={service.id}
                       >
                         <input
                           {...register("service")}
                           type="radio"
+                          name="service"
                           id={service.id}
                           value={service.value}
-                          className="hidden"
+                          className="absolute h-0 w-0 opacity-0"
                           defaultChecked={service.value === "image"}
+                          onChange={(e) => {
+                            setValue("service", e.target.value, {
+                              shouldValidate: true,
+                            });
+                          }}
                         />
                         <div
-                          className={`flex flex-col items-center justify-center gap-[0.25rem] p-[1rem] ${selectedService === service.value ? "border-[6px] border-shadow dark:bg-shadow" : "bg-transparent"}`}
+                          className={`flex flex-col items-center justify-center gap-[0.25rem] p-[1rem] ${
+                            selectedService === service.value
+                              ? "border-[6px] border-shadow bg-blue-200 dark:bg-shadow"
+                              : "bg-transparent"
+                          }`}
                         >
                           <img
                             src={service.image}
@@ -472,18 +511,32 @@ const ContactUsSection = forwardRef((props, ref) => {
                   </div>
                   <div className="flex items-center justify-around">
                     {budgets.map((budget) => (
-                      <label key={budget.id} className="radio-image">
+                      <label
+                        key={budget.id}
+                        className="radio-image cursor-pointer"
+                        htmlFor={budget.id}
+                      >
                         <input
                           {...register("budget")}
                           type="radio"
+                          name="budget"
                           id={budget.id}
                           value={budget.value}
-                          className="hidden"
+                          className="absolute h-0 w-0 opacity-0"
                           defaultChecked={budget.value === "under_30000"}
+                          onChange={(e) => {
+                            setValue("budget", e.target.value, {
+                              shouldValidate: true,
+                            });
+                          }}
                         />
                         <div className="flex cursor-pointer flex-col items-center justify-center">
                           <div
-                            className={`rounded-[0.5rem] px-[0.5rem] py-[0.25rem] font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight ${selectedBudget === budget.value ? "border-[6px] border-shadow dark:bg-shadow" : "border border-shadow3 bg-transparent dark:border-highlight"}`}
+                            className={`rounded-[0.5rem] px-[0.5rem] py-[0.25rem] font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight ${
+                              selectedBudget === budget.value
+                                ? "border-[6px] border-shadow bg-blue-200 dark:bg-shadow"
+                                : "border border-shadow3 bg-transparent dark:border-highlight"
+                            }`}
                           >
                             {budget.text}
                           </div>
