@@ -28,17 +28,17 @@ const ContactUsSection = forwardRef((props, ref) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      name: "",
+      email: "",
+      line_id: "",
       service: "image",
       budget: "under_30000",
     },
     mode: "onChange",
+    shouldUnregister: false,
   });
   const selectedService = watch("service", "image");
   const selectedBudget = watch("budget", "under_30000");
-
-  useEffect(() => {
-    console.log("selectedService updated:", selectedService);
-  }, [selectedService]);
 
   const budgets = [
     {
@@ -213,7 +213,10 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入稱呼"
-                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] ..."
+                onChange={(e) => {
+                  setValue("name", e.target.value, { shouldValidate: true });
+                }}
               />
             </label>
 
@@ -239,6 +242,9 @@ const ContactUsSection = forwardRef((props, ref) => {
                 type="text"
                 placeholder="請輸入信箱"
                 className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+                onChange={(e) => {
+                  setValue("email", e.target.value, { shouldValidate: true });
+                }}
               />
             </label>
 
@@ -260,6 +266,9 @@ const ContactUsSection = forwardRef((props, ref) => {
                 type="text"
                 placeholder="請輸入稱呼"
                 className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+                onChange={(e) => {
+                  setValue("line_id", e.target.value, { shouldValidate: true });
+                }}
               />
             </label>
           </div>
@@ -274,7 +283,6 @@ const ContactUsSection = forwardRef((props, ref) => {
                 key={service.id}
                 className="radio-image cursor-pointer"
                 htmlFor={service.id}
-                onTouchStart={() => console.log("Touch started:", service.id)}
               >
                 <input
                   {...register("service")}
@@ -283,10 +291,10 @@ const ContactUsSection = forwardRef((props, ref) => {
                   id={service.id}
                   value={service.value}
                   className="absolute h-0 w-0 opacity-0"
-                  defaultChecked={service.value === "image"}
                   onChange={(e) => {
                     setValue("service", e.target.value, {
                       shouldValidate: true,
+                      shouldDirty: false, // 明確設置 shouldDirty
                     });
                   }}
                 />
@@ -319,7 +327,6 @@ const ContactUsSection = forwardRef((props, ref) => {
                 key={budget.id}
                 className="radio-image cursor-pointer"
                 htmlFor={budget.id}
-                onTouchStart={() => console.log("Touch started:", budget.id)}
               >
                 <input
                   {...register("budget")}
@@ -328,7 +335,6 @@ const ContactUsSection = forwardRef((props, ref) => {
                   id={budget.id}
                   value={budget.value}
                   className="absolute h-0 w-0 opacity-0"
-                  defaultChecked={budget.value === "under_30000"}
                   onChange={(e) => {
                     setValue("budget", e.target.value, {
                       shouldValidate: true,
@@ -478,7 +484,6 @@ const ContactUsSection = forwardRef((props, ref) => {
                           id={service.id}
                           value={service.value}
                           className="absolute h-0 w-0 opacity-0"
-                          defaultChecked={service.value === "image"}
                           onChange={(e) => {
                             setValue("service", e.target.value, {
                               shouldValidate: true,
@@ -523,7 +528,6 @@ const ContactUsSection = forwardRef((props, ref) => {
                           id={budget.id}
                           value={budget.value}
                           className="absolute h-0 w-0 opacity-0"
-                          defaultChecked={budget.value === "under_30000"}
                           onChange={(e) => {
                             setValue("budget", e.target.value, {
                               shouldValidate: true,
