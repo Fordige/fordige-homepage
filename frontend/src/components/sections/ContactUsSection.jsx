@@ -213,7 +213,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 })}
                 type="text"
                 placeholder="請輸入稱呼"
-                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] ..."
+                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
                 onChange={(e) => {
                   setValue("name", e.target.value, { shouldValidate: true });
                 }}
