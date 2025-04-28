@@ -143,9 +143,10 @@ const ContactUsSection = forwardRef((props, ref) => {
 
   return (
     <div className="h-full w-full" ref={ref}>
+      <Toaster />
       {/* 手機版 */}
       <section
-        className="flex h-[200vh] w-full bg-highlight dark:bg-shadow3 md:hidden"
+        className="flex h-[190vh] w-full flex-col bg-highlight dark:bg-shadow3 md:hidden"
         ref={sectionRef}
       >
         <div className="flex h-[50%] w-full flex-col items-center justify-around">
@@ -188,11 +189,157 @@ const ContactUsSection = forwardRef((props, ref) => {
           </div>
           <img className="h-[20.14vh] w-[80vw]" src={dIcon} alt="dIcon" />
         </div>
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex h-[50%] w-full flex-col items-center justify-around"
+        >
+          <div className="font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+            聯絡方式
+          </div>
+          <div className="flex flex-col gap-[2.5vw]">
+            <label className="flex flex-col gap-[0.625vw]">
+              <div className="flex items-center gap-[2.5vw]">
+                <div className="font-sf text-[4.375vw] font-normal text-shadow3 dark:text-highlight">
+                  姓名
+                </div>
+                {errors.name && (
+                  <div className="font-sf text-[2.5vw] font-normal text-[#999999]">
+                    {errors.name.message}
+                  </div>
+                )}
+              </div>
+              <input
+                {...register("name", {
+                  required: "＊噢不～輸入有誤 (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)",
+                })}
+                type="text"
+                placeholder="請輸入稱呼"
+                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+              />
+            </label>
+
+            <label className="flex flex-col gap-[0.625vw]">
+              <div className="flex items-center gap-[2.5vw]">
+                <div className="font-sf text-[4.375vw] font-normal text-shadow3 dark:text-highlight">
+                  信箱
+                </div>
+                {errors.email && (
+                  <div className="font-sf text-[2.5vw] font-normal text-[#999999]">
+                    {errors.email.message}
+                  </div>
+                )}
+              </div>
+              <input
+                {...register("email", {
+                  required: "＊噢不～信箱格式錯誤 (⊙_⊙)",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "＊噢不～信箱格式錯誤 (⊙_⊙)",
+                  },
+                })}
+                type="text"
+                placeholder="請輸入信箱"
+                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+              />
+            </label>
+
+            <label className="flex flex-col gap-[0.625vw]">
+              <div className="flex items-center gap-[2.5vw]">
+                <div className="font-sf text-[4.375vw] font-normal text-shadow3 dark:text-highlight">
+                  LINE ID
+                </div>
+                {errors.line_id && (
+                  <div className="font-sf text-[2.5vw] font-normal text-[#999999]">
+                    {errors.line_id.message}
+                  </div>
+                )}
+              </div>
+              <input
+                {...register("line_id", {
+                  required: "＊噢不～ID看起來有誤(´･ω･`)",
+                })}
+                type="text"
+                placeholder="請輸入稱呼"
+                className="w-[80vw] rounded-[2.5vw] border-[0.425vw] py-[0.625vw] pl-[10vw] font-sf text-sm font-medium"
+              />
+            </label>
+          </div>
+
+          <div className="font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+            需要的服務類型
+          </div>
+
+          <div className="flex items-center justify-around">
+            {services.map((service) => (
+              <label key={service.id} className="radio-image cursor-pointer">
+                <input
+                  {...register("service")}
+                  type="radio"
+                  id={service.id}
+                  value={service.value}
+                  className="hidden"
+                  defaultChecked={service.value === "image"}
+                />
+                <div
+                  className={`flex flex-col items-center justify-center gap-[0.625rem] p-[2.5vw] ${selectedService === service.value ? "border-[1.875vw] border-shadow dark:bg-shadow" : "bg-transparent"}`}
+                >
+                  <img
+                    src={service.image}
+                    alt={service.alt}
+                    className="h-[5.7vh] w-[17.5vw] bg-shadow3 dark:bg-transparent"
+                  />
+                  <p className="font-sf text-[2.8125vw] font-[620] text-shadow3 dark:text-highlight">
+                    {service.alt}
+                  </p>
+                </div>
+              </label>
+            ))}
+          </div>
+
+          <div className="font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+            大約預算是
+          </div>
+          <div className="bg-yellow flex items-center justify-center gap-[2.5vw]">
+            {budgets.map((budget) => (
+              <label key={budget.id} className="radio-image">
+                <input
+                  {...register("budget")}
+                  type="radio"
+                  id={budget.id}
+                  value={budget.value}
+                  className="hidden"
+                  defaultChecked={budget.value === "under_30000"}
+                />
+                <div className="flex cursor-pointer flex-col items-center justify-center">
+                  <div
+                    className={`w-[19.0625vw] rounded-[1.25vw] px-[1.25vw] py-[0.625vw] text-center font-sf text-[4.375vw] font-[620] text-shadow3 dark:text-highlight ${selectedBudget === budget.value ? "border-[1.875vw] border-shadow dark:bg-shadow" : "border border-shadow3 bg-transparent dark:border-highlight"}`}
+                  >
+                    {budget.text}
+                  </div>
+                </div>
+              </label>
+            ))}
+          </div>
+
+          <button
+            className="relative h-[4.56vh] w-[35.3125vw] rounded-[12.5vw]"
+            type="submit"
+          >
+            <img
+              className="absolute left-0 top-0 h-full w-full object-cover"
+              src={submitBtn}
+              alt="submitBtn"
+            />
+          </button>
+        </form>
       </section>
       {/* 桌面版 */}
       <section className="relative hidden h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3 md:flex">
-        <Toaster />
-        <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex h-full w-full flex-col items-center justify-around"
+        >
           <div className="grid h-full w-full grid-rows-[23.57fr_69.29fr_7.14fr] gap-[1rem]">
             <div className="grid h-full w-full grid-cols-[16.7fr_66.6fr_16.7fr] justify-around px-[2rem]">
               <img className="h-full w-full" src={fIcon} alt="fIcon" />
@@ -289,7 +436,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                     需要的服務類型
                   </div>
 
-                  <div className="flex justify-around">
+                  <div className="flex items-center justify-around">
                     {services.map((service) => (
                       <label
                         key={service.id}
@@ -323,7 +470,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                   <div className="font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
                     大約預算是
                   </div>
-                  <div className="flex justify-around">
+                  <div className="flex items-center justify-around">
                     {budgets.map((budget) => (
                       <label key={budget.id} className="radio-image">
                         <input

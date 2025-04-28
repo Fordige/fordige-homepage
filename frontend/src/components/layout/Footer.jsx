@@ -5,37 +5,40 @@ import bannerDark from "../../assets/footer/banner-dark.svg";
 import bannerWhite from "../../assets/footer/banner-white.svg";
 
 import useModeStore from "../../store/modeStore";
+import chicken from "../../assets/aboutUs/chicken.gif";
 
 function Footer() {
   const openModal = useModalStore((state) => state.openModal);
   const { isDarkMode } = useModeStore();
 
   return (
-    <footer className="flex h-[5rem] w-full items-center justify-between border-t-[2px] border-t-black bg-highlight px-8 py-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight">
-      <div className="hidden h-[4rem] w-[31.0625rem] items-center justify-start md:flex">
-        <img
-          className="h-full w-[18.321rem]"
-          src={isDarkMode ? bannerDark : bannerWhite}
-          alt="bannerDark"
-        />
+    <footer className="relative flex h-[8.46vh] w-full items-center justify-between border-t-[2px] border-t-black bg-highlight px-2 dark:bg-gradient-to-b dark:from-shadow2 dark:to-highlight md:h-[5rem] md:px-8 md:py-4">
+      <img
+        className="h-[4.56vh] md:h-full"
+        src={isDarkMode ? bannerDark : bannerWhite}
+        alt="bannerDark"
+      />
+
+      <div
+        className="absolute left-1/2 top-[-2.5vh] bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-[1.875vw] font-normal text-transparent dark:text-shadow md:hidden"
+        style={{ transform: "translateX(-50%)" }}
+      >
+        Copyright © 2025 Fordige. All rights reserved.
       </div>
-      <div className="hidden h-[4rem] w-[13.875rem] flex-col items-center justify-end md:flex">
-        <p className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-xxxs font-normal text-transparent dark:text-shadow">
-          Copyright © 2025 Fordige. All rights reserved.
-        </p>
+      <div
+        className="absolute left-1/2 top-1/2 hidden bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-xxxs font-normal text-transparent dark:text-shadow md:block"
+        style={{ transform: "translateX(-50%)" }}
+      >
+        Copyright © 2025 Fordige. All rights reserved.
       </div>
-      <div className="flex h-[4rem] w-[20rem] items-center justify-end gap-[1.5rem] md:w-[31.0625rem]">
+      <div className="flex">
+        <img className="h-[4.56vh] md:hidden" src={chicken} alt="chicken" />
         <img
-          className="h-full w-[4rem] cursor-pointer"
+          className="h-[4.56vh] w-[10vw] cursor-pointer md:h-[4rem] md:w-[4rem]"
           src={lineIcon}
           alt="lineIcon"
           onClick={() => openModal()}
         />
-      </div>
-      <div className="md:hidden">
-        <p className="bg-[radial-gradient(circle_at_center,#1A8C16,#20591E)] bg-clip-text font-sf text-xxxs font-normal text-transparent dark:text-shadow">
-          Copyright © 2025 Fordige. All rights reserved.
-        </p>
       </div>
     </footer>
   );
