@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'  # 根據環境動態設置
 
-ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost']
+ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -84,10 +85,29 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': config('MONGO_DB_NAME', default='case_management'),
+#         'CLIENT': {
+#             'host': f"mongodb+srv://{config('MONGO_DB_USERNAME')}:{config('MONGO_DB_PASSWORD')}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0",
+#             'username': config('MONGO_DB_USERNAME'),
+#             'password': config('MONGO_DB_PASSWORD'),
+#             'authMechanism': 'SCRAM-SHA-1',
+#         }
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'case_management',
+        'CLIENT': {
+            'host': f"mongodb+srv://fordige:CrLm9HYI3BxIBOHt@cluster0.ezomnzs.mongodb.net/case_management?retryWrites=true&w=majority&appName=Cluster0",
+            'username': "fordige",
+            'password': "CrLm9HYI3BxIBOHt",
+            'authMechanism': 'SCRAM-SHA-1',
+        }
     }
 }
 
@@ -179,3 +199,27 @@ CSRF_COOKIE_SECURE =True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_DOMAIN = '.fordige.com'
 CSRF_COOKIE_HTTPONLY = False  # 允許 JS 存取（若需要）
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'djongo': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
