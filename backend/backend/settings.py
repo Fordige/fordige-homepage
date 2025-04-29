@@ -85,31 +85,31 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': config('MONGO_DB_NAME', default='case_management'),
-#         'CLIENT': {
-#             'host': f"mongodb+srv://{config('MONGO_DB_USERNAME')}:{config('MONGO_DB_PASSWORD')}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0",
-#             'username': config('MONGO_DB_USERNAME'),
-#             'password': config('MONGO_DB_PASSWORD'),
-#             'authMechanism': 'SCRAM-SHA-1',
-#         }
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'case_management',
+        'NAME': config('MONGO_DB_NAME', default='case_management'),
         'CLIENT': {
-            'host': f"mongodb+srv://fordige:CrLm9HYI3BxIBOHt@cluster0.ezomnzs.mongodb.net/case_management?retryWrites=true&w=majority&appName=Cluster0",
-            'username': "fordige",
-            'password': "CrLm9HYI3BxIBOHt",
+            'host': f"mongodb+srv://{config('MONGO_DB_USERNAME')}:{config('MONGO_DB_PASSWORD')}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0",
+            'username': config('MONGO_DB_USERNAME'),
+            'password': config('MONGO_DB_PASSWORD'),
             'authMechanism': 'SCRAM-SHA-1',
         }
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'case_management',
+#         'CLIENT': {
+#             'host': f"mongodb+srv://fordige:CrLm9HYI3BxIBOHt@cluster0.ezomnzs.mongodb.net/case_management?retryWrites=true&w=majority&appName=Cluster0",
+#             'username': "fordige",
+#             'password': "CrLm9HYI3BxIBOHt",
+#             'authMechanism': 'SCRAM-SHA-1',
+#         }
+#     }
+# }
 
 
 # Password validation
