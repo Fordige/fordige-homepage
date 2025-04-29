@@ -25,6 +25,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 移動 index.html 到 templates
 RUN mkdir -p templates && mv static/index.html templates/index.html
 
+# 接受構建參數
+ARG MONGO_DB_USERNAME
+ARG MONGO_DB_PASSWORD
+ARG MONGO_DB_NAME
+
+# 設置環境變數
+ENV MONGO_DB_USERNAME=$MONGO_DB_USERNAME
+ENV MONGO_DB_PASSWORD=$MONGO_DB_PASSWORD
+ENV MONGO_DB_NAME=$MONGO_DB_NAME
+
 # 收集靜態檔案並運行遷移
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate --noinput

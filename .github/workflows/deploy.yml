@@ -22,8 +22,16 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image to Docker Hub
+        env:
+          MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
+          MONGO_DB_PASSWORD: ${{ secrets.MONGO_DB_PASSWORD }}
+          MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
         run: |
-          docker build -t fordige-home:latest .
+          docker build \
+            --build-arg MONGO_DB_USERNAME="$MONGO_DB_USERNAME" \
+            --build-arg MONGO_DB_PASSWORD="$MONGO_DB_PASSWORD" \
+            --build-arg MONGO_DB_NAME="$MONGO_DB_NAME" \
+            -t fordige-home:latest .
           docker tag fordige-home:latest ${{ secrets.DOCKERHUB_USERNAME }}/fordige-home:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/fordige-home:latest
 
