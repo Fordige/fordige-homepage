@@ -73,13 +73,16 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
     setShowVideo(false); // 動畫播放結束後隱藏
   };
 
-  //className={`w-[60vw] self-start ${isDarkMode ? "bg-dark" : "bg-white"}`}
-
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className={`w-[60vw] self-start`} muted autoPlay playsInline>
+        <video
+          className={`w-[60vw] self-start ${isDarkMode ? "bg-shadow3" : "bg-white"}`}
+          muted
+          autoPlay
+          playsInline
+        >
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
