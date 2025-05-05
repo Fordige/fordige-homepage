@@ -11,7 +11,7 @@ import useModalStore from "../../store/modalStore";
 import useServiceStore from "../../store/serviceStore";
 
 // text animation
-import titleAnimation from "../../assets/aboutUs/title-animation.webm";
+import titleAnimation from "../../assets/contactUs/title-animation.webm";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const { createCase, getCsrfToken } = useCsrfStore();
@@ -85,7 +85,7 @@ const ContactUsSection = forwardRef((props, ref) => {
       <Toaster />
       {/* 手機版 */}
       <section className="flex h-[190vh] w-full flex-col bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="h-[7.98vh] self-start" muted autoPlay playsInline>
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="flex h-[50%] w-full flex-col items-center justify-around">
@@ -281,8 +281,8 @@ const ContactUsSection = forwardRef((props, ref) => {
         </form>
       </section>
       {/* 桌面版 */}
-      <section className="relative hidden h-[100vh] w-full flex-col items-center justify-center gap-[1rem] overflow-hidden bg-highlight dark:bg-shadow3 md:flex">
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+      <section className="relative hidden h-[100vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
+        <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <form

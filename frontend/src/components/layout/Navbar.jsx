@@ -50,7 +50,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
   return (
     <nav
-      className="nav-item fixed left-0 top-0 z-50 flex h-[8.46vh] w-full items-center justify-between border-b-[2px] border-b-black bg-highlight px-8 py-2 opacity-0 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:h-[5rem] md:justify-around"
+      className="nav-item fixed left-0 top-0 z-50 flex h-[8.46vh] w-full items-center justify-between border-b-[2px] border-b-black bg-highlight px-8 py-2 opacity-0 hover:!opacity-100 dark:bg-gradient-to-b dark:from-highlight dark:to-shadow2 md:h-[5rem] md:justify-around"
       ref={ref}
     >
       {/* Logo */}
@@ -141,7 +141,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
       {/* 手機版下拉選單 */}
       {isOpen && (
-        <div className="absolute left-0 top-[8.46vh] flex h-[91.54vh] w-full flex-col justify-start gap-[2.82vh] bg-highlight pt-[2.82vh] opacity-[0.8] dark:bg-shadow3 md:hidden">
+        <div className="absolute left-0 top-[8.46vh] flex h-[91.54vh] w-full flex-col justify-start gap-[2.82vh] bg-highlight pt-[2.82vh] opacity-100 dark:bg-shadow3 md:hidden">
           {navItems.map((item) => (
             <button
               key={item.name}

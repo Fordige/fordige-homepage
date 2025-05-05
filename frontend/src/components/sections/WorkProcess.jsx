@@ -12,7 +12,7 @@ import payFlow5 from "../../assets/workProcess/pay-flow5.webp";
 import payFlow6 from "../../assets/workProcess/pay-flow6.webp";
 
 // text animation
-import titleAnimation from "../../assets/aboutUs/title-animation.webm";
+import titleAnimation from "../../assets/workProcess/title-animation.webm";
 
 const carouselData = [
   {
@@ -101,7 +101,7 @@ const WorkProcess = forwardRef((props, ref) => {
     <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="h-[7.98vh] self-start" muted autoPlay playsInline>
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="w-full">
@@ -140,7 +140,7 @@ const WorkProcess = forwardRef((props, ref) => {
       </section>
       {/* 桌面版 */}
       <section className="hidden h-[90vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+        <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="w-full">

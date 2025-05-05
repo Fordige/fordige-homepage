@@ -70,10 +70,10 @@ const ServiceContent = forwardRef((props, ref) => {
   );
 
   return (
-    <div ref={ref}>
+    <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="h-[7.98vh] self-start" muted autoPlay playsInline>
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="flex flex-col items-center justify-center gap-[1.14vh] font-sf text-[5vw] font-medium text-shadow3 dark:text-highlight">
@@ -114,7 +114,7 @@ const ServiceContent = forwardRef((props, ref) => {
         className="hidden h-[90vh] w-full flex-col items-center justify-around gap-[1rem] bg-highlight dark:bg-shadow3 md:flex"
         ref={ref}
       >
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+        <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="flex h-[13.33%] flex-col items-start justify-center text-center font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">

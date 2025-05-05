@@ -71,10 +71,10 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   };
 
   return (
-    <div ref={ref}>
+    <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="h-[7.98vh] self-start" muted autoPlay playsInline>
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
@@ -124,7 +124,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
             </div>
           </div>
         )}
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+        <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
 
