@@ -126,10 +126,10 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
             </div>
           </div>
         )}
-        <video className="w-[35rem] self-start" muted autoPlay playsInline>
+        {/* <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
-        </video>
-
+        </video> */}
+        <img className="w-[35rem] self-start" src={test} alt="Animated AVIF" />
         <div className="relative h-full w-full overflow-hidden">
           {showVideo && (
             <>
