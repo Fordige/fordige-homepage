@@ -10,8 +10,7 @@ import chicken from "../../assets/aboutUs/chicken.gif";
 import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
-import titleAnimation from "../../assets/aboutUs/title-animation.webm";
-import test from "../../assets/aboutUs/output.avif";
+import test from "../../assets/aboutUs/output.mp4";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -75,20 +74,15 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
     <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        {/* <video className="w-[60vw] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type="video/webm" />
-        </video> */}
-        <img className="w-[60vw] self-start" src={test} alt="Animated AVIF" />
-        <div className="relative h-[70vh] w-[85vw]">
-          <video
-            className={`absolute inset-0 z-20 h-full w-full object-fill`}
-            src={animationMobile}
-            muted
-            playsInline
-            autoPlay
-            preload="auto"
-          />
-        </div>
+        <video
+          className="w-[60vw] self-start"
+          muted
+          autoPlay
+          playsInline
+          loop={false}
+        >
+          <source src={test} type="video/mp4" />
+        </video>
       </section>
       {/* 桌面 */}
       <section
@@ -126,10 +120,16 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
             </div>
           </div>
         )}
-        {/* <video className="w-[35rem] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type="video/webm" />
-        </video> */}
-        <img className="w-[35rem] self-start" src={test} alt="Animated AVIF" />
+        <video
+          className="w-[35rem] self-start bg-transparent"
+          muted
+          autoPlay
+          playsInline
+          loop={false}
+        >
+          <source src={test} type="video/mp4" />
+        </video>
+
         <div className="relative h-full w-full overflow-hidden">
           {showVideo && (
             <>
