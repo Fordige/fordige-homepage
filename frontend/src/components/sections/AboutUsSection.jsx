@@ -10,8 +10,8 @@ import chicken from "../../assets/aboutUs/chicken.gif";
 import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
-import test from "../../assets/aboutUs/output.webm";
-import testA from "../../assets/aboutUs/output.mov";
+import titleAnimation from "../../assets/aboutUs/title-animation.webm";
+import titleAnimation4444 from "../../assets/aboutUs/title-animation.mov";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -81,9 +81,10 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           autoPlay
           playsInline
           loop={false}
+          preload="auto"
         >
-          <source src={testA} />
-          <source src={test} type="video/webm" />
+          <source src={titleAnimation4444} />
+          <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
           <video
@@ -138,9 +139,10 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           autoPlay
           playsInline
           loop={false}
+          preload="auto"
         >
-          <source src={testA} />
-          <source src={test} type="video/webm" />
+          <source src={titleAnimation4444} />
+          <source src={titleAnimation} type="video/webm" />
         </video>
 
         <div className="relative h-full w-full overflow-hidden">

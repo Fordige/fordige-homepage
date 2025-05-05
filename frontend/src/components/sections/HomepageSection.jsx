@@ -29,7 +29,7 @@ const HomepageSection = forwardRef(({ scrollToSection }, ref) => {
       <div className="absolute flex h-full w-full flex-col items-center justify-evenly md:justify-center">
         <div className="flex h-[28.905vh] w-[51.25vw] items-center justify-center md:h-[25rem] md:w-[25rem]">
           <img
-            className="h-full w-full object-contain"
+            className="z-50 h-full w-full object-contain"
             src={isDarkMode ? bigLogo : bigLogoLight}
             alt="bigLogo"
           />
