@@ -10,7 +10,8 @@ import chicken from "../../assets/aboutUs/chicken.gif";
 import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
-import titleAnimation from "../../assets/aboutUs/title-animation.mp4";
+import titleAnimation from "../../assets/aboutUs/title-animation.webm";
+import useModeStore from "../../store/modeStore";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -20,6 +21,8 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
 
   const videoRef1 = useRef(null); // 用於 animation.mp4
   const videoRef2 = useRef(null); // 用於 animation2.mp4
+
+  const { isDarkMode } = useModeStore();
 
   // 當 showVideo 或 currentPage 改變時，播放對應的影片
   useEffect(() => {
@@ -70,12 +73,14 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
     setShowVideo(false); // 動畫播放結束後隱藏
   };
 
+  //className={`w-[60vw] self-start ${isDarkMode ? "bg-dark" : "bg-white"}`}
+
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="w-[60vw] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type='video/mp4; codecs="hvc1"' />
+        <video className={`w-[60vw] self-start`} muted autoPlay playsInline>
+          <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
           <video
@@ -125,7 +130,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           </div>
         )}
         <video className="w-[35rem] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type="video/mp4" />
+          <source src={titleAnimation} type="video/webm" />
         </video>
 
         <div className="relative h-full w-full overflow-hidden">
