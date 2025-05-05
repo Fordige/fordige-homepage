@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { showRegisterSuccessToast } from "../../utils/showToast";
 import { Toaster } from "react-hot-toast";
@@ -9,15 +9,14 @@ import dIcon from "../../assets/contactUs/d-icon.webp";
 import submitBtn from "../../assets/contactUs/btn-submit.svg";
 import useModalStore from "../../store/modalStore";
 import useServiceStore from "../../store/serviceStore";
-import { easeInOut, motion } from "framer-motion";
+
+// text animation
+import titleAnimation from "../../assets/aboutUs/title-animation.webm";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const { createCase, getCsrfToken } = useCsrfStore();
   const openModal = useModalStore((state) => state.openModal);
   const { services } = useServiceStore();
-  const [isTextVisible, setIsTextVisible] = useState(false);
-  const [showHr, setShowHr] = useState(false);
-  const sectionRef = useRef(null);
 
   const {
     register,
@@ -81,102 +80,15 @@ const ContactUsSection = forwardRef((props, ref) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsTextVisible(true);
-        } else {
-          setIsTextVisible(false);
-          setShowHr(false);
-        }
-      },
-      {
-        threshold: 0.3,
-      },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  const textVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (i) => ({
-      opacity: 1,
-      scale: [0.8, 2, 1],
-      transition: {
-        delay: i * 0.15,
-        duration: 0.6,
-        ease: easeInOut,
-      },
-    }),
-  };
-
-  const hrVariants = {
-    hidden: { width: "0%" },
-    visible: {
-      width: "100%",
-      transition: {
-        duration: 0.5,
-        ease: easeInOut,
-      },
-    },
-  };
-
-  const text = "聯絡我們";
-  const characters = text.split("");
-
-  const handleTextAnimationComplete = () => {
-    setShowHr(true);
-  };
-
   return (
     <div className="h-full w-full" ref={ref}>
       <Toaster />
       {/* 手機版 */}
-      <section
-        className="flex h-[190vh] w-full flex-col bg-highlight dark:bg-shadow3 md:hidden"
-        ref={sectionRef}
-      >
+      <section className="flex h-[190vh] w-full flex-col bg-highlight dark:bg-shadow3 md:hidden">
+        <video className="h-[7.98vh] self-start" muted autoPlay playsInline>
+          <source src={titleAnimation} type="video/webm" />
+        </video>
         <div className="flex h-[50%] w-full flex-col items-center justify-around">
-          <div className="w-full">
-            <motion.div
-              className="text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight"
-              initial="hidden"
-              animate={isTextVisible ? "visible" : "hidden"}
-            >
-              {characters.map((char, index) => (
-                <motion.span
-                  key={`${char}-${index}`}
-                  custom={index}
-                  variants={textVariants}
-                  style={{ display: "inline-block", transformOrigin: "center" }}
-                  onAnimationComplete={
-                    index === characters.length - 1
-                      ? handleTextAnimationComplete
-                      : undefined
-                  }
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </motion.div>
-            <motion.hr
-              className="mt-[0.57vh] border-t-2 border-shadow3 dark:border-highlight"
-              initial="hidden"
-              animate={showHr ? "visible" : "hidden"}
-              variants={hrVariants}
-            />
-          </div>
           <img className="h-[20.14vh] w-[80vw]" src={fIcon} alt="fIcon" />
           <div className="justfy-center flex flex-col items-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
             <div>您的故事，</div>
@@ -369,7 +281,10 @@ const ContactUsSection = forwardRef((props, ref) => {
         </form>
       </section>
       {/* 桌面版 */}
-      <section className="relative hidden h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-highlight dark:bg-shadow3 md:flex">
+      <section className="relative hidden h-[100vh] w-full flex-col items-center justify-center gap-[1rem] overflow-hidden bg-highlight dark:bg-shadow3 md:flex">
+        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+          <source src={titleAnimation} type="video/webm" />
+        </video>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex h-full w-full flex-col items-center justify-around"

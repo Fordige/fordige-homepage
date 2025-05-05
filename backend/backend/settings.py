@@ -98,19 +98,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'case_management',
-#         'CLIENT': {
-#             'host': f"mongodb+srv://fordige:CrLm9HYI3BxIBOHt@cluster0.ezomnzs.mongodb.net/case_management?retryWrites=true&w=majority&appName=Cluster0",
-#             'username': "fordige",
-#             'password': "CrLm9HYI3BxIBOHt",
-#             'authMechanism': 'SCRAM-SHA-1',
-#         }
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

@@ -42,7 +42,6 @@ function App() {
     const navbarHeight = getNavbarHeight();
     const section = sectionRefs[currentSection].current;
     if (!section) return; // 確保 section 存在
-
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
       top: sectionTop - navbarHeight,
@@ -64,6 +63,13 @@ function App() {
 
       const navbarHeight = getNavbarHeight();
       const scrollPosition = window.scrollY + navbarHeight;
+
+      // 若window.scrollY > 0, 則顯示navbar
+      if (window.scrollY > 0) {
+        navbarRef.current.style.opacity = "0.4";
+      } else {
+        navbarRef.current.style.opacity = "0";
+      }
 
       for (let i = 0; i < sectionRefs.length; i++) {
         const section = sectionRefs[i].current;
