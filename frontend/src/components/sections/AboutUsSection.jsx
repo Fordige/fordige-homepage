@@ -10,7 +10,7 @@ import chicken from "../../assets/aboutUs/chicken.gif";
 import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
-import titleAnimation from "../../assets/aboutUs/title-animation.webm";
+import titleAnimation from "../../assets/aboutUs/title-animation.mp4";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -75,7 +75,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
         <video className="w-[60vw] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type="video/webm" />
+          <source src={titleAnimation} type="video/mp4" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
           <video
@@ -125,7 +125,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           </div>
         )}
         <video className="w-[35rem] self-start" muted autoPlay playsInline>
-          <source src={titleAnimation} type="video/webm" />
+          <source src={titleAnimation} type="video/mp4" />
         </video>
 
         <div className="relative h-full w-full overflow-hidden">
