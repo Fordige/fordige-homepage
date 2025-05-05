@@ -10,7 +10,7 @@ import chicken from "../../assets/aboutUs/chicken.gif";
 import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
-import test from "../../assets/aboutUs/output.mp4";
+import test from "../../assets/aboutUs/output.webm";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -83,6 +83,16 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
         >
           <source src={test} type="video/mp4" />
         </video>
+        <div className="relative h-[70vh] w-[85vw]">
+          <video
+            className={`absolute inset-0 z-20 h-full w-full object-fill`}
+            src={animationMobile}
+            muted
+            playsInline
+            autoPlay
+            preload="auto"
+          />
+        </div>
       </section>
       {/* 桌面 */}
       <section
@@ -121,14 +131,16 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           </div>
         )}
         <video
-          className="w-[35rem] self-start bg-transparent"
+          className="w-[35rem] self-start"
           muted
           autoPlay
           playsInline
           loop={false}
         >
-          <source src={test} type="video/mp4" />
+          <source src={test} type="video/webm" />
         </video>
+
+        {/* <img className="w-[35rem] self-start" src={test} alt="Animated AVIF" /> */}
 
         <div className="relative h-full w-full overflow-hidden">
           {showVideo && (
