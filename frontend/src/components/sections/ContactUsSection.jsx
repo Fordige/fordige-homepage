@@ -213,7 +213,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 <div
                   className={`flex flex-col items-center justify-center gap-[0.625rem] p-[2.5vw] ${
                     selectedService === service.value
-                      ? "border-[0.5vw] border-shadow bg-blue-200 dark:bg-shadow"
+                      ? "border-[0.5vw] border-shadow bg-slate-200 dark:bg-shadow"
                       : "bg-transparent"
                   }`}
                 >
@@ -257,7 +257,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                   <div
                     className={`w-[19.0625vw] rounded-[1.25vw] px-[1.25vw] py-[0.625vw] text-center font-sf text-[4.375vw] font-[620] text-shadow3 dark:text-highlight ${
                       selectedBudget === budget.value
-                        ? "border-[0.5vw] border-shadow bg-blue-200 dark:bg-shadow"
+                        ? "border-[0.5vw] border-shadow bg-slate-200 dark:bg-shadow"
                         : "border border-shadow3 bg-transparent dark:border-highlight"
                     }`}
                   >
