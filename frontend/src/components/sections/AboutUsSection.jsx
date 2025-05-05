@@ -82,7 +82,8 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           playsInline
           loop={false}
         >
-          <source src={test} type="video/mp4" />
+          <source src={testA} />
+          <source src={test} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
           <video
