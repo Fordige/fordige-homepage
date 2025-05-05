@@ -11,7 +11,6 @@ import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
 import titleAnimation from "../../assets/aboutUs/title-animation.webm";
-import useModeStore from "../../store/modeStore";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,8 +20,6 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
 
   const videoRef1 = useRef(null); // 用於 animation.mp4
   const videoRef2 = useRef(null); // 用於 animation2.mp4
-
-  const { isDarkMode } = useModeStore();
 
   // 當 showVideo 或 currentPage 改變時，播放對應的影片
   useEffect(() => {
@@ -78,7 +75,7 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
         <video
-          className={`w-[60vw] self-start ${isDarkMode ? "bg-shadow3" : "bg-white"}`}
+          className="w-[60vw] self-start bg-transparent"
           muted
           autoPlay
           playsInline
