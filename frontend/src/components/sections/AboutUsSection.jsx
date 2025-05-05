@@ -11,6 +11,7 @@ import animationMobile from "../../assets/aboutUs/tell-us.mp4";
 
 // text animation
 import test from "../../assets/aboutUs/output.webm";
+import testA from "../../assets/aboutUs/output.mov";
 
 const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -137,10 +138,9 @@ const AboutUsSection = forwardRef(({ scrollToSection }, ref) => {
           playsInline
           loop={false}
         >
+          <source src={testA} />
           <source src={test} type="video/webm" />
         </video>
-
-        {/* <img className="w-[35rem] self-start" src={test} alt="Animated AVIF" /> */}
 
         <div className="relative h-full w-full overflow-hidden">
           {showVideo && (
