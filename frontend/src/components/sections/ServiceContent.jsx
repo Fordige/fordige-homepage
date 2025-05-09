@@ -73,7 +73,7 @@ const ServiceContent = forwardRef((props, ref) => {
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
-      <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
+      <section className="flex h-[80vh] w-full flex-col items-center justify-start gap-[4.56vh] bg-highlight dark:bg-shadow3 md:hidden">
         <video
           className="w-[60vw] self-start"
           muted
@@ -85,37 +85,39 @@ const ServiceContent = forwardRef((props, ref) => {
           <source src={titleAnimation4444} />
           <source src={titleAnimation} type="video/webm" />
         </video>
-        <div className="flex flex-col items-center justify-center gap-[1.14vh] font-sf text-[5vw] font-medium text-shadow3 dark:text-highlight">
-          {services.map((service, index) => (
-            <button
-              key={index}
-              className={`relative flex h-[4.845vh] w-[46.845vw] items-center justify-center gap-[2.5vw] rounded-[5.3125vw] border ${currentPage === index ? "bg-shadow" : ""}`}
-              onClick={() => setCurrentPage(index)}
-            >
-              <p>{service.title}</p>
-              <img
-                className="absolute right-[2.5vw] h-[3.42vh] w-[7.5vw]"
-                src={service.image}
-                alt={service.alt}
-              />
-            </button>
-          ))}
-        </div>
-        <div>
-          <div className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
-            <div>從設計到智能</div>
-            <div className="px-[12.5vw]">解決您的數位需求</div>
+        <div className="flex flex-col items-center justify-center gap-[4.56vh]">
+          <div className="font-sf text-[5vw] font-medium text-shadow3 dark:text-highlight">
+            {services.map((service, index) => (
+              <button
+                key={index}
+                className={`relative flex h-[4.845vh] w-[46.845vw] items-center justify-center gap-[2.5vw] rounded-[5.3125vw] border ${currentPage === index ? "bg-shadow" : ""}`}
+                onClick={() => setCurrentPage(index)}
+              >
+                <p>{service.title}</p>
+                <img
+                  className="absolute right-[2.5vw] h-[3.42vh] w-[7.5vw]"
+                  src={service.image}
+                  alt={service.alt}
+                />
+              </button>
+            ))}
           </div>
-        </div>
-        <div className="flex h-[26.0775vh] w-[80vw] flex-col justify-around rounded-[8.75vw] border border-shadow3 p-[2.5vw] dark:border-shadow2">
-          <p className="font-sf text-[3.125vw] font-medium text-shadow3 dark:text-highlight">
-            {services[currentPage].description}
-          </p>
-          <img
-            className="h-[6.7vh] w-[70vw]"
-            src={services[currentPage].icon}
-            alt={`${services[0].title}`}
-          />
+          <div>
+            <div className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+              <div>從設計到智能</div>
+              <div className="px-[12.5vw]">解決您的數位需求</div>
+            </div>
+          </div>
+          <div className="flex h-[26.0775vh] w-[80vw] flex-col justify-around rounded-[8.75vw] border border-shadow3 p-[2.5vw] dark:border-shadow2">
+            <p className="font-sf text-[3.125vw] font-medium text-shadow3 dark:text-highlight">
+              {services[currentPage].description}
+            </p>
+            <img
+              className="h-[6.7vh] w-[70vw]"
+              src={services[currentPage].icon}
+              alt={`${services[0].title}`}
+            />
+          </div>
         </div>
       </section>
       {/* 桌面版 */}

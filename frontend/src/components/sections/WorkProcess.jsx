@@ -101,7 +101,7 @@ const WorkProcess = forwardRef((props, ref) => {
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
-      <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
+      <section className="flex h-[70vh] w-full flex-col items-center justify-start gap-[4.56vh] bg-highlight dark:bg-shadow3 md:hidden">
         <video
           className="w-[60vw] self-start"
           muted
