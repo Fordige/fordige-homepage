@@ -10,19 +10,14 @@ const AboutUsSection = forwardRef((props, ref) => {
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
-      <section className="flex h-[60vh] w-[130vw] flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video
-          className="ml-[15vw] w-[60vw] self-start"
-          muted
-          autoPlay
-          playsInline
-        >
+      <section className="flex h-[60vh] w-[150vw] flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation4444} />
           <source src={titleAnimation} type="video/webm" />
         </video>
 
         <video
-          className="w-full overflow-hidden"
+          className="ml-[-55vw] w-full overflow-hidden"
           ref={videoRef}
           muted
           playsInline
