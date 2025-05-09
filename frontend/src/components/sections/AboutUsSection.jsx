@@ -36,7 +36,7 @@ const AboutUsSection = forwardRef((props, ref) => {
     <div ref={ref}>
       {/* 手機 */}
       <section className="flex h-[90vh] w-full flex-col items-center justify-around bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+        <video className="w-[60vw] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="relative h-[70vh] w-[85vw]">
@@ -52,7 +52,7 @@ const AboutUsSection = forwardRef((props, ref) => {
       </section>
       {/* 桌面 */}
       <section className="relative hidden h-[90vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
-        <video className="h-[7rem] self-start" muted autoPlay playsInline>
+        <video className="w-[35rem] self-start" muted autoPlay playsInline>
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="h-full w-full">
