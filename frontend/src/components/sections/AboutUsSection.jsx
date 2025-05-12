@@ -35,8 +35,10 @@ const AboutUsSection = forwardRef((props, ref) => {
     setShowEnded(false);
     setShowNext((prev) => !prev);
     if (showNext) {
+      videoMobileRef.current.currenttime = 0;
       videoMobileRef.current.play();
     } else {
+      video2MobileRef.current.currenttime = 0;
       video2MobileRef.current.play();
     }
   };
