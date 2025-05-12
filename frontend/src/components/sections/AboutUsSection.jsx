@@ -21,9 +21,11 @@ const AboutUsSection = forwardRef((props, ref) => {
   };
 
   const handleClick = () => {
-    if (video2Ref.current) {
-      setShowEnded(false);
-      setShowNext(true);
+    setShowEnded(false);
+    setShowNext((prev) => !prev);
+    if (showNext) {
+      videoRef.current.play();
+    } else {
       video2Ref.current.play();
     }
   };
@@ -62,6 +64,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             playsInline
             autoPlay
             preload="auto"
+            onEnded={handleEnded}
           >
             <source src={starter24444} />
             <source src={starter2} type="video/webm" />
@@ -124,6 +127,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             muted
             playsInline
             preload="auto"
+            onEnded={handleEnded}
           >
             <source src={starter24444} />
             <source src={starter2} type="video/webm" />
