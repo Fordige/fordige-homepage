@@ -11,6 +11,8 @@ import { motion } from "framer-motion";
 const AboutUsSection = forwardRef((props, ref) => {
   const videoRef = useRef(null);
   const video2Ref = useRef(null);
+  const videoMobileRef = useRef(null);
+  const video2MobileRef = useRef(null);
   const [showEnded, setShowEnded] = useState(false);
   const [showNext, setShowNext] = useState(false);
 
@@ -27,6 +29,15 @@ const AboutUsSection = forwardRef((props, ref) => {
       videoRef.current.play();
     } else {
       video2Ref.current.play();
+    }
+  };
+  const handleMobileClick = () => {
+    setShowEnded(false);
+    setShowNext((prev) => !prev);
+    if (showNext) {
+      videoMobileRef.current.play();
+    } else {
+      video2MobileRef.current.play();
     }
   };
 
@@ -47,7 +58,7 @@ const AboutUsSection = forwardRef((props, ref) => {
         <div className="ml-[-55vw] flex w-full flex-col items-center overflow-hidden">
           <video
             className={showNext ? "hidden" : "block"}
-            ref={videoRef}
+            ref={videoMobileRef}
             muted
             playsInline
             autoPlay
@@ -59,7 +70,7 @@ const AboutUsSection = forwardRef((props, ref) => {
           </video>
           <video
             className={showNext ? "block" : "hidden"}
-            ref={video2Ref}
+            ref={video2MobileRef}
             muted
             playsInline
             autoPlay
@@ -78,7 +89,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             <p>及數位應用</p>
             <motion.div
               className="absolute left-1/2 top-[-10vh] cursor-pointer"
-              onClick={handleClick}
+              onClick={handleMobileClick}
               animate={{
                 scale: 1.5,
               }}
