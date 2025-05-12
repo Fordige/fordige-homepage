@@ -1,6 +1,8 @@
 import { forwardRef, useRef, useState } from "react";
 import starter4444 from "../../assets/aboutUs/starter.mov";
 import starter from "../../assets/aboutUs/starter.webm";
+import starter24444 from "../../assets/aboutUs/starter2.mov";
+import starter2 from "../../assets/aboutUs/starter2.webm";
 import titleAnimation4444 from "../../assets/aboutUs/title-animation.mov";
 import titleAnimation from "../../assets/aboutUs/title-animation.webm";
 import { MdOutlineTouchApp } from "react-icons/md";
@@ -8,7 +10,9 @@ import { motion } from "framer-motion";
 
 const AboutUsSection = forwardRef((props, ref) => {
   const videoRef = useRef(null);
+  const video2Ref = useRef(null);
   const [showEnded, setShowEnded] = useState(false);
+  const [showNext, setShowNext] = useState(false);
 
   const handleEnded = () => {
     if (videoRef.current) {
@@ -16,24 +20,51 @@ const AboutUsSection = forwardRef((props, ref) => {
     }
   };
 
+  const handleClick = () => {
+    if (video2Ref.current) {
+      setShowEnded(false);
+      setShowNext(true);
+      video2Ref.current.play();
+    }
+  };
+
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機 */}
       <section className="flex h-[60vh] w-[145vw] flex-col items-center justify-start gap-[4.56vh] bg-highlight dark:bg-shadow3 md:hidden">
-        <video className="w-[60vw] self-start" muted autoPlay playsInline>
+        <video
+          className="w-[60vw] self-start"
+          muted
+          autoPlay
+          playsInline
+          preload="auto"
+        >
           <source src={titleAnimation4444} />
           <source src={titleAnimation} type="video/webm" />
         </video>
         <div className="ml-[-55vw] flex w-full flex-col items-center overflow-hidden">
           <video
+            className={showNext ? "hidden" : "block"}
             ref={videoRef}
             muted
             playsInline
             autoPlay
             onEnded={handleEnded}
+            preload="auto"
           >
             <source src={starter4444} />
             <source src={starter} type="video/webm" />
+          </video>
+          <video
+            className={showNext ? "block" : "hidden"}
+            ref={video2Ref}
+            muted
+            playsInline
+            autoPlay
+            preload="auto"
+          >
+            <source src={starter24444} />
+            <source src={starter2} type="video/webm" />
           </video>
 
           <div
@@ -44,6 +75,7 @@ const AboutUsSection = forwardRef((props, ref) => {
             <p>及數位應用</p>
             <motion.div
               className="absolute left-1/2 top-[-10vh] cursor-pointer"
+              onClick={handleClick}
               animate={{
                 scale: 1.5,
               }}
@@ -62,22 +94,41 @@ const AboutUsSection = forwardRef((props, ref) => {
       </section>
       {/* 桌面 */}
       <section className="hidden h-[90vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
-        <video className="w-[35rem] self-start" muted autoPlay playsInline>
+        <video
+          className="w-[35rem] self-start"
+          muted
+          autoPlay
+          playsInline
+          preload="auto"
+        >
           <source src={titleAnimation4444} />
           <source src={titleAnimation} type="video/webm" />
         </video>
 
         <div className="relative">
           <video
+            className={showNext ? "hidden" : "block"}
             ref={videoRef}
             muted
             playsInline
             autoPlay
             onEnded={handleEnded}
+            preload="auto"
           >
             <source src={starter4444} />
             <source src={starter} type="video/webm" />
           </video>
+          <video
+            className={showNext ? "block" : "hidden"}
+            ref={video2Ref}
+            muted
+            playsInline
+            preload="auto"
+          >
+            <source src={starter24444} />
+            <source src={starter2} type="video/webm" />
+          </video>
+
           {showEnded && (
             <div className="absolute bottom-0 right-0 flex flex-col rounded-br-[3.75rem] rounded-tr-[3.75rem] bg-shadow2/30 font-sf text-[2.5rem] font-semibold text-black dark:text-white">
               <p>交給我們來吧</p>
@@ -88,6 +139,7 @@ const AboutUsSection = forwardRef((props, ref) => {
           {showEnded && (
             <motion.div
               className="absolute bottom-[3rem] left-1/2 z-20 cursor-pointer"
+              onClick={handleClick}
               animate={{
                 scale: 1.5,
               }}
