@@ -13,11 +13,13 @@ import useServiceStore from "../../store/serviceStore";
 // text animation
 import titleAnimation from "../../assets/contactUs/title-animation.webm";
 import titleAnimation4444 from "../../assets/contactUs/title-animation.mov";
+import { motion, useInView } from "framer-motion";
 
 const ContactUsSection = forwardRef((props, ref) => {
   const { createCase, getCsrfToken } = useCsrfStore();
   const openModal = useModalStore((state) => state.openModal);
   const { services } = useServiceStore();
+  const isInView = useInView(ref, { once: true }, { threshold: 0.3 });
 
   const {
     register,
@@ -85,7 +87,7 @@ const ContactUsSection = forwardRef((props, ref) => {
     <div className="h-full w-full" ref={ref}>
       <Toaster />
       {/* 手機版 */}
-      <section className="flex h-[190vh] w-full flex-col bg-highlight dark:bg-shadow3 md:hidden">
+      <section className="flex h-[190vh] w-full flex-col gap-[7vh] bg-highlight dark:bg-shadow3 md:hidden">
         <video
           className="w-[60vw] self-start"
           muted
@@ -97,7 +99,14 @@ const ContactUsSection = forwardRef((props, ref) => {
           <source src={titleAnimation4444} />
           <source src={titleAnimation} type="video/webm" />
         </video>
-        <div className="flex h-[50%] w-full flex-col items-center justify-around">
+        <motion.div
+          className="flex h-[50%] w-full flex-col items-center justify-around"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={
+            isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+          }
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
           <img className="h-[20.14vh] w-[80vw]" src={fIcon} alt="fIcon" />
           <div className="justfy-center flex flex-col items-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
             <div>您的故事，</div>
@@ -107,7 +116,7 @@ const ContactUsSection = forwardRef((props, ref) => {
             每個人心中都有一個獨一無二的故事，分享您的故事，讓我們以數位魔法將其轉化為令人驚嘆的產品——從互動網站到專屬應用程式，讓您的故事在數位世界中閃耀！
           </div>
           <img className="h-[20.14vh] w-[80vw]" src={dIcon} alt="dIcon" />
-        </div>
+        </motion.div>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -277,20 +286,28 @@ const ContactUsSection = forwardRef((props, ref) => {
             ))}
           </div>
 
-          <button
+          <motion.button
             className="relative h-[4.56vh] w-[35.3125vw] rounded-[12.5vw]"
             type="submit"
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.5 }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+            }}
           >
             <img
               className="absolute left-0 top-0 h-full w-full object-cover"
               src={submitBtn}
               alt="submitBtn"
             />
-          </button>
+          </motion.button>
         </form>
       </section>
       {/* 桌面版 */}
-      <section className="relative hidden h-[100vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
+      <section className="relative hidden h-[100vh] w-full flex-col items-center justify-center gap-[5rem] bg-highlight dark:bg-shadow3 md:flex">
         <video
           className="w-[35rem] self-start"
           muted
@@ -306,8 +323,15 @@ const ContactUsSection = forwardRef((props, ref) => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex h-full w-full flex-col items-center justify-around"
         >
-          <div className="grid h-full w-full grid-rows-[23.57fr_69.29fr_7.14fr] gap-[1rem]">
-            <div className="grid h-full w-full grid-cols-[16.7fr_66.6fr_16.7fr] justify-around px-[2rem]">
+          <div className="grid h-full w-full grid-rows-[23.57fr_69.29fr_7.14fr] gap-[5rem]">
+            <motion.div
+              className="grid h-full w-full grid-cols-[16.7fr_66.6fr_16.7fr] justify-around px-[2rem]"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+              }
+              transition={{ duration: 2, ease: "easeOut" }}
+            >
               <img className="h-full w-full" src={fIcon} alt="fIcon" />
               <div className="justfy-center flex flex-col gap-[1rem] pt-[0.5rem] dark:text-highlight">
                 <h1 className="text-center font-sf text-xlg font-semibold">
@@ -322,7 +346,7 @@ const ContactUsSection = forwardRef((props, ref) => {
                 src={dIcon}
                 alt="dIcon"
               />
-            </div>
+            </motion.div>
             <div className="grid h-full w-full grid-cols-[1fr_1fr] gap-[2rem] px-[2rem]">
               <div className="flex flex-col justify-between">
                 <div className="font-sf text-xlg font-semibold text-shadow3 dark:text-highlight">
@@ -484,9 +508,18 @@ const ContactUsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="flex h-full w-full items-center justify-center">
-              <button>
+              <motion.button
+                initial={{ scale: 1 }}
+                animate={{ scale: 1.5 }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }}
+              >
                 <img src={submitBtn} alt="submitBtn" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </form>

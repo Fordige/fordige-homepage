@@ -1,4 +1,5 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 import service from "../../assets/serviceContent/service.webp";
 import serviceLight from "../../assets/serviceContent/service-light.webp";
@@ -13,6 +14,8 @@ const ServiceContent = forwardRef((props, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
   const { isDarkMode } = useModeStore();
   const { services } = useServiceStore();
+
+  const isInView = useInView(ref, { once: true }, { threshold: 0.3 });
 
   const ImageIcon = () => (
     <svg
@@ -73,7 +76,7 @@ const ServiceContent = forwardRef((props, ref) => {
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
-      <section className="flex h-[80vh] w-full flex-col items-center justify-start gap-[4.56vh] bg-highlight dark:bg-shadow3 md:hidden">
+      <section className="flex h-[80vh] w-full flex-col items-center justify-start gap-[7vh] bg-highlight dark:bg-shadow3 md:hidden">
         <video
           className="w-[60vw] self-start"
           muted
@@ -103,26 +106,38 @@ const ServiceContent = forwardRef((props, ref) => {
             ))}
           </div>
           <div>
-            <div className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight">
+            <motion.div
+              className="flex h-[8.265vh] flex-col items-start justify-center text-center font-sf text-[7.5vw] font-semibold text-shadow3 dark:text-highlight"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+              }
+              transition={{ duration: 2, ease: "easeOut" }}
+            >
               <div>從設計到智能</div>
               <div className="px-[12.5vw]">解決您的數位需求</div>
-            </div>
+            </motion.div>
           </div>
           <div className="flex h-[26.0775vh] w-[80vw] flex-col justify-around rounded-[8.75vw] border border-shadow3 p-[2.5vw] dark:border-shadow2">
             <p className="font-sf text-[3.125vw] font-medium text-shadow3 dark:text-highlight">
               {services[currentPage].description}
             </p>
-            <img
+            <motion.img
               className="h-[6.7vh] w-[70vw]"
               src={services[currentPage].icon}
               alt={`${services[0].title}`}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+              }
+              transition={{ duration: 3, ease: "easeOut" }}
             />
           </div>
         </div>
       </section>
       {/* 桌面版 */}
       <section
-        className="hidden h-[90vh] w-full flex-col items-center justify-around gap-[1rem] bg-highlight dark:bg-shadow3 md:flex"
+        className="hidden h-[90vh] w-full flex-col items-center justify-around gap-[5rem] bg-highlight dark:bg-shadow3 md:flex"
         ref={ref}
       >
         <video
@@ -142,7 +157,12 @@ const ServiceContent = forwardRef((props, ref) => {
         </div>
         <div className="flex h-[75%] w-full justify-around">
           <div className="flex w-[32.22%] items-end justify-center">
-            <div className="justfy-start relative flex h-[18.5rem] w-[25.75rem]">
+            <motion.div
+              className="justfy-start relative flex h-[18.5rem] w-[25.75rem]"
+              initial={{ opacity: 0, y: 100 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 200 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+            >
               <img
                 className="h-full w-[22rem]"
                 src={isDarkMode ? service : serviceLight}
@@ -152,7 +172,7 @@ const ServiceContent = forwardRef((props, ref) => {
               <BusinessIcon />
               <SpaIcon />
               <OtherIcon />
-            </div>
+            </motion.div>
           </div>
           <div className="flex w-[60.31%] flex-col justify-around border border-shadow3 p-[1rem] dark:border-shadow2">
             <h1 className="font-sf text-[1.125rem] font-[620] text-shadow3 dark:text-highlight">
@@ -161,9 +181,14 @@ const ServiceContent = forwardRef((props, ref) => {
             <p className="font-sf text-xxs font-medium text-shadow3 dark:text-highlight">
               {services[currentPage].description}
             </p>
-            <img
+            <motion.img
               src={services[currentPage].icon}
               alt={`${services[0].title}`}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={
+                isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
+              }
+              transition={{ duration: 2, ease: "easeOut" }}
             />
           </div>
         </div>

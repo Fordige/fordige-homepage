@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
 import "slick-carousel/slick/slick.css";
@@ -101,7 +101,7 @@ const WorkProcess = forwardRef((props, ref) => {
   return (
     <div className="h-full w-full" ref={ref}>
       {/* 手機版 */}
-      <section className="flex h-[70vh] w-full flex-col items-center justify-start gap-[4.56vh] bg-highlight dark:bg-shadow3 md:hidden">
+      <section className="flex h-[70vh] w-full flex-col items-center justify-start gap-[7vh] bg-highlight dark:bg-shadow3 md:hidden">
         <video
           className="w-[60vw] self-start"
           muted
@@ -148,7 +148,7 @@ const WorkProcess = forwardRef((props, ref) => {
         </div>
       </section>
       {/* 桌面版 */}
-      <section className="hidden h-[90vh] w-full flex-col items-center justify-center gap-[1rem] bg-highlight dark:bg-shadow3 md:flex">
+      <section className="hidden h-[90vh] w-full flex-col items-center justify-center gap-[5rem] bg-highlight dark:bg-shadow3 md:flex">
         <video
           className="w-[35rem] self-start"
           muted
