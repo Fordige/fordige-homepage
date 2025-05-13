@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from urllib.parse import quote
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'  # 根據環境動態設置
 
-ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1', '*']
 
 
 # Application definition
@@ -90,9 +91,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': config('MONGO_DB_NAME', default='case_management'),
         'CLIENT': {
-            'host': f"mongodb+srv://{config('MONGO_DB_USERNAME')}:{config('MONGO_DB_PASSWORD')}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0",
-            'username': config('MONGO_DB_USERNAME'),
-            'password': config('MONGO_DB_PASSWORD'),
+            'host': f"mongodb+srv://{quote(config('MONGO_DB_USERNAME'))}:{quote(config('MONGO_DB_PASSWORD'))}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0",
             'authMechanism': 'SCRAM-SHA-1',
         }
     }
