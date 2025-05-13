@@ -26,6 +26,8 @@ jobs:
           MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
           MONGO_DB_PASSWORD: ${{ secrets.MONGO_DB_PASSWORD }}
           MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
+          LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
         run: |
           docker build \
             --build-arg MONGO_DB_USERNAME="$MONGO_DB_USERNAME" \
