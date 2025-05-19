@@ -1,0 +1,44 @@
+files:
+  "/etc/nginx/conf.d/websocket.conf":
+    mode: "000644"
+    owner: root
+    group: root
+    content: |
+      server {
+        listen 80;
+        listen 443 ssl;
+        server_name fordige.com ws.fordige.com;
+
+        location ~* ^/(.env|.git|admin) {
+          deny all;
+          return 403;
+        }
+
+        location / {
+          proxy_pass http://127.0.0.1:8000;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /ws/chatbot/ {
+          proxy_pass http://127.0.0.1:8000;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_read_timeout 3600s;
+          proxy_send_timeout 3600s;
+        }
+      }
+commands:
+  01_remove_default_conf:
+    command: rm -f /etc/nginx/conf.d/00_elastic_beanstalk_proxy.conf
+    ignoreErrors: true
+  02_reload_nginx:
+    command: /sbin/nginx -s reload
+    ignoreErrors: true
