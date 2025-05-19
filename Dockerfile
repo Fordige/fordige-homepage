@@ -46,7 +46,7 @@ ENV REDIS_PORT=6379
 
 # 收集靜態檔案並運行遷移
 RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate --noinput
+#RUN python manage.py migrate --noinput
 
 EXPOSE 8000
 # CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application"]
