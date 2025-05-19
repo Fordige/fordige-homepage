@@ -8,6 +8,7 @@ import AboutUsSection from "./components/sections/AboutUsSection";
 import WorkProcess from "./components/sections/WorkProcess";
 import ServiceContent from "./components/sections/ServiceContent";
 import ContactUsSection from "./components/sections/ContactUsSection";
+import ChatIcon from "./components/ui/ChatIcon";
 
 function App() {
   const sectionRefs = [
@@ -32,6 +33,12 @@ function App() {
     setIsProgrammaticScroll(true);
     setCurrentSection(index);
   };
+
+  const renderCount = useRef(0);
+  useEffect(() => {
+    renderCount.current += 1;
+    console.log(`App 渲染次數: ${renderCount.current}`);
+  });
 
   useEffect(() => {
     if (!isProgrammaticScroll) return;
@@ -104,6 +111,7 @@ function App() {
       <ContactUsSection ref={sectionRefs[4]} />
       <Footer />
       <Modal />
+      <ChatIcon />
     </div>
   );
 }

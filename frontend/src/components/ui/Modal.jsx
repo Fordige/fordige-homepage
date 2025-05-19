@@ -1,6 +1,6 @@
 import useModalStore from "../../store/modalStore";
 import lineContact from "../../assets/line_contact_us.svg";
-import lineContactChicken from "../../assets/line_contact_chicken.svg";
+import lineContactChicken from "../../assets/line-contact-chicken.webp";
 import lineQrcode from "../../assets/line_qrcode.svg";
 
 function Modal() {
@@ -38,14 +38,14 @@ function Modal() {
               />
             </div>
 
-            <div className="flex h-full w-[13.75rem] flex-col justify-between py-[1.75rem]">
+            <div className="flex h-full w-[13.75rem] flex-col justify-center py-[1.75rem]">
               <img
-                className="h-[10.75rem] w-[10.75rem]"
+                className="h-[6.25rem] w-[6.25rem] self-center"
                 src={lineContact}
                 alt="lineContact"
               />
               <img
-                className="h-[10.75rem] w-[10.75rem]"
+                className="h-[13.25rem] w-[11.375rem]"
                 src={lineContactChicken}
                 alt="lineContactChicken"
               />

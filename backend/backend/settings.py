@@ -27,14 +27,16 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'  # 根據環境動態設置
+# DEBUG = True  # 根據環境動態設置
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1', '*']
-
+# ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1', '6e33-111-253-184-188.ngrok-free.app']
+ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,9 +47,12 @@ INSTALLED_APPS = [
 
     'api',
     'userauths',
+    'channels',
+    'chatbot',
 
     'rest_framework',
     "corsheaders",
+    
 ]
 
 MIDDLEWARE = [
@@ -96,6 +101,8 @@ DATABASES = {
         }
     }
 }
+
+
 
 
 # Password validation
@@ -192,24 +199,31 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'djongo': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'propagate': False,
+        },
+
+    },
+}
+# Redis Channel Settings
+ASGI_APPLICATION = 'backend.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(config('REDIS_HOST', default='localhost'), config('REDIS_PORT', default=6379, cast=int))],  # Redis 伺服器地址
         },
     },
 }
 
-# LINE settings
-LINE_CHANNEL_SECRET = config('LINE_CHANNEL_SECRET')
+MONGO_URI = f"mongodb+srv://{config('MONGO_DB_USERNAME')}:{config('MONGO_DB_PASSWORD')}@cluster0.ezomnzs.mongodb.net/{config('MONGO_DB_NAME')}?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_DB_NAME = config('MONGO_DB_NAME', default='case_management')
+LINE_GROUP_ID = config('LINE_GROUP_ID')
 LINE_CHANNEL_ACCESS_TOKEN = config('LINE_CHANNEL_ACCESS_TOKEN')

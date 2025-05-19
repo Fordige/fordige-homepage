@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('line/', include('chatbot.urls')),
-    path('', TemplateView.as_view(template_name="index.html")), 
-    path('<path:path>', TemplateView.as_view(template_name="index.html")),
+    # path('', TemplateView.as_view(template_name="index.html")), 
+    # path('<path:path>', TemplateView.as_view(template_name="index.html")),
 ]
 

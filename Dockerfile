@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y curl \
 COPY frontend/package*.json ./frontend/
 RUN cd frontend && npm install
 
+# 複製後端程式碼
 COPY backend/ ./backend/
 
 # 複製前端原始碼並構建
@@ -29,6 +30,9 @@ RUN mkdir -p templates && mv static/index.html templates/index.html
 ARG MONGO_DB_USERNAME
 ARG MONGO_DB_PASSWORD
 ARG MONGO_DB_NAME
+ARG LINE_CHANNEL_SECRET
+ARG LINE_CHANNEL_ACCESS_TOKEN
+ARG LINE_GROUP_ID
 
 # 設置環境變數
 ENV MONGO_DB_USERNAME=$MONGO_DB_USERNAME
@@ -36,10 +40,14 @@ ENV MONGO_DB_PASSWORD=$MONGO_DB_PASSWORD
 ENV MONGO_DB_NAME=$MONGO_DB_NAME
 ENV LINE_CHANNEL_SECRET=$LINE_CHANNEL_SECRET
 ENV LINE_CHANNEL_ACCESS_TOKEN=$LINE_CHANNEL_ACCESS_TOKEN
+ENV LINE_GROUP_ID=$LINE_GROUP_ID
+ENV REDIS_HOST=localhost
+ENV REDIS_PORT=6379
 
 # 收集靜態檔案並運行遷移
 RUN python manage.py collectstatic --noinput
 RUN python manage.py migrate --noinput
 
 EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application"]
+CMD redis-server --daemonize yes && daphne -b 0.0.0.0 -p 8000 backend.asgi:application

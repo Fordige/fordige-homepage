@@ -28,11 +28,15 @@ jobs:
           MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
           LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_GROUP_ID: ${{ secrets.LINE_GROUP_ID }}
         run: |
           docker build \
             --build-arg MONGO_DB_USERNAME="$MONGO_DB_USERNAME" \
             --build-arg MONGO_DB_PASSWORD="$MONGO_DB_PASSWORD" \
             --build-arg MONGO_DB_NAME="$MONGO_DB_NAME" \
+            --build-arg LINE_CHANNEL_SECRET="$LINE_CHANNEL_SECRET" \
+            --build-arg LINE_CHANNEL_ACCESS_TOKEN="$LINE_CHANNEL_ACCESS_TOKEN" \
+            --build-arg LINE_GROUP_ID="$LINE_GROUP_ID" \
             -t fordige-home:latest .
           docker tag fordige-home:latest ${{ secrets.DOCKERHUB_USERNAME }}/fordige-home:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/fordige-home:latest
