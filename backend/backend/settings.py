@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True  # 根據環境動態設置
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True  # 根據環境動態設置
+# DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1', '6e33-111-253-184-188.ngrok-free.app']
 ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com']
