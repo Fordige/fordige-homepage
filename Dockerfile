@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # 複製前端原始碼並構建
 COPY frontend/ ./frontend/
-RUN cd frontend && npm run build
+RUN rm -rf backend/static/* && cd frontend && npm run build
 
 # 複製後端程式碼
 COPY backend/ ./backend/
@@ -55,7 +55,7 @@ ENV REDIS_PORT=6379
 ENV DJANGO_SETTINGS_MODULE=backend.settings
 
 # 收集靜態檔案
-RUN python manage.py collectstatic --noinput
+RUN rm -rf staticfiles/* && python manage.py collectstatic --noinput
 
 # 移動 index.html 到 templates
 RUN mkdir -p templates && mv static/index.html templates/index.html || true
