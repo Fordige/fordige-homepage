@@ -57,10 +57,10 @@ const ChatWindow = ({ onClose }) => {
 
     isConnecting.current = true;
     console.log(
-      `嘗試連線 WebSocket: wss://fordige.com/ws/chatbot/${sessionId}/`,
+      `嘗試連線 WebSocket: wss://ws.fordige.com/ws/chatbot/${sessionId}/`,
     );
     const newSocket = new WebSocket(
-      `wss://fordige.com/ws/chatbot/${sessionId}/`,
+      `wss://ws.fordige.com/ws/chatbot/${sessionId}/`,
     );
     setSocket(newSocket);
 
