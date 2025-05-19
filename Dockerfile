@@ -67,6 +67,6 @@ RUN mkdir -p /var/log/django && chmod -R 777 /var/log/django
 EXPOSE 8000
 
 # 使用啟動腳本
-COPY start.sh .
+COPY backend/start.sh .
 RUN chmod +x start.sh
 CMD ["./start.sh"]

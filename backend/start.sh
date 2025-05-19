@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e  # 若任何命令失敗，立即退出
+set -e
 
 # 檢查 redis-server 是否可用
 if ! command -v redis-server >/dev/null 2>&1; then
