@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-8^-fu1x#6tz1h1+e042=tfe=(o!s3oxj_)%p4f^n+b9f(7qof2
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', 'localhost', '127.0.0.1', '6e33-111-253-184-188.ngrok-free.app']
-ALLOWED_HOSTS = ['fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['ws.fordige.com','fordige.com', 'www.fordige.com','.fordige.com', '.elasticbeanstalk.com', '35.73.15.171', '172.17.0.2', 'localhost', '35-73-15-171.sslip.io', '127.0.0.1']
 
 # Application definition
 
@@ -186,6 +186,15 @@ CSRF_TRUSTED_ORIGINS = [
     'https://fordige.com',
     'https://www.fordige.com',
     'https://*.fordige.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://fordige.com',
+    'https://ws.fordige.com',
+    'https://*.fordige.com',
+    'https://*.elasticbeanstalk.com',
+    'http://localhost',
+    'https://35-73-15-171.sslip.io',
 ]
 
 CSRF_COOKIE_SECURE =True 

@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# 創建日誌目錄
+RUN mkdir -p /var/log/redis && chmod -R 777 /var/log/redis
+RUN mkdir -p /var/log/django && chmod -R 777 /var/log/django
+
 # 創建虛擬環境
 RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
