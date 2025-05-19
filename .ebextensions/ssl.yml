@@ -11,6 +11,6 @@ option_settings:
   aws:elasticbeanstalk:environment:process:default:
     Port: 443
     Protocol: HTTPS
-    SSLCertificateArns: arn:aws:acm:us-east-1:851725588449:certificate/43f8c939-3614-4fb1-ad0e-9ef05767424d
+    SSLCertificateArns: arn:aws:acm:ap-northeast-1:851725588449:certificate/48fe191d-d111-4dc4-a9bf-760611e9c8ed
   aws:elasticbeanstalk:application:environment:
     AWS_REGION: ap-northeast-1

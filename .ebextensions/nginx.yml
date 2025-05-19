@@ -36,6 +36,9 @@ files:
         }
       }
 commands:
+  00_cleanup_old_conf:
+    command: rm -f /etc/nginx/conf.d/websocket.conf
+    ignoreErrors: true
   01_remove_default_conf:
     command: rm -f /etc/nginx/conf.d/00_elastic_beanstalk_proxy.conf
     ignoreErrors: true
