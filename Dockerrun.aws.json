@@ -1,13 +1,10 @@
 {
   "AWSEBDockerrunVersion": "1",
-  "Image": {
-    "Name": "fordige/fordige-home:latest",
-    "Update": "true"
-  },
   "Ports": [
     {
       "ContainerPort": 8000,
       "HostPort": 80
     }
-  ]
+  ],
+  "Logging": "/var/log/django"
 }
