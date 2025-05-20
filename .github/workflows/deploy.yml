@@ -54,7 +54,7 @@ jobs:
           cp deploy.zip artifacts/
 
       - name: Upload deploy.zip for debugging
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deploy-package
           path: artifacts/deploy.zip
