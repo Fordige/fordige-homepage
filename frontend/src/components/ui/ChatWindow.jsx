@@ -59,12 +59,12 @@ const ChatWindow = ({ onClose }) => {
     console.log(
       `嘗試連線 WebSocket: wss://ws.fordige.com/ws/chatbot/${sessionId}/`,
     );
-    // const newSocket = new WebSocket(
-    //   `wss://ws.fordige.com/ws/chatbot/${sessionId}/`,
-    // );
     const newSocket = new WebSocket(
-      `wss://http://fordige-application-env.eba-wajhvpf2.ap-northeast-1.elasticbeanstalk.com/ws/chatbot/test_session/`,
+      `wss://ws.fordige.com/ws/chatbot/${sessionId}/`,
     );
+    // const newSocket = new WebSocket(
+    //   `wss://fordige-application-env.eba-wajhvpf2.ap-northeast-1.elasticbeanstalk.com/ws/chatbot/test_session/`,
+    // );
     setSocket(newSocket);
 
     newSocket.onopen = () => {
