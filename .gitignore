@@ -75,3 +75,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# apt-get update
+# apt-get install -y procps net-tools
