@@ -42,7 +42,6 @@ build/
 *.env
 secrets/
 credentials.json
-*.key
 *.pem
 
 # 其他臨時檔案
