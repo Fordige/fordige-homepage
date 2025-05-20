@@ -50,6 +50,15 @@ jobs:
             Dockerrun.aws.json \
             -x "*.git*"
           unzip -l deploy.zip
+          mkdir -p artifacts
+          cp deploy.zip artifacts/
+
+      - name: Upload deploy.zip for debugging
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy-package
+          path: artifacts/deploy.zip
+          retention-days: 7
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
