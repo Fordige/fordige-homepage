@@ -46,9 +46,7 @@ jobs:
 
       - name: Generate deployment package
         run: |
-          zip -r deploy.zip \
-            Dockerrun.aws.json \
-            -x "*.git*"
+          zip -r deploy.zip Dockerrun.aws.json .platform
           unzip -l deploy.zip
           mkdir -p artifacts
           cp deploy.zip artifacts/
