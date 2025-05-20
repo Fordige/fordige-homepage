@@ -58,9 +58,10 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: fordige-application
           environment_name: Fordige-application-env
-          version_label: ${{ github.sha }}
+          version_label: ${{ github.sha }}-${{ github.run_id }}
           region: ap-northeast-1
           deployment_package: deploy.zip
+          use_existing_version_if_available: true
         env:
           MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
           MONGO_DB_PASSWORD: ${{ secrets.MONGO_DB_PASSWORD }}
