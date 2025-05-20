@@ -6,13 +6,8 @@
   },
   "Ports": [
     {
-      "ContainerPort": 443,
-      "HostPort": 443
-    },
-    {
-      "ContainerPort": 80,
-      "HostPort": 80
+      "ContainerPort": 8000
     }
   ],
-  "Logging": "/var/log/nginx"
+  "Logging": "/var/log/django"
 }

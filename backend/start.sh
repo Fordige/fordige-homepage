@@ -29,16 +29,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 檢查 nginx
-if ! command -v nginx >/dev/null 2>&1; then
-    echo "Error: nginx not found" >&2
-    exit 127
-fi
-
-# 啟動 Nginx
-echo "Starting nginx..."
-nginx &
-
 # 檢查 daphne
 if ! command -v daphne >/dev/null 2>&1; then
     echo "Error: daphne not found" >&2
