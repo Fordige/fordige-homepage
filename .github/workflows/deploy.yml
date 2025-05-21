@@ -52,6 +52,8 @@ jobs:
           mkdir -p artifacts
           cp deploy.zip artifacts/
           ls -la artifacts
+          unzip artifacts/deploy.zip -d artifacts/extracted
+          ls -la artifacts/extracted
 
       - name: Upload deploy.zip for debugging
         uses: actions/upload-artifact@v4
