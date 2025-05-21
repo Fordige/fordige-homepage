@@ -49,19 +49,11 @@ jobs:
           ls -la .platform
           zip -r deploy.zip Dockerrun.aws.json .platform
           unzip -l deploy.zip
-          mkdir -p artifacts
-          cp deploy.zip artifacts/
-          ls -la artifacts
-          unzip artifacts/deploy.zip -d artifacts/extracted
-          ls -la artifacts/extracted
-
-      - name: Upload deploy.zip for debugging
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-package
-          path: artifacts/deploy.zip
-          retention-days: 7
-          compression-level: 0
+          aws s3 cp deploy.zip s3://elasticbeanstalk-ap-northeast-1-851725588449/fordige-application/deploy.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-1
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
@@ -72,7 +64,7 @@ jobs:
           environment_name: Fordige-application-env
           version_label: ${{ github.sha }}-${{ github.run_id }}
           region: ap-northeast-1
-          deployment_package: artifacts/deploy.zip
+          deployment_package: s3://elasticbeanstalk-ap-northeast-1-851725588449/fordige-application/deploy.zip
           use_existing_version_if_available: true
         env:
           MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
