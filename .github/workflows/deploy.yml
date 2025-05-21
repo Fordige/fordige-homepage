@@ -61,6 +61,7 @@ jobs:
           name: deploy-package
           path: artifacts/deploy.zip
           retention-days: 7
+          compression-level: 0
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
@@ -71,7 +72,7 @@ jobs:
           environment_name: Fordige-application-env
           version_label: ${{ github.sha }}-${{ github.run_id }}
           region: ap-northeast-1
-          deployment_package: deploy.zip
+          deployment_package: artifacts/deploy.zip
           use_existing_version_if_available: true
         env:
           MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
