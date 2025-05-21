@@ -50,24 +50,27 @@ jobs:
           zip -r deploy.zip Dockerrun.aws.json .platform
           unzip -l deploy.zip
           aws s3 cp deploy.zip s3://elasticbeanstalk-ap-northeast-1-851725588449/fordige-application/deploy.zip
-          sleep 10  # Wait for S3 upload to propagate
+          sleep 10
           aws s3 ls s3://elasticbeanstalk-ap-northeast-1-851725588449/fordige-application/deploy.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-northeast-1
       - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v21
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: fordige-application
-          environment_name: Fordige-application-env
-          version_label: ${{ github.sha }}-${{ github.run_id }}
-          region: ap-northeast-1
-          deployment_package: s3://elasticbeanstalk-ap-northeast-1-851725588449/fordige-application/deploy.zip
-          use_existing_version_if_available: true
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name fordige-application \
+            --version-label ${{ github.sha }}-${{ github.run_id }} \
+            --source-bundle S3Bucket=elasticbeanstalk-ap-northeast-1-851725588449,S3Key=fordige-application/deploy.zip \
+            --region ap-northeast-1
+          aws elasticbeanstalk update-environment \
+            --environment-name Fordige-application-env \
+            --version-label ${{ github.sha }}-${{ github.run_id }} \
+            --region ap-northeast-1
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-1
           MONGO_DB_USERNAME: ${{ secrets.MONGO_DB_USERNAME }}
           MONGO_DB_PASSWORD: ${{ secrets.MONGO_DB_PASSWORD }}
           MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
