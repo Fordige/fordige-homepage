@@ -112,7 +112,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
 
       {/* 右側語言與模式切換（桌面版始終顯示） */}
       <div className="hidden h-[4rem] w-[14.75rem] items-start justify-end gap-[1rem] md:flex">
-        <div className="flex h-[1.5rem] w-[8.25rem] items-center justify-between">
+        {/* <div className="flex h-[1.5rem] w-[8.25rem] items-center justify-between">
           <MdLanguage className="h-full w-[1.5rem] fill-[url(#myGradient)] dark:fill-shadow" />
           <select
             className="w-[6.25rem] cursor-pointer rounded-[0.5rem] border-[0.125rem] border-midtone bg-highlight text-shadow dark:border-shadow dark:bg-shadow2"
@@ -122,7 +122,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
             <option value="zh">繁體中文</option>
             <option value="en">English</option>
           </select>
-        </div>
+        </div> */}
         <div className="flex h-[1.5rem] w-[5.5rem] items-center gap-[0.5rem]">
           {isDarkMode ? (
             <BsFillLampFill className="h-[1.5rem] w-[1.5rem] fill-shadow" />
@@ -164,7 +164,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
               </span>
             </button>
           ))}
-          <div className="flex flex-col items-center gap-2">
+          {/* <div className="flex flex-col items-center gap-2">
             <MdLanguage className="h-[4.24vh] w-[7.5vh] fill-shadow dark:fill-highlight" />
             <select
               className="w-[10rem] cursor-pointer rounded-[1rem] border-[0.1rem] border-shadow bg-highlight text-sm text-shadow dark:border-highlight dark:bg-shadow dark:text-highlight"
@@ -174,7 +174,7 @@ const Navbar = forwardRef(({ scrollToSection, currentSection }, ref) => {
               <option value="zh">繁體中文</option>
               <option value="en">English</option>
             </select>
-          </div>
+          </div> */}
           <div className="flex flex-col items-center gap-2">
             {isDarkMode ? (
               <BsFillLampFill className="h-[4.24vh] w-[7.5vw] fill-highlight" />

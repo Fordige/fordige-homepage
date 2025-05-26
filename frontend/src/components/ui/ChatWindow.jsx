@@ -165,7 +165,7 @@ const ChatWindow = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed bottom-1/2 right-5 z-50 flex h-[30rem] w-[20rem] translate-y-1/2 flex-col rounded-lg bg-white shadow-2xl">
+    <div className="fixed bottom-1/2 right-5 z-50 flex h-[40vh] w-[60vw] translate-y-1/2 flex-col rounded-lg bg-white shadow-2xl md:h-[30rem] md:w-[20rem]">
       <div className="flex items-center justify-between rounded-t-lg bg-midtone p-3 font-sf text-[1.5rem] text-white">
         <span>( 聊天ID: {sessionId} )</span>
         <button onClick={onClose} className="cursor-pointer">

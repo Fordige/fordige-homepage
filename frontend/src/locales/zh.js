@@ -4,6 +4,6 @@ export const zh = {
   head_cooperate_process: "專案流程",
   head_contact_us: "聯絡我們",
 
-  homepage_content: "從形象網頁到智能應用，協助您的業務只需 25,000 起",
+  homepage_content: "從網頁設計到智能應用，幫您鍛造數位未來！",
   homepage_button: "立即洽詢",
 };
